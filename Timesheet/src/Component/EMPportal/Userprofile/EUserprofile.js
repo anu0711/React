@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import 'antd/dist/antd.css';
 import axios from "axios";
-import { Row, Col, Card, Space, Layout } from 'antd';
-import Sidersbar from "../ESidebar";
+import { Row, Col, Card, Space, Layout,Button } from 'antd';
+import { Link, } from "react-router-dom";
+
 
 const EUserprofile = () => {
     const { Sider } = Layout;
@@ -21,11 +22,21 @@ const EUserprofile = () => {
 
     return (
         <><Space>
-            <Sider style={{ height: "200%", width: 200 }}>
-                <Sidersbar />
-            </Sider>
+              <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 30, marginTop: -100 }}>
+        <Button  style={{ width: 200, margin: "0 10%", height: 50, marginTop: 20 }}>
+        <Link to="/EDashboard">Dashboard</Link>
+        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+        <Link to="/Etimesheetsummary">Timesheet summary</Link>
+        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+        <Link to="/Eaddtimesheet">Timesheet</Link>
+        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+        <Link to="/Ehrinfo">HR contact info</Link>
+        </Button><Button type="primary" style={{ margin: "0 10%", width: 200, height: 50 }}>
+        <Link to="/Euserprofile">User Profile</Link>
+        </Button>
+      </Sider>
             {/* <h1 style={{ position: "fixed", marginLeft: 70, color: "blue", marginTop: 20, fontSize: 35 }}><b>Employee Userprofile</b></h1> */}
-            <Card style={{ width: 630, height: 550, marginLeft: 140, marginTop: 20, position: "fixed" }}>
+            <Card style={{ width: 630, height: 550, marginLeft: 270, marginTop: 20, position: "fixed" }}>
                 <div style={{ marginLeft: 190, marginTop: 10, position: "fixed" }}>
                     <h1>{users.map(user => (
                         <h1 style={{ color: "blue", fontSize: 40, marginLeft: -50 }}>{user.employee_Name}</h1>

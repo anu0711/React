@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Input, Space, Button, Form, Modal, Col, Row, Table, message, Card, Layout } from "antd";
-import Sidersbar from "../ESidebar";
+import { Link, } from "react-router-dom";
+
 
 const EHrInfo = () => {
 
@@ -48,13 +49,23 @@ const EHrInfo = () => {
 
     return (
         <><Space direction="horizantal">
-            <Sider style={{ height: "200%", width: 200 }}>
-                <Sidersbar />
-            </Sider>
-            <h1 style={{ position: "fixed", marginLeft: 110, color: "blue", marginTop: 40, fontSize: 35 }}><b>HR Contact Info</b></h1>
+              <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -100 }}>
+        <Button  style={{ width: 200, margin: "0 10%", height: 50, marginTop: 20 }}>
+        <Link to="/EDashboard">Dashboard</Link>
+        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+        <Link to="/Etimesheetsummary">Timesheet summary</Link>
+        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+        <Link to="/Eaddtimesheet">Timesheet</Link>
+        </Button><Button type="primary" style={{ margin: "0 10%", width: 200, height: 50 }}>
+        <Link to="/Ehrinfo">HR contact info</Link>
+        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+        <Link to="/Euserprofile">User Profile</Link>
+        </Button>
+      </Sider>
+            <h1 style={{ position: "fixed", marginLeft: 300, color: "blue", marginTop: 40, fontSize: 35 }}><b>HR Contact Info</b></h1>
             <Table
 
-                style={{ position: "fixed", padding: 155, marginLeft: 50, marginTop: -20, width: '80vw', height: '20vh' }}
+                style={{ position: "fixed", padding: 155, marginLeft: 150, marginTop: -20, width: '80vw', height: '20vh' }}
                 columns={clientDtlColumns}
                 dataSource={filteredClient}
                 pagination={{

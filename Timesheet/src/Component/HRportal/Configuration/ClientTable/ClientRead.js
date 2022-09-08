@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Input, Space, Form, Modal, Col, Row, Table, message, Card, Layout,Popover } from "antd";
+import { Input, Space, Form, Modal, Col, Row, Table, message, Card, Layout, Popover } from "antd";
 import Button from "antd-button-color";
 import { PlusCircleOutlined, EditOutlined, CloseCircleOutlined, SearchOutlined } from '@ant-design/icons';
 import Readdeactivated from "./Readdeactivated";
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import { Checkbox } from 'semantic-ui-react';
-import {LogoutOutlined} from '@ant-design/icons';
-import {  useNavigate } from 'react-router-dom';
+import { LogoutOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 function ClientRead() {
 
@@ -31,8 +31,8 @@ function ClientRead() {
   const [pageSize, setPageSize] = useState(10);
   const navigate = useNavigate();
   const navig = () => {
-       navigate("/#");
-       }
+    navigate("/#");
+  }
   const toke = sessionStorage.getItem("token");
   const setMessage = (statusCode, responseMessage) => {
     if (statusCode == 200) {
@@ -74,7 +74,7 @@ function ClientRead() {
       dataIndex: 'client_Name',
       width: "10rem"
     },
-    
+
   ];
 
   const showAddData = () => {
@@ -324,10 +324,10 @@ function ClientRead() {
         </Button>
       </Sider>
       <Popover position="top" content='Logout'>
-     <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>
-     <LogoutOutlined  onClick={navig}   />
-     </button>
-       </Popover>
+        <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '2%' }}>
+          <LogoutOutlined onClick={navig} />
+        </button>
+      </Popover>
       <div style={{ position: "fixed", width: "85%", marginLeft: 250 }}>
         <p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p>
         <Row><Col span={2}></Col>
@@ -414,6 +414,17 @@ function ClientRead() {
               width={400}
               onCancel={buttonCancel}
               visible={isModalVisible}
+              footer={[
+                <Button type="danger" onClick={buttonCancel}>Cancel</Button>, <Button type="primary" onClick={() => {
+                  form.validateFields().then((values) => {
+                    buttonOk(values)
+                    form.resetFields();
+                  })
+                    .catch((info) => {
+                      console.log('validate Field:', info);
+                    });
+                }}>Add</Button>
+              ]}
             >
               <AddClient />
             </Modal>

@@ -1,5 +1,5 @@
 import "antd/dist/antd.css";
-import { Modal, Input, Space, Col, Row, Form, message, Table, Select, DatePicker, Card, Layout,Popover } from "antd";
+import { Modal, Input, Space, Col, Row, Form, message, Table, Select, DatePicker, Card, Layout, Popover } from "antd";
 import Button from "antd-button-color";
 import 'antd-button-color/dist/css/style.css';
 import { useEffect, useState } from "react";
@@ -10,7 +10,7 @@ import $, { data } from 'jquery';
 import Deactivateemp from "./DeactiveEmployee";
 import { Link } from 'react-router-dom';
 import { Checkbox } from 'semantic-ui-react';
-import {LogoutOutlined} from '@ant-design/icons';
+import { LogoutOutlined } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Tablee = () => {
@@ -20,9 +20,9 @@ const Tablee = () => {
 
   const navig = () => {
 
-      navigate("/#");
+    navigate("/#");
 
-     }
+  }
   const [empDataSource, setEmpDataSoure] = useState([]);
   const [addedEmploy, setAddedEmploy] = useState({ "employee_Name": "", "reporting_Manager1": "", "employee_Type_Id": "", "email": "", "designation_Id": "", "contact_No": "", "joining_Date": "" });
   const [isEditing, setIsEditing] = useState(false);
@@ -122,33 +122,33 @@ const Tablee = () => {
 
   const [fullName, setfullName] = useState('');
 
-  const onEdit = (row) => {
+  const onEdit = () => {
     seteditEmployee_Type_Id(employee_Type_Id);
-    setEditDesignation(row.designation_Id);
-    setEditEmployee_Id(row.employee_Id);
-    setEditEmployeeFst_Name(row.first_Name);
-    setEditEmployeeLst_Name(row.editlast_Name);
+    setEditDesignation(selectedRows[0].designation_Id);
+    setEditEmployee_Id(selectedRows[0].employee_Id);
+    setEditEmployeeFst_Name(selectedRows[0].first_Name);
+    setEditEmployeeLst_Name(selectedRows[0].editlast_Name);
 
-    const fname = row.first_Name;
-    const lname = row.last_Name;
+    const fname = selectedRows[0].first_Name;
+    const lname = selectedRows[0].last_Name;
     const flname = (fname + " " + lname);
 
     setfullName(flname);
 
     editForm.setFieldsValue(
       {
-        employee_Id: row.employee_Id,
-        first_Name: row.first_Name,
-        last_Name: row.last_Name,
-        employee_Type_Id: row.employee_Type_Id,
-        joining_Date: row.joining_Date,
-        end_Date: row.end_Date,
-        designation_Id: row.designation_Id,
-        employee_code: row.employee_code,
-        alternate_Email: row.alternate_Email,
-        reporting_Manager1: row.reporting_Manager1,
-        email: row.email,
-        contact_No: row.contact_No
+        employee_Id: selectedRows[0].employee_Id,
+        first_Name: selectedRows[0].first_Name,
+        last_Name: selectedRows[0].last_Name,
+        employee_Type_Id: selectedRows[0].employee_Type_Id,
+        joining_Date: selectedRows[0].joining_Date,
+        end_Date: selectedRows[0].end_Date,
+        designation_Id: selectedRows[0].designation_Id,
+        employee_code: selectedRows[0].employee_code,
+        alternate_Email: selectedRows[0].alternate_Email,
+        reporting_Manager1: selectedRows[0].reporting_Manager1,
+        email: selectedRows[0].email,
+        contact_No: selectedRows[0].contact_No
       });
 
     setIsEditing(!isEditing);
@@ -176,7 +176,7 @@ const Tablee = () => {
         reporting_Manager1: e.reporting_Manager1,
         employee_Type_Id: e.employee_Type_Id,
         designation_Id: e.designation_Id,
-        employee_code:e.employee_code,
+        employee_code: e.employee_code,
         email: e.email,
         contact_No: e.contact_No,
         alternate_Email: e.alternate_Email,
@@ -200,7 +200,7 @@ const Tablee = () => {
       setMessage(error.request.status, error.response.data);
     })
   }
-  
+
 
   // Edit Off
   //FILTER ON 
@@ -280,18 +280,6 @@ const Tablee = () => {
       title: 'Alternate E-mail ID',
       dataIndex: 'alternate_Email',
       width: 100
-    },
-    {
-      render: (row) => {
-        return <>
-          <Space direction="horizantal">
-            <Button type="primary" icon={<EditOutlined />} title="Edit" onClick={() => {
-              onEdit(row);
-            }} />
-          </Space>
-        </>
-      },
-      width: 50
     }
   ]
 
@@ -355,7 +343,7 @@ const Tablee = () => {
   const [end_Date, setEnd_Date] = useState('');
   const [alternate_Email, setAlternate_Email] = useState('');
   const [employee_code, setemployee_code] = useState('');
-  const [password,setpassword] = useState('');
+  const [password, setpassword] = useState('');
   const setDefault = () => {
     setEmployeeId(''); setEmployeeFstName(''); setemployee_code(''); setpassword(''); setEmployeeLstName(''); setreporting_Manager1(''); setemployee_Type_Id(''); setemail(''); setdesignation_Id(''); setAlternate_Email(''); setcontact_No(''); setStartValue(''); setEndValue('');
   }
@@ -381,7 +369,7 @@ const Tablee = () => {
         employee_Type_Id: change,
         reportinng_Manager2: "---",
         email,
-        password:'Joyitemp@123',
+        password: 'Joyitemp@123',
         designation_Id: change1,
         contact_No,
         joining_Date,
@@ -408,12 +396,12 @@ const Tablee = () => {
 
       console.log(error);
       debugger
-     
-        setMessage(error.request.status, error.response.data.errors.Alternate_Email[0]);
-        debugger
-        console.log(error.response.data.errors.Alternate_Email[0]);
-        debugger
-      
+
+      setMessage(error.request.status, error.response.data.errors.Alternate_Email[0]);
+      debugger
+      console.log(error.response.data.errors.Alternate_Email[0]);
+      debugger
+
     })
   }
 
@@ -480,11 +468,11 @@ const Tablee = () => {
       })
       console.log(element.designation_Name)
       debugger
-      activateDesignation = activateDesignation+element.first_Name+element.last_Name+', ';
+      activateDesignation = activateDesignation + element.first_Name + element.last_Name + ', ';
     });
     activateDesignation = activateDesignation.substring(0, activateDesignation.length - 2) + " ";
     debugger
-    setMessage(200, activateDesignation  + " Deactivated Successfully");
+    setMessage(200, activateDesignation + " Deactivated Successfully");
     debugger
     setIsConfirmModalVisible(false);
   }
@@ -545,15 +533,15 @@ const Tablee = () => {
         </Button>
       </Sider>
       <Popover position="top" content='Logout'>
-      <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>
-      <LogoutOutlined  onClick={navig}   />
-      </button>
+        <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '2%' }}>
+          <LogoutOutlined onClick={navig} />
+        </button>
       </Popover>
 
       <div style={{ position: "fixed", marginLeft: 250 }}>
         <div className="App" style={{ display: "-ms-flexbox", marginBottom: 30, maxHeight: 500 }}>
           <h1 style={{ color: "blue", fontWeight: "bolder" }}>EMPLOYEES</h1>
-          
+
           <header className="App-header">
             <Space direction="Horizantal" style={{ marginTop: 10 }}>
               <div id="abc">
@@ -729,8 +717,8 @@ const Tablee = () => {
                       </Row>
                       <Row>
                         <Col span={5}>
-                        <Form.Item name="employee_code"
-                          rules={[{ required: true, message: 'Please enter the Employee Code' }]}
+                          <Form.Item name="employee_code"
+                            rules={[{ required: true, message: 'Please enter the Employee Code' }]}
                           >
                             <Input id='employee_code' value={employee_code}
                               onChange={(e) => setemployee_code(e.target.value)} />
@@ -794,7 +782,7 @@ const Tablee = () => {
                           <Form.Item name="contact_No" type={"text"} rules={[{ required: true, message: 'Please enter the Phone Number' }, {
                             pattern: new RegExp(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/),
                             message: "Field must contain 10 numbers"
-                          },{
+                          }, {
                             pattern: new RegExp(/^[0-9\b]+$/),
                             message: "Field must only contain numbers"
                           }]}>
@@ -809,15 +797,26 @@ const Tablee = () => {
                 </Modal>
               </div>
               <div id="dct" style={{ marginLeft: 50, paddingLeft: '5%', display: 'inline' }}>
-                <Button
-                  hidden={!hasSelected}
-                  type="danger"
-                  title="Deactivate"
-                  onClick={showDeactivateModal}
-                  icon={<CloseCircleOutlined />}
-                >
-                  Deactivate
-                </Button></div>
+                <Space direction="horizantal">
+                  <Button
+                    hidden={!hasSelected}
+                    type="danger"
+                    title="Deactivate"
+                    onClick={showDeactivateModal}
+                    icon={<CloseCircleOutlined />}
+                  >
+                    Deactivate
+                  </Button>
+
+                  {
+                    selectedRows.length === 1 ?
+                      <Button type="primary" icon={<EditOutlined />} title="Edit" onClick={() => {
+                        onEdit();
+                      }} >Edit</Button> : ""
+                  }
+
+                </Space>
+              </div>
             </Space>
             <div id="emptable" style={{ width: "72%" }}>
 
@@ -841,7 +840,7 @@ const Tablee = () => {
                 bordered
                 scroll={{
                   x: 1390,
-                  y:370
+                  y: 370
                 }}
               />
             </div>
@@ -924,7 +923,7 @@ const Tablee = () => {
                   </Col> <Col span={1}></Col>
                   <Col span={5}>
                     <Form.Item
-                      name='employee_Type_Id' 
+                      name='employee_Type_Id'
                     >
                       <Select>
                         {typeDropdown.map(opt => (
@@ -968,14 +967,14 @@ const Tablee = () => {
                       name='end_Date'
                     >
                       <Input type='datetime-local'
-                            time='disabled'
-                            disabledDate={disabledEndDate}
-                            
-                            format="YYYY-MM-DD"
-                            value={endValue}
-                          
-                            onChange={handleEndDate}
-                            onOpenChange={handleEndOpenChange}
+                        time='disabled'
+                        disabledDate={disabledEndDate}
+
+                        format="YYYY-MM-DD"
+                        value={endValue}
+
+                        onChange={handleEndDate}
+                        onOpenChange={handleEndOpenChange}
                       />
 
                     </Form.Item>
@@ -1006,7 +1005,7 @@ const Tablee = () => {
                 </Row>
                 <Row>
                   <Col span={5}>
-                  <Form.Item
+                    <Form.Item
                       name='employee_code'
                       rules={[{ required: true, message: 'Please enter the Employee Code' }]}
                     >

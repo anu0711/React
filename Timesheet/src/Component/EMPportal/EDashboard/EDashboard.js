@@ -30,7 +30,7 @@ debugger;
     if (data.status == "Approved") {
         return (
             <div>
-                 <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -100 }}>
+                 <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -250 }}>
         <Button type="primary" style={{ width: 200, margin: "0 10%", height: 50, marginTop: 20 }}>
         <Link to="/EDashboard">Dashboard</Link>
         </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
@@ -63,7 +63,7 @@ debugger;
     else if (data.status == "Rejected") {
         return (
             <div>
-               <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -250 }}>
+              <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -250 }}>
         <Button type="primary" style={{ width: 200, margin: "0 10%", height: 50, marginTop: 20 }}>
         <Link to="/EDashboard">Dashboard</Link>
         </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
@@ -96,7 +96,7 @@ debugger;
     else if (data.status == "Pending") {
         return (
             <div>
-              <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -100 }}>
+              <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -250 }}>
         <Button type="primary" style={{ width: 200, margin: "0 10%", height: 50, marginTop: 20 }}>
         <Link to="/EDashboard">Dashboard</Link>
         </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
@@ -134,7 +134,7 @@ debugger;
     else {
         return (
             <div>
-               <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -100 }}>
+               <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -250 }}>
         <Button type="primary" style={{ width: 200, margin: "0 10%", height: 50, marginTop: 20 }}>
         <Link to="/EDashboard">Dashboard</Link>
         </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
@@ -166,7 +166,7 @@ debugger;
     }
     return (
         <div style={{ backgroundColor: "white", marginTop: 0 }}>
-           <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -100 }}>
+           <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -200 }}>
         <Button type="primary" style={{ width: 200, margin: "0 10%", height: 50, marginTop: 20 }}>
         <Link to="/EDashboard">Dashboard</Link>
         </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>

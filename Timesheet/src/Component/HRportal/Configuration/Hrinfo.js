@@ -295,8 +295,8 @@ const Hrinfo = () => {
             <Input style={{ width: "200px" }} />
           </Form.Item>
           <Form.Item>
-            {/* <Button htmlType="cancel" style={{ backgroundColor: "red" }}>Cancel</Button> */}
-            <Button htmlType="submit" style={{ backgroundColor: "lightgreen" }}>Save Changes</Button>
+            <Button type="danger" style={{ marginLeft: 490, marginBotton: -20 }} onClick={resetEditing}>Cancel</Button>
+            <Button htmlType="submit" style={{ backgroundColor: "lightgreen", marginLeft: "10px" }}>Save Changes</Button>
           </Form.Item>
         </Form>
       </>
@@ -558,9 +558,33 @@ const Hrinfo = () => {
                     console.log('validate Field:', info);
                   });
               }}
-                width={400}
-                onCancel={buttonCancel}
-                visible={isModalVisible}
+              width={400}
+
+              onCancel={buttonCancel}
+
+              visible={isModalVisible}
+
+              footer={[
+
+                <Button type="danger" onClick={buttonCancel}>Cancel</Button>, <Button type="primary" onClick={() => {
+
+                  form.validateFields().then((values) => {
+
+                    buttonOk(values)
+
+                    form.resetFields();
+
+                  })
+
+                    .catch((info) => {
+
+                      console.log('validate Field:', info);
+
+                    });
+
+                }}>Add</Button>
+
+              ]}
               >
                 <AddClient />
               </Modal>
