@@ -1,10 +1,10 @@
 import { VictoryPie } from "victory-pie";
 import axios from "axios";
-import { Layout, Card, Col, Space, Select, Divider, Button,Popover } from 'antd';
+import { Layout, Card, Col, Space, Select, Divider, Button, Popover } from 'antd';
 import { useState, useEffect, React } from 'react';
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import {LogoutOutlined} from '@ant-design/icons';
-import {  useNavigate } from 'react-router-dom';
+import { LogoutOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 import './Dashboard.css';
 
 const { Option } = Select;
@@ -20,11 +20,32 @@ const Dashboard = (props) => {
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
 
+  const monthOption = [];
+  const month_name = [
+    { month: '', id: '' },
+    { month: "Jan", id: 1 },
+    { month: "Feb", id: 2 },
+    { month: "Mar", id: 3 },
+    { month: "Apr", id: 4 },
+    { month: "May", id: 5 },
+    { month: "Jun", id: 6 },
+    { month: "Jul", id: 7 },
+    { month: "Aug", id: 8 },
+    { month: "Sep", id: 9 },
+    { month: "Oct", id: 10 },
+    { month: "Nov", id: 11 },
+    { month: "Dec", id: 12 }
+  ];
+  const currentMonth = new Date().getMonth();
+  for (let i = 1; i < currentMonth + 2; i++) {
+    monthOption.push({ id: i, month_name: month_name[i].month });
+  }
+
   const navig = () => {
 
-      navigate("/#");
+    navigate("/#");
 
-     }
+  }
   const toke = sessionStorage.getItem("token");
   const [yrDropdown, setYrDropdown] = useState([]);
   const dphrs = async () => {
@@ -157,9 +178,9 @@ const Dashboard = (props) => {
         </Button>
       </Sider>
       <Popover position="top" content='Logout'>
-      <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>
-      <LogoutOutlined  onClick={navig}   />
-      </button>
+        <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '2%' }}>
+          <LogoutOutlined onClick={navig} />
+        </button>
       </Popover>
       <div style={{ width: 750, height: 600, marginLeft: 250, marginTop: -100, backgroundColor: "white" }}>
         <Layout>
@@ -209,19 +230,7 @@ const Dashboard = (props) => {
                               })}
                             </Select> */}
                 <Select value={month} onChange={setMonth} style={{ width: 73, border: "1.5px solid black" }} placeholder="Month">
-
-                  <Option value={1}><b>Jan</b></Option>
-                  <Option value={2}><b>Feb</b></Option>
-                  <Option value={3}><b>Mar</b></Option>
-                  <Option value={4}><b>Apr</b></Option>
-                  <Option value={5}><b>May</b></Option>
-                  <Option value={6}><b>Jun</b></Option>
-                  <Option value={7}><b>Jul</b></Option>
-                  <Option value={8}><b>Aug</b></Option>
-                  <Option value={9}><b>Sep</b></Option>
-                  {/* <Option value={10}><b>Oct</b></Option>
-                  <Option value={11}><b>Nov</b></Option>
-                  <Option value={12}><b>Dec</b></Option> */}
+                  {monthOption.map(opt => (<Option value={opt.id}>{opt.month_name}</Option>))}
                 </Select>
               </div>
             </Space>
