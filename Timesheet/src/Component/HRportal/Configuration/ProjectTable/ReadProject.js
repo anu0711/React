@@ -276,6 +276,7 @@ function ReadProject() {
                 .then((r) => {
                     // setMessage(r.request.status, element.project_Name + " Activated Successfully");
                     getClients();
+                  
                 });
             activateProjectName = activateProjectName + element.project_Name + ", ";
             console.log(activateProjectName);
@@ -461,7 +462,8 @@ function ReadProject() {
         setFilteredClients(result);
         if (e.target.value === '') {
             getClients();
-        }
+            
+             }
     }
 
     const handleDeactivateSeach = (e) => {
@@ -639,7 +641,9 @@ function ReadProject() {
                                         setPage1(page1);
                                         setPageSize1(pageSize1)
                                     }
+                                    
                                 }}
+                                
 
                             />
                         }
@@ -858,14 +862,15 @@ function ReadProject() {
                                 >
                                     <Input
                                         type='date'
-                                        time='disabled'
-                                        disabledDate={disabledEndDate}
-                                        min={startValue}
-                                        format="YYYY-MM-DD"
-                                        value={endValue}
-                                        placeholder="End"
-                                        onChange={handleEndDate}
-                                        onOpenChange={handleEndOpenChange}
+                                      
+                                        // time='disabled'
+                                        // disabledDate={disabledEndDate}
+                                        // min={startValue}
+                                        // format="YYYY-MM-DD"
+                                         value={endValue}
+                                        // placeholder="End"
+                                        // onChange={handleEndDate}
+                                        // onOpenChange={handleEndOpenChange}
                                     />
                                 </Form.Item>
                                 <Form.Item style={{ paddingLeft: '50%' }}>
