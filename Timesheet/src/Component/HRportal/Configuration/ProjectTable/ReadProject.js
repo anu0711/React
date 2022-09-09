@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Select, Typography } from 'antd';
-import { PlusCircleOutlined, EditOutlined, CloseCircleOutlined,CheckCircleOutlined, ClockCircleOutlined, SearchOutlined } from '@ant-design/icons';
+import { PlusCircleOutlined, EditOutlined, CloseCircleOutlined, CheckCircleOutlined, ClockCircleOutlined, SearchOutlined } from '@ant-design/icons';
 import { Modal, Table, Input, Space, DatePicker, Form, message, Popover, Layout, Row, Col, Card } from 'antd';
 import { Button } from 'antd';
 import { Checkbox, Label } from 'semantic-ui-react';
 import moment from 'moment';
-import {LogoutOutlined} from '@ant-design/icons';
-import {  useNavigate } from 'react-router-dom';
+import { LogoutOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 const { Search } = Input;
 
@@ -46,15 +46,15 @@ function ReadProject() {
     const [dataSource, setDataSource] = useState('');
     const navigate = useNavigate();
     const navig = () => {
-         navigate("/#");
-         }
+        navigate("/#");
+    }
     const [startValue, setStartValue] = useState(null);
     const [endValue, setEndValue] = useState(null);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(4);
     const [page1, setPage1] = useState(1);
     const [pageSize1, setPageSize1] = useState(4);
-    
+
     const toke = sessionStorage.getItem("token");
 
     // const addProjectForm = Form.useForm();
@@ -170,19 +170,19 @@ function ReadProject() {
         setOption(`${event}`);
     }
 
-    const editProject = (row) => {
-        setEditProject_Id(row.project_Id);
-        setEditClient_Id(row.client_Id);
+    const editProject = () => {
+        setEditProject_Id(selectedRows[0].project_Id);
+        setEditClient_Id(selectedRows[0].client_Id);
         editForm.setFieldsValue({
-            project_Id: row.project_Id,
-            project_Name: row.project_Name,
-            project_Code: row.project_Code,
-            client_Id: row.client_Id,
-            start_Date: row.start_Date,
-            end_Date: row.end_Date
+            project_Id: selectedRows[0].project_Id,
+            project_Name: selectedRows[0].project_Name,
+            project_Code: selectedRows[0].project_Code,
+            client_Id: selectedRows[0].client_Id,
+            start_Date: selectedRows[0].start_Date,
+            end_Date: selectedRows[0].end_Date
         });
-        setStartValue(row.start_Date);
-        setEndValue(row.end_Date);
+        setStartValue(selectedRows[0].start_Date);
+        setEndValue(selectedRows[0].end_Date);
         showEditModal();
     }
     const [endOpen, setEndOpen] = useState(false);
@@ -336,26 +336,12 @@ function ReadProject() {
         {
             title: "Start Date",
             dataIndex: 'start_Date',
-             render: (start_Date) => { return (<p style={{ paddingTop: '5%' }}>{moment(start_Date).format('DD - MM - YYYY')}</p>) },
+            render: (start_Date) => { return (<p style={{ paddingTop: '5%' }}>{moment(start_Date).format('DD - MM - YYYY')}</p>) },
         },
         {
             title: "End Date",
             dataIndex: 'end_Date',
-             render: (end_Date) => { return (<p style={{ paddingTop: '5%' }}>{moment(end_Date).format('DD - MM - YYYY')}</p>) },
-        },
-        {
-            title: "Action",
-            render: row => (
-                <Space>
-                    <Popover content={'Edit'} placement='right'>
-                        <Button
-                            type="primary"
-                            icon={<EditOutlined />}
-                            onClick={() => editProject(row)}
-                        />
-                    </Popover>
-                </Space>
-            )
+            render: (end_Date) => { return (<p style={{ paddingTop: '5%' }}>{moment(end_Date).format('DD - MM - YYYY')}</p>) },
         }
     ];
 
@@ -409,17 +395,12 @@ function ReadProject() {
                 },
             })
                 .then((r) => {
-                    // setMessage(r.request.status, element.project_Name + "  " + "Deactivated Successfully");
-                    // console.log("deactivated")
                     getClients();
                 })
             deactivateProjectName = deactivateProjectName + element.project_Name + ', '
         });
         deactivateProjectName = deactivateProjectName.substring(0, deactivateProjectName.length - 2);
         setMessage(200, deactivateProjectName + ' Deactivated Successfully')
-        // const timeset = setTimeout(() => {
-        //     window.location.reload();
-        // }, 3500);
         setDeactivate(false);
         setSelectedRows([]);
         setSelectedRowKeys([]);
@@ -516,10 +497,10 @@ function ReadProject() {
                 </Button>
             </Sider>
             <Popover position="top" content='Logout'>
-              <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>
-                <LogoutOutlined  onClick={navig}   />
-              </button>
-             </Popover>
+                <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '2%' }}>
+                    <LogoutOutlined onClick={navig} />
+                </button>
+            </Popover>
             <div style={{ position: "fixed", width: "85%", marginLeft: 250 }}>
                 <p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p>
                 <Row><Col span={2}></Col>
@@ -580,13 +561,28 @@ function ReadProject() {
                                     option === 'yes' ?
                                         (
                                             deactivate ?
-                                                <Button
-                                                    type="danger"
-                                                    onClick={showDeactivateModal}
-                                                    icon={<CloseCircleOutlined />}
-                                                >
-                                                    Deactivate
-                                                </Button> : ''
+                                                <Space>
+                                                    <Button
+                                                        type="danger"
+                                                        onClick={showDeactivateModal}
+                                                        icon={<CloseCircleOutlined />}
+                                                    >
+                                                        Deactivate
+                                                    </Button>
+                                                    {
+                                                        selectedRows.length === 1 ?
+                                                            <Button
+                                                                type="primary"
+                                                                icon={<EditOutlined />}
+                                                                onClick={() => editProject()}
+                                                            >
+                                                                Edit
+                                                            </Button>
+                                                            :
+                                                            ''
+                                                    }
+                                                </Space>
+                                                : ''
                                         ) :
                                         (
                                             toggleActivate ?
@@ -623,7 +619,7 @@ function ReadProject() {
                                         setPageSize(pageSize)
                                     }
                                 }}
-                              
+
                             />
                             :
                             <Table
@@ -644,7 +640,7 @@ function ReadProject() {
                                         setPageSize1(pageSize1)
                                     }
                                 }}
-                               
+
                             />
                         }
                         {

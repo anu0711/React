@@ -454,14 +454,23 @@ function ReadEmpType() {
                 >
                   Deactivate
                 </Button></div>
-              <div style={{ marginLeft: "1700%" }}>
-                <Button type="primary" icon={<EditOutlined />} title="Edit"
-                  onClick={() => {
+                <div style={{ marginLeft: '650%' }}>
 
-                    onEdit();
-                  }}
-                  hidden={!hassSelected} />
-              </div>
+<Button type="primary" icon={<EditOutlined />} title="Edit"
+
+  hidden={!hassSelected}
+
+  onClick={() => {
+
+
+
+    onEdit();
+
+  }}
+
+>EDIT</Button>
+
+</div>
             </Space>
             <div id="emptypetable" style={{ marginTop: 30 }}>
               <Table

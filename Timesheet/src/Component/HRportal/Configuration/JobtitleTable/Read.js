@@ -92,18 +92,7 @@ function ReadJob() {
       title: 'No of employees',
       dataIndex: 'no_of_Employees',
     },
-    // {
-    //   key: '11',
-    //   render: (clidtl, actdtl) => {
-    //     return <>
-    //       <Button type="primary" icon={<EditOutlined />} title="Edit"
-    //         onClick={() => {
-    //           console.log(clidtl);
-    //           onEdit(clidtl);
-    //         }} />
-    //     </>
-    //   }
-    // },
+   
   ];
 
   const showAddData = () => {
@@ -420,9 +409,9 @@ function ReadJob() {
         </Button>
       </Sider>
       <Popover position="top" content='Logout'>
-     <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>
-     <LogoutOutlined  onClick={navig}   />
-     </button>
+       <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>
+        <LogoutOutlined  onClick={navig}   />
+       </button>
        </Popover>
       <div style={{ position: "fixed", width: "85%", marginLeft: 250 }}>
         <p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p>
@@ -460,12 +449,23 @@ function ReadJob() {
                 >
                   Deactivate
                 </Button></div>
-              <div style={{ marginLeft: "1700%" }}>
-                <Button type="primary" icon={<EditOutlined />} title="Edit"
-                  onClick={() => {
-                    onEdit();
-                  }} hidden={!hassSelected} />
-              </div>
+                <div style={{ marginLeft: '650%' }}>
+
+<Button type="primary" icon={<EditOutlined />} title="Edit"
+
+  hidden={!hassSelected}
+
+  onClick={() => {
+
+
+
+    onEdit();
+
+  }}
+
+>EDIT</Button>
+
+</div>
             </Space>
             <div id="destable" style={{ marginTop: 30 }}>
               <Table
