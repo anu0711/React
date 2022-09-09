@@ -349,13 +349,18 @@ function ReadEmpType() {
           }
         })
           .then(data => setFilteredClient(data.data));
-        return () => clearTimeout();
+          const timeout1 = setTimeout(() => {
+            window.location.reload();
+          }, 1500);  
+         
+        return () => clearTimeout(timeout1);
       })
       activateDesignation = activateDesignation + element.employee_Type_Name + ', ';
     });
     activateDesignation = activateDesignation.substring(0, activateDesignation.length - 2) + " ";
     debugger
     setMessage(200, activateDesignation + " Deactivated Successfully");
+    
     debugger
     setIsActivateModal(false);
     setToggleActivate(false);
@@ -363,6 +368,9 @@ function ReadEmpType() {
     setSelectedRowKeys([]);
     rowSelection = ''
     setIsConfirmModalVisible(false);
+   
+
+    
   }
 
   useEffect(() => {

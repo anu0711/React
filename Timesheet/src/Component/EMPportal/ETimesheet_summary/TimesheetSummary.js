@@ -58,7 +58,10 @@ function TimesheetSummary() {
       title: 'Status',
       dataIndex: 'status',
       render: (tag) => {
-        const color = tag.includes('complete') ? 'Green' : tag.includes('pending') ? 'Blue' : 'Red'
+        // const color = tag.includes('complete') ? 'Green' : tag.includes('pending') ? 'Blue' : 'Red'
+        // return <Tag color={color} key={tag}>{tag}</Tag>
+        const color = tag.toLowerCase() === 'approved' ? 'green' : tag.toLowerCase() === 'pending' ? 'blue' : 'red'
+
         return <Tag color={color} key={tag}>{tag}</Tag>
       }
     },

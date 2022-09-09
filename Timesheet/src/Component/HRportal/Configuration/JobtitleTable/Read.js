@@ -339,7 +339,7 @@ function ReadJob() {
         //setMessage(r.request.status, element.designation_Name + "- Deactivated Successfully");
         // debugger
 
-        //window.location.reload();
+        window.location.reload();
         //$('#jobisactive').hide();
         axios("https://timesheetjy.azurewebsites.net/api/Admin/GetAllDesignation")
           .then(data => setFilteredClient(data.data));
@@ -358,10 +358,10 @@ function ReadJob() {
     rowSelection = ''
     setIsConfirmModalVisible(false);
 
-    // const timeout1 = setTimeout(() => {
-    //   window.location.reload();
-    // }, 1500);  
-    return () => clearTimeout();
+    const timeout1 = setTimeout(() => {
+      window.location.reload();
+    }, 1500);  
+    return () => clearTimeout(timeout1);
   }
 
   useEffect(() => {

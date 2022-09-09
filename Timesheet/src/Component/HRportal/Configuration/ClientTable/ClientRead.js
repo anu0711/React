@@ -175,12 +175,20 @@ function ClientRead() {
         headers: {
           'Authorization': `Bearer ${toke}`
         }
+        
       })
+      
         .then(data => setFilteredClient(data.data))
+       
       setIsEditing(!isEditing);
     }).catch((error) => {
+      
       setMessage(error.request.status, error.response.data);
     });
+    const timeoutmsg = setTimeout(() => {
+      window.location.reload();
+    }, 1500);
+    return () => clearTimeout(timeoutmsg);
   }
   const [selectedRows, setSelectedRows] = useState([]);
   const hasSelected = selectedRows.length > 0;
@@ -256,10 +264,10 @@ function ClientRead() {
 
         }
         //setMessage(r.request.status, element.client_Name + " Deactivated Successfully");
-        // const timeoutmsg = setTimeout(() => {
-        //   window.location.reload();
-        // }, 1500);
-        return () => clearTimeout();
+        const timeoutmsg = setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+        return () => clearTimeout(timeoutmsg);
       })
       activateDesignation = activateDesignation + element.client_Name + ', ';
     });

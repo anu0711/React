@@ -35,7 +35,7 @@ const EUserprofile = () => {
         <Link to="/Euserprofile">User Profile</Link>
         </Button>
       </Sider>
-            {/* <h1 style={{ position: "fixed", marginLeft: 70, color: "blue", marginTop: 20, fontSize: 35 }}><b>Employee Userprofile</b></h1> */}
+      
             <Card style={{ width: 630, height: 550, marginLeft: 270, marginTop: 20, position: "fixed" }}>
                 <div style={{ marginLeft: 190, marginTop: 10, position: "fixed" }}>
                     <h1>{users.map(user => (

@@ -406,8 +406,13 @@ const Hrinfo = () => {
           }
         })
           .then(data => setFilteredClient(data.data));
+          const timeout1 = setTimeout(() => {
+            window.location.reload();
+          }, 1100);  
+         
+        return () => clearTimeout(timeout1);
 
-        return () => clearTimeout();
+       
       })
       activateDesignation = activateDesignation + element.hr_Name + ', ';
     });

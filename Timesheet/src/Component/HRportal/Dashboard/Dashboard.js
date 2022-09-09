@@ -42,9 +42,7 @@ const Dashboard = (props) => {
   }
 
   const navig = () => {
-
-    navigate("/#");
-
+   navigate("/#");
   }
   const toke = sessionStorage.getItem("token");
   const [yrDropdown, setYrDropdown] = useState([]);
