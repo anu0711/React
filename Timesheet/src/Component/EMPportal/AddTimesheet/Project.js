@@ -18,6 +18,7 @@ function Project(props) {
         console.log(filteredColumn);
         console.log(dataSource);
         props.onSaveData(dataSource);
+        props.setProject(project[0].project_Id);
     }
 
     return (

@@ -2,7 +2,7 @@ import { Modal, Space, Table, Card } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import axios from 'axios';
-import { Select, Input, Button, message,Layout} from 'antd';
+import { Select, Input, Button, message, Layout } from 'antd';
 import { UploadOutlined, DownloadOutlined } from '@ant-design/icons';
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { useDropzone } from 'react-dropzone';
@@ -10,6 +10,9 @@ import './AddTimesheet.css';
 import Project from './Project';
 import Status from './Status';
 import Duration from './Duration';
+import UploadImage from './UploadImage';
+import UploadApTimesheet from './UploadApTimesheet';
+import ImageUpload from './ImageUpload';
 
 
 const setMessage = (statusCode, responseMessage) => {
@@ -34,9 +37,13 @@ const setMessage = (statusCode, responseMessage) => {
 function AddTimesheet() {
     const month_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [modal, setModal] = useState(false);
     const [project, setProject] = useState([]);
     const currentDate = new Date();
     const { Sider } = Layout;
+    const [state1, setState1] = useState([])
+    const [state2, setState2] = useState([])
+    const [state3, setState3] = useState([])
     const month = currentDate.getMonth() - 1;
     const year = currentDate.getFullYear();
     const Day_list = [
@@ -61,7 +68,7 @@ function AddTimesheet() {
             key: i,
             date: format(new Date(year, month, i), 'yyyy-MM-dd'),
             day: Day_list[new Date(year, month, i).getDay()],
-            status: Day_list[new Date(year, month, i).getDay()].toLowerCase() === 'saturday' || Day_list[new Date(year, 4 - 1, i).getDay()].toLowerCase() === 'sunday' ? "Holiday" : "",
+            status: Day_list[new Date(year, month, i).getDay()].toLowerCase() === 'saturday' || Day_list[new Date(year, month, i).getDay()].toLowerCase() === 'sunday' ? "Holiday" : "",
             project: "",
             duration: null
         });
@@ -113,6 +120,7 @@ function AddTimesheet() {
                     allRecord={currentState}
                     row={record}
                     onSaveData={saveCurrentState}
+                    setProject={setProject}
                 />
             )
         },
@@ -287,9 +295,38 @@ function AddTimesheet() {
         });
     }
 
-    const downloadXL = async () => {
+    const downloadXL1 = async () => {
         await axios({
-            url: `https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=${1}`,
+            // https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=1&monthid=8&year=2022&project_id=28
+            url: `https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=${92}&monthid=${month + 2}&year=${year}&project_id=${state1[0].project_Id}`,
+            method: 'GET',
+            responseType: 'blob', // important
+        }).then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'Timeheet.xlsx'); //or any other extension
+            document.body.appendChild(link);
+            link.click();
+        });
+    }
+    const downloadXL2 = async () => {
+        await axios({
+            url: `https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=${1}&monthid=${month + 1}&year=${year}&project_id=${state2[0].project_Id}`,
+            method: 'GET',
+            responseType: 'blob', // important
+        }).then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'Timeheet.xlsx'); //or any other extension
+            document.body.appendChild(link);
+            link.click();
+        });
+    }
+    const downloadXL3 = async () => {
+        await axios({
+            url: `https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=${1}&monthid=${month + 1}&year=${year}&project_id=${state3[0].project_Id}`,
             method: 'GET',
             responseType: 'blob', // important
         }).then((response) => {
@@ -302,21 +339,87 @@ function AddTimesheet() {
         });
     }
 
+    const showModal1 = () => {
+        setModal(true);
+    }
+    const handleOk1 = () => {
+        setModal(false);
+    }
+    const handleCancel1 = () => {
+        setModal(false);
+    }
+
     const postData = () => {
+        var date, count = 0;
 
-        const newState = [];
+        var newState = [];
+        var newState1 = [];
+        var newState2 = [];
+        var dummystate = [];
 
-        currentState.forEach(element =>
-            newState.push({
+        currentState.forEach(element => {
+            dummystate.push({
                 // project_Id: element.project,
-                project_Id: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? element.project : 0,
+                project_Id: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? element.project : project,
                 date: element.date,
                 day: element.day,
                 leave: element.status.toLowerCase() === 'leave' || element.status.toLowerCase() === 'holiday' ? true : false,
                 // duration_in_Hrs: element.duration === null ? parseInt(0) : parseInt(element.duration),
                 duration_in_Hrs: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? parseInt(element.duration) : parseInt(0),
                 timesheet_summary_Id: 0
-            }));
+
+            })
+            if (date != element.date) {
+                newState.push({
+                    // project_Id: element.project,
+                    project_Id: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? element.project : 0,
+                    date: element.date,
+                    day: element.day,
+                    leave: element.status.toLowerCase() === 'leave' || element.status.toLowerCase() === 'holiday' ? true : false,
+                    // duration_in_Hrs: element.duration === null ? parseInt(0) : parseInt(element.duration),
+                    duration_in_Hrs: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? parseInt(element.duration) : parseInt(0),
+                    timesheet_summary_Id: 0
+
+                })
+                date = element.date;
+                count = 1;
+                return;
+            }
+            if (date == element.date && count === 1) {
+                newState1.push({
+                    // project_Id: element.project,
+                    project_Id: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? element.project : 0,
+                    date: element.date,
+                    day: element.day,
+                    leave: element.status.toLowerCase() === 'leave' || element.status.toLowerCase() === 'holiday' ? true : false,
+                    // duration_in_Hrs: element.duration === null ? parseInt(0) : parseInt(element.duration),
+                    duration_in_Hrs: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? parseInt(element.duration) : parseInt(0),
+                    timesheet_summary_Id: 0
+
+                })
+                date = element.date;
+                count = 2;
+                return;
+            }
+            if (date == element.date && count == 2) {
+                newState2.push({
+                    // project_Id: element.project,
+                    project_Id: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? element.project : 0,
+                    date: element.date,
+                    day: element.day,
+                    leave: element.status.toLowerCase() === 'leave' || element.status.toLowerCase() === 'holiday' ? true : false,
+                    // duration_in_Hrs: element.duration === null ? parseInt(0) : parseInt(element.duration),
+                    duration_in_Hrs: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? parseInt(element.duration) : parseInt(0),
+                    timesheet_summary_Id: 0
+                })
+                date = element.date;
+                return;
+            }
+        });
+
+        setState1(newState);
+        setState2(newState1);
+        setState3(newState2);
 
         axios({
             method: 'post',
@@ -327,13 +430,13 @@ function AddTimesheet() {
             },
             url: 'https://timesheetjy.azurewebsites.net/api/Employee/AddTimeSheet',
             data: {
-                employee_Id: 1,
-                fiscalYear_Id: 6,
+                employee_Id: 92,
+                fiscalYear_Id: month + 2,
                 year: year,
                 noOfdays_Worked: summary_data[0].no_of_days_worked,
                 noOfLeave_Taken: summary_data[0].no_of_leaves_taken,
                 total_Working_Hours: summary_data[0].total_duration,
-                addTimesheetDay: newState
+                addTimesheetDay: dummystate
             }
         })
 
@@ -343,30 +446,49 @@ function AddTimesheet() {
 
     return (
         <Space direction='horizantal'>
-              <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -100 }}>
-        <Button  style={{ width: 200, margin: "0 10%", height: 50, marginTop: 20 }}>
-        <Link to="/EDashboard">Dashboard</Link>
-        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
-        <Link to="/Etimesheetsummary">Timesheet summary</Link>
-        </Button><Button type="primary" style={{ margin: "0 10%", width: 200, height: 50 }}>
-        <Link to="/Eaddtimesheet">Timesheet</Link>
-        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
-        <Link to="/Ehrinfo">HR contact info</Link>
-        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
-        <Link to="/Euserprofile">User Profile</Link>
-        </Button>
-      </Sider>
+            <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -100 }}>
+                <Button style={{ width: 200, margin: "0 10%", height: 50, marginTop: 20 }}>
+                    <Link to="/EDashboard">Dashboard</Link>
+                </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+                    <Link to="/Etimesheetsummary">Timesheet summary</Link>
+                </Button><Button type="primary" style={{ margin: "0 10%", width: 200, height: 50 }}>
+                    <Link to="/Eaddtimesheet">Timesheet</Link>
+                </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+                    <Link to="/Ehrinfo">HR contact info</Link>
+                </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+                    <Link to="/Euserprofile">User Profile</Link>
+                </Button>
+            </Sider>
             <Card style={{ marginLeft: 300 }}>
                 <React.Fragment>
 
                     <h1 style={{ color: 'Blue', paddingLeft: 30 }}><b>{`${month_name[month]}`}-2022 TIMESHEET</b></h1>
-                    <div style={{ position: "relative", left: 250, top: -40 }}>
+                    <div style={{ position: "relative", left: 350, top: -40 }}>
                         <Space>
-                            <Button type="primary" onClick={downloadXL}><DownloadOutlined /> Download XL</Button>
+                            {/* <Button type="primary" onClick={downloadXL}><DownloadOutlined /> Download XL</Button> */}
                             <Button type="primary" onClick={showModal}><UploadOutlined /> Approved Timesheet</Button>
-                            <Button type="primary"><UploadOutlined /> Approval Image</Button>
+                            <Button type="primary" onClick={showModal1}><UploadOutlined /> Approval Image</Button>
                         </Space>
                     </div>
+
+                    <div style={{ paddingLeft: '200px' }}>
+                        <Space>
+                            {
+                                state1.length > 1 ?
+                                    <Button type="primary" onClick={downloadXL1}><DownloadOutlined /> Download XL1</Button>
+                                    : ""
+                            }
+                            {
+                                state2.length > 1 ?
+                                    <Button type="primary" onClick={downloadXL2}><DownloadOutlined /> Download XL1</Button> : ""
+                            }
+                            {
+                                state3.length > 1 ?
+                                    <Button type="primary" onClick={downloadXL3}><DownloadOutlined /> Download XL1</Button> : ""
+                            }
+                        </Space>
+                    </div>
+
 
                     <Table
                         columns={columns_summary}
@@ -383,7 +505,6 @@ function AddTimesheet() {
                     </div>
 
                     <Modal
-                        title="Basic Modal"
                         visible={isModalVisible}
                         onOk={handleOk}
                         onCancel={handleCancel}
@@ -396,30 +517,30 @@ function AddTimesheet() {
                                 type='danger'
                             >
                                 cancel</Button>,
-                            <Button
-                                type='success'
-                                onClick={uploadApprovedTimesheet}
-                            >Send</Button>
+                            // <Button
+                            //     type='success'
+                            //     onClick={uploadApprovedTimesheet}
+                            // >Send</Button>
                         ]}
                     >
-                        <div>
+                        {/* <div>
                             <h3>Upload Approval Timesheet</h3>
                             <h4>Timesheet File</h4>
-                            <div className='drop-box' style={{ height: 'auto' }}>
-                                {files.length === 0
-                                    ?
-                                    <div {...getRootProps()} style={{ Alignment: "center", paddingTop: '4%' }}>
-                                        <UploadOutlined size={'large'} />
-                                        <h3 style={{ color: "darkgray" }}>Drag and Drop your files</h3>
+                        </div> */}
+                        <UploadImage />
+                        {/* <ImageUpload /> */}
+                    </Modal>
 
-                                        <input {...getInputProps()} />
-                                    </div> : ''
-                                }
-                                <div>
-                                    {images}
-                                </div>
-                            </div>
-                        </div>
+                    <Modal
+                        visible={modal}
+                        onOk={handleOk1}
+                        onCancel={handleCancel1}
+                        footer={[
+                            <Button type='danger' onClick={handleCancel1}>Cancel</Button>
+                        ]}
+                    >
+                        <UploadApTimesheet />
+
                     </Modal>
                 </React.Fragment>
             </Card>
