@@ -13,6 +13,17 @@ import {  useNavigate } from 'react-router-dom';
 
 
 function ReadEmpType() {
+  function refreshPage() {
+
+    setTimeout(() => {
+
+      window.location.reload(false);
+
+    }, 2500);
+
+    console.log('page to reload')
+
+  }
 
 
   const [page, setPage] = useState(1);
@@ -211,6 +222,7 @@ function ReadEmpType() {
           employee_Type_Name: e.employee_Type_Name
         }
       }).then((r) => {
+        window.location.reload(false);
         setIsEditing(false);
         debugger
         setMessage(r.request.status, e.employee_Type_Name + " - " + "Updated Successfully");
@@ -223,9 +235,11 @@ function ReadEmpType() {
           .then(data => setFilteredClient(data.data))
       }).catch((error) => {
         setMessage(error.request.status, error.response.data);
+        
         // console.log(error.message);
         // debugger
-      })
+      });
+      
     }
 
     return (
@@ -320,7 +334,9 @@ function ReadEmpType() {
           id: element.employee_Type_Id,
           is_Active: false
         },
+        
       }).then((r) => {
+        
         clientdtl();
 
         $('#clientisactive');
@@ -408,18 +424,18 @@ function ReadEmpType() {
 
   return (
     <>
-      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -100 }}>
-        <Button style={{ width: 200, margin: "0 10%", height: 50 }}>
+     <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100,}}>
+        <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20 }}>
           <Link to="/dashboard"><b>Dashboard</b></Link>
-        </Button><Button type="primary" style={{ margin: "0 10%", width: 200, height: 50 }}>
+        </Button><br/><br/><Button type="primary"  style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20 }}>
           <Link to="/Configuration/Client"><b>Configuration</b></Link>
-        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
           <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
-        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
           <Link to="/employee"><b>Employees</b></Link>
-        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
           <Link to="/userprofile"><b>User Profile</b></Link>
-        </Button>
+        </Button><br/><br/>
       </Sider>
       <Popover position="top" content='Logout'>
      <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>

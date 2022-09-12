@@ -485,25 +485,25 @@ function ReadProject() {
 
     return (
         <>
-            <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -100 }}>
-                <Button style={{ width: 200, margin: "0 10%", height: 50 }}>
-                    <Link to="/dashboard"><b>Dashboard</b></Link>
-                </Button><Button type="primary" style={{ margin: "0 10%", width: 200, height: 50 }}>
-                    <Link to="/Configuration/Client"><b>Configuration</b></Link>
-                </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
-                    <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
-                </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
-                    <Link to="/employee"><b>Employees</b></Link>
-                </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
-                    <Link to="/userprofile"><b>User Profile</b></Link>
-                </Button>
-            </Sider>
+            <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100,}}>
+        <Button  style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20 }}>
+          <Link to="/dashboard"><b>Dashboard</b></Link>
+        </Button><br/><br/><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20 }}>
+          <Link to="/Configuration/Client"><b>Configuration</b></Link>
+        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+          <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
+        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+          <Link to="/employee"><b>Employees</b></Link>
+        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+          <Link to="/userprofile"><b>User Profile</b></Link>
+        </Button><br/><br/>
+      </Sider>
             <Popover position="top" content='Logout'>
                 <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '2%' }}>
                     <LogoutOutlined onClick={navig} />
                 </button>
             </Popover>
-            <div style={{ position: "fixed", width: "85%", marginLeft: 250 }}>
+            <div style={{ position: "fixed", width: "85%", marginLeft: 250,marginTop:-15}}>
                 <p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p>
                 <Row><Col span={2}></Col>
                     <Col span={4}><Link to="/Configuration/Client"><Button style={{ width: 130 }}>Client</Button></Link></Col>
@@ -512,7 +512,7 @@ function ReadProject() {
                     <Col span={4} stylw={{ marginLeft: 10 }}><Link to="/Configuration/EmployeeType"><Button style={{ width: 130 }}>Employee Type</Button></Link></Col>
                     <Col span={4}><Link to="/Configuration/HrInfo" ><Button style={{ width: 130 }} >HR Contact Info</Button></Link></Col><Col span={2}></Col>
                 </Row><Card className="table_border_antd" style={{ width: 1000, borderTopColor: "blue", borderLeftColor: "black", borderRightColor: "black", borderBottomColor: "black", borderTopWidth: 5, position: "fixed" }}>
-                    <div className="container" style={{ width: "75%", margin: "0% 0% 0% 15%" }}>
+                    <div className="container" style={{ width: "65%", margin: "-2% 0% 0% 15%" }}>
                         <div style={{ paddingBottom: 10 }}>
                             <h1 style={{ color: 'blue', fontSize: 30, marginLeft: -80 }}><b>Project</b></h1>
                             {

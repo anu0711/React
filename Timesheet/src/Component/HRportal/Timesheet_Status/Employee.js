@@ -297,18 +297,18 @@ function Tb3() {
   }, [search])
   return (
     <div>
-      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -100 }}>
-        <Button style={{ width: 200, margin: "0 10%", height: 50 }}>
+      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100,}}>
+        <Button  style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20 }}>
           <Link to="/dashboard"><b>Dashboard</b></Link>
-        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20 }}>
           <Link to="/Configuration/Client"><b>Configuration</b></Link>
-        </Button><Button type="primary" style={{ margin: "0 10%", width: 200, height: 50 }}>
+        </Button><br/><br/><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
           <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
-        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
           <Link to="/employee"><b>Employees</b></Link>
-        </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>
+        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
           <Link to="/userprofile"><b>User Profile</b></Link>
-        </Button>
+        </Button><br/><br/>
       </Sider>
       <Popover position="top" content='Logout'>
       <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>
