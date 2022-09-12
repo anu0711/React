@@ -17,9 +17,9 @@ function ReadEmpType() {
 
     setTimeout(() => {
 
-      window.location.reload(false);
+      // window.location.reload(false);
 
-    }, 2500);
+    }, 5000);
 
     console.log('page to reload')
 
@@ -222,7 +222,7 @@ function ReadEmpType() {
           employee_Type_Name: e.employee_Type_Name
         }
       }).then((r) => {
-        window.location.reload(false);
+       
         setIsEditing(false);
         debugger
         setMessage(r.request.status, e.employee_Type_Name + " - " + "Updated Successfully");
@@ -233,6 +233,11 @@ function ReadEmpType() {
           }
         })
           .then(data => setFilteredClient(data.data))
+          const timout1 = setTimeout(() => {
+            window.location.reload();
+          }, 1100);  
+         
+        return () => clearTimeout(timout1);
       }).catch((error) => {
         setMessage(error.request.status, error.response.data);
         

@@ -12,17 +12,17 @@ import {  useNavigate } from 'react-router-dom';
 
 function ReadJob() {
 
-  function refreshPage() {
+  // function refreshPage() {
 
-    setTimeout(() => {
+  //   setTimeout(() => {
 
-      window.location.reload(false);
+  //     // window.location.reload(false);
 
-    }, 2500);
+  //   }, 5000);
 
-    console.log('page to reload')
+  //   console.log('page to reload')
 
-  }
+  // }
 
 
   const [deactivate, setDeactivate] = useState(false);
@@ -202,6 +202,7 @@ function ReadJob() {
       debugger;
 
       const data = await axios({
+        
         method: 'put',
         headers: {
           'Content-Type': 'application/json',
@@ -214,13 +215,17 @@ function ReadJob() {
           designation_Id: e.designation_Id,
           designation_Name: e.designation_Name
         }
+        
       }).then((r) => {
-        window.location.reload(false);
-        setIsEditing(false);
+        
 
+        
+        
+        setIsEditing(false);
+      
         debugger
         setMessage(r.request.status, e.designation_Name + " - " + "Updated Successfully");
-
+        
         debugger
 
         axios("https://timesheetjy.azurewebsites.net/api/Admin/GetAllDesignation", {
@@ -229,7 +234,13 @@ function ReadJob() {
           }
         })
           .then(data => setFilteredClient(data.data))
+          const timout1 = setTimeout(() => {
+            window.location.reload();
+          }, 1100);  
+         
+        return () => clearTimeout(timout1);
       }).catch((error) => {
+        
         setMessage(error.request.status, error.response.data);
         console.log(error.request.status, error.response.data)
         debugger

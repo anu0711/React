@@ -17,7 +17,7 @@ const Hrinfo = () => {
 
     setTimeout(() => {
 
-      window.location.reload(false);
+      // window.location.reload(false);
 
     }, 5000);
 
@@ -336,7 +336,11 @@ const Hrinfo = () => {
         }
       })
         .then(data => setFilteredClient(data.data))
-        window.location.reload(false);
+        const timout1 = setTimeout(() => {
+          window.location.reload();
+        }, 1100);  
+       
+      return () => clearTimeout(timout1);
       setIsEditing(!isEditing);
     }).catch((error) => {
       setMessage(error.request.status, error.response.data);
