@@ -431,7 +431,7 @@ function AddTimesheet() {
             url: 'https://timesheetjy.azurewebsites.net/api/Employee/AddTimeSheet',
             data: {
                 employee_Id: 95,
-                fiscalYear_Id: month + 2,
+                fiscalYear_Id: month + 1,
                 year: year,
                 noOfdays_Worked: summary_data[0].no_of_days_worked,
                 noOfLeave_Taken: summary_data[0].no_of_leaves_taken,

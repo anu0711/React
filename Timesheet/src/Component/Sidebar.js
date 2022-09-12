@@ -22,6 +22,7 @@ import EDashboard from './EMPportal/EDashboard/EDashboard';
 import Dashboard from './HRportal/Dashboard/Dashboard';
 import AddTimesheet from './EMPportal/AddTimesheet/AddTimesheet';
 import TimesheetSummary from './EMPportal/ETimesheet_summary/TimesheetSummary';
+import ResetPassword from './resetpassword';
 
 const { Content } = Layout;
 
@@ -49,6 +50,7 @@ const Home = () => {
                     <Route path="/Configuration/HrInfo" element={<Hrinfo />} />
                     <Route path="/Viewimage" element={<Uploadedimage />} />
                     <Route path="/Viewtimesheet" element={<Viewtimesheet />} />
+                    <Route path="/resetPassword" element={<ResetPassword />} />
 
                     {/* EMPLOYEE PORTAL */}
                     <Route path="/Euserprofile" element={<EUserprofile />} />

@@ -5,8 +5,15 @@ import axios from 'axios';
 import { useState, React } from 'react';
 import Dashboard from './HRportal/Dashboard/Dashboard';
 
-const Login = () => {
+const ResetPassword = () => {
     const navigate = useNavigate();
+    const navig = () => {
+        navigate(-1);
+        const timeout = setTimeout(() => {
+            window.location.reload();
+        }, 500);
+        return () => clearTimeout(timeout);
+    }
 
     const setMessage = (statusCode, responseMessage) => {
         debugger;
@@ -41,6 +48,10 @@ const Login = () => {
 
     const [AddProjectForm] = Form.useForm();
 
+    const navigateLogin = () => {
+        navigate("");
+    }
+
     const onFinish = async (e) => {
         debugger;
         await axios({
@@ -50,45 +61,40 @@ const Login = () => {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
             },
-            url: 'https://timesheetjy.azurewebsites.net/api/Account/Login',
+            url: 'https://timesheetjy.azurewebsites.net/api/Account/ChangePassword/Change-password',
             data: e
         }).then((r) => {
             sessionStorage.setItem("token", r.data.token);
             sessionStorage.setItem("mailId", e.username);
             sessionStorage.setItem("id", r.data.employee_Id)
             settoken(r.data.token);
-            setMessage(r.request.status, e.username + " Login Successfull");
+            setMessage(r.request.status, e.username + " Password updated Successfull");
             AddProjectForm.resetFields();
-            if (r.data.role_Id == 1) {
-                navigate('/dashboard');
-            }
-            else if (r.data.role_Id == 2) {
-                navigate('/Edashboard');
-            }
-            else {
-                message.error("You are not allowed to Login");
-            }
+
+            navigate('');
+
         }).catch((error) => {
             debugger;
-            setMessage(error.response.status);
+            setMessage(error.response.status, error.response.data.message);
+            debugger
             AddProjectForm.resetFields();
         })
     }
 
     return (
         <>
-            <Card style={{ marginTop: 100, marginLeft: 210, backgroundColor: "ButtonShadow", width: 900, position: "fixed" }}>
+            <Card style={{ marginTop: 10, marginLeft: 210, backgroundColor: "ButtonShadow", width: 900, position: "fixed" }}>
                 <div style={{ marginLeft: 200, padding: 10 }}>
-                    <h1 style={{ color: "blue", fontSize: 35 }}>TIME SHEET AUTOMATION</h1>
+                    {/* <h1 style={{ color: "blue", fontSize: 35 }}>TIME SHEET AUTOMATION</h1> */}
                     {/* <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="dashboard"><b>HR Portal</b></Link></Button><br /><br />
                     <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="/Siders"><b>Employee Portal</b></Link></Button> */}
-                    <h1 style={{ marginLeft: 150, fontSize: 25 }}><b>LOGIN PAGE</b></h1>
+                    <h1 style={{ marginLeft: 100, fontSize: 25, color: 'blue' }}><b>PASSWORD RESET PAGE</b></h1><br />
                     <Form
                         {...formItemLayout}
                         onFinish={onFinish}
                         form={AddProjectForm}
                     >
-                        <h1><b>USERNAME</b></h1>
+                        <h2>USERNAME</h2>
                         <Form.Item name="username" rules={[
                             {
                                 required: true,
@@ -101,7 +107,7 @@ const Login = () => {
                         ]}>
                             <Input style={{ width: 450 }} />
                         </Form.Item>
-                        <h1><b>PASSWORD</b></h1>
+                        <h2>PASSWORD</h2>
                         <Form.Item name="password" rules={[
                             {
                                 required: true,
@@ -109,12 +115,30 @@ const Login = () => {
                             },
                         ]}>
                             <Input type="password" style={{ width: 450 }} />
+                        </Form.Item>
+                        <h2>NEW PASSWORD</h2>
+                        <Form.Item name="newPassword" rules={[
+                            {
+                                required: true,
+                                message: 'Please input your Password!'
+                            },
+                        ]}>
+                            <Input type="password" style={{ width: 450 }} />
+                        </Form.Item>
+
+                        <h2>CONFIRM NEW PASSWORD</h2>
+                        <Form.Item name="confrimNewPassword" rules={[
+                            {
+                                required: true,
+                                message: 'Please input your Password!'
+                            },
+                        ]}>
+                            <Input type="password" style={{ width: 450 }} />
                         </Form.Item><br />
-                        <p>Change password?<span style={{marginLeft:5}}><Link to="/resetPassword"><b><u>click here..</u></b></Link></span></p><br />
-                        {/* <Link>click here..</Link> */}
+
                         <Form.Item>
                             <Space>
-                                <Button type="danger" style={{ marginLeft: 150 }}>Cancel</Button>
+                                <Button type="danger" htmlType="button" onClick={() => navig()} style={{ marginLeft: 150 }}>Cancel</Button>
                                 <Button type="success" htmlType="submit" style={{ marginLeft: 10 }}>Submit</Button>
                             </Space>
                         </Form.Item>
@@ -125,4 +149,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default ResetPassword;
