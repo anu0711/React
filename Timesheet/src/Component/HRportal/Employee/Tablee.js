@@ -191,11 +191,16 @@ const Tablee = () => {
         }
       })
         .then(data => setFilteredEmployee(data.data))
-      setIsEditing(!isEditing);
-      // const timeout1 = setTimeout(() => {
-      //   window.location.reload();
-      // }, 1000);
-      // return () => clearTimeout(timeout1);
+      //   const timout1 = setTimeout(() => {
+      //     window.location.reload();
+      //   }, 1100);  
+       
+      // return () => clearTimeout(timout1);
+      setIsEditing(!isEditing); 
+      const timeout1 = setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      return () => clearTimeout(timeout1);
     }).catch((error) => {
       setMessage(error.request.status, error.response.data);
     })
