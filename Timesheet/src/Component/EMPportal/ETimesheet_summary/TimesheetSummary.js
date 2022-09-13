@@ -1,14 +1,20 @@
 import "antd/dist/antd.css";
 import React, { Component } from 'react';
 import { useState } from "react";
-import { Table, Tag, Layout, Space,Button } from "antd";
+import { Table, Tag, Layout, Space,Button,Popover } from "antd";
 import axios from 'axios';
 import { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import Sidersbar from "../ESidebar";
+import { LogoutOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 
 function TimesheetSummary() {
+  const navigate = useNavigate();
+  const navig = () => {
+      navigate("/#");
+  }
 
   const { Sider } = Layout;
   const [selected, setSelected] = useState('');
@@ -82,9 +88,19 @@ function TimesheetSummary() {
         <Link to="/Euserprofile">User Profile</Link>
         </Button><br/><br/>
       </Sider>
+      
       <div style={{ marginLeft: "250px" ,marginTop:"100px"}} className="App">
+      <Popover position="top" content='Logout'>
+                <Button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'70em',marginTop:'5%'}}>
+                <LogoutOutlined  onClick={navig}   />
+                </Button>
+                </Popover>
+      
         <h1 style={{ color: 'Blue' }}> TIMESHEET  SUMMARY</h1>
+       
         <header className="App-header">
+          
+       
           {/* <button onClick={onAdd}>add</button> */}
 
           <Table style={{ marginLeft: "50px" }}
@@ -92,8 +108,11 @@ function TimesheetSummary() {
             columns={columns}
             dataSource={dataSource}
             rowSelection={false}
+            
           />
+          
         </header>
+       
       </div>
     </Space>
   );

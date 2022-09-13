@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Card, Space, Button, Layout,Popover} from "antd";
+import { Row, Col, Card, Space, Button, Layout, Popover } from "antd";
 import axios from "axios";
 import { Link, useSearchParams } from 'react-router-dom';
-import {LogoutOutlined} from '@ant-design/icons';
+import { LogoutOutlined } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Userprofile = () => {
@@ -11,12 +11,9 @@ const Userprofile = () => {
   const toke = sessionStorage.getItem("token");
   const mail = sessionStorage.getItem("mailId");
   const navigate = useNavigate();
-
   const navig = () => {
-
-      navigate("/#");
-
-     }
+    navigate("/#");
+  }
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -34,27 +31,29 @@ const Userprofile = () => {
 
   return (
     <div style={{ backgroundColor: "white", marginTop: -30 }}>
-      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100,}}>
-        <Button  style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20 }}>
+      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100, }}>
+        <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
           <Link to="/dashboard"><b>Dashboard</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20 }}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/Configuration/Client"><b>Configuration</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/employee"><b>Employees</b></Link>
-        </Button><br/><br/><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/userprofile"><b>User Profile</b></Link>
-        </Button><br/><br/>
+        </Button><br /><br />
       </Sider>
+      <div style={{marginTop:"10%",marginLeft:"90%",position:"fixed"}}>
+            <Popover position="top" content='Logout'>
+                <button style={{ width: '5em', backgroundColor: '#f77c7c' }}>
+                    <LogoutOutlined onClick={navig} />
+                </button>
+            </Popover>
+            </div>
       <div style={{ width: 750, height: 600, marginLeft: 250, marginTop: 30, backgroundColor: "white" }}>
         <div style={{ marginLeft: 200, marginTop: 30 }}>
-        <Popover position="top" content='Logout'>
-
-<button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'144%',marginTop:'5%'}}>
-<LogoutOutlined  onClick={navig}   />
-</button>
- </Popover>
+          
           <h1>{users.map(user => (
             <h1 style={{ color: "blue", fontSize: 60, marginLeft: -50 }}>{user.name}</h1>
           ))}</h1>

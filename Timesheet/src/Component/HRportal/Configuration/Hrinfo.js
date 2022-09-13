@@ -525,7 +525,7 @@ const Hrinfo = () => {
                   <option value={1} selected="selector">Yes</option>
                   <option value={0}>No</option>
                 </select>
-                <div id="hrisactive" style={{ marginLeft: 140, paddingLeft: '5%', display: 'inline' }}>
+                <div id="hrisactive" style={{position:'fixed', marginLeft: 140, paddingLeft: '5%', display: 'inline' }}>
                   <Button
                     hidden={!hasSelected}
                     type="danger"
@@ -535,7 +535,7 @@ const Hrinfo = () => {
                     Deactivate
                   </Button>
                   <div style={{ marginLeft: '113%',marginTop:'-12%' }}>
-                  <Button type="primary" icon={<EditOutlined />} title="Edit"
+                  <Button style={{position:'fixed'}} type="primary" icon={<EditOutlined />} title="Edit"
                     hidden={!hassSelect}
                     onClick={() => {
                       onEdit();
@@ -555,7 +555,7 @@ const Hrinfo = () => {
               </Space>
               <div id="hrtable" style={{ marginTop: 15, marginLeft: -180 }}>
                 <Table
-
+style={{marginTop:"15%"}}
                   columns={clientDtlColumns}
                   dataSource={filteredClient}
                   rowKey={record => record.hr_Contact_Id}

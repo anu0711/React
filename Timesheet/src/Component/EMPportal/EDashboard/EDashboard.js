@@ -1,16 +1,22 @@
 import React from "react";
 import axios from "axios";
-import { Layout, Card, Button, Input, Space, Select, Divider } from 'antd';
+import { Layout, Card, Button, Input, Space, Select, Divider, Popover } from 'antd';
 import { useState, useEffect, element } from 'react';
 import { CheckOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import './Edashboard.css';
+import { LogoutOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 
 const EDashboard = () => {
     const [sts, setsts] = useState([]);
     const toke = sessionStorage.getItem("token");
     const id = sessionStorage.getItem("id");
+    const navigate = useNavigate();
+    const navig = () => {
+        navigate("/#");
+    }
     const { Sider } = Layout;
 
     const clientdtl = async () => {
@@ -31,18 +37,26 @@ const EDashboard = () => {
         return (
             <div>
                 <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -250 }}>
-        <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20  }}>
-        <Link to="/EDashboard">Dashboard</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Etimesheetsummary">Timesheet summary</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Eaddtimesheet">Timesheet</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Ehrinfo">HR contact info</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Euserprofile">User Profile</Link>
-        </Button><br/><br/>
-      </Sider>
+                    <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
+                        <Link to="/EDashboard">Dashboard</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Etimesheetsummary">Timesheet summary</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Eaddtimesheet">Timesheet</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Ehrinfo">HR contact info</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Euserprofile">User Profile</Link>
+                    </Button><br /><br />
+                </Sider>
+                <div style={{ marginLeft: "90%", marginTop:"1%",position:'fixed' }}>
+                    <Popover position="top" content='Logout'>
+                        <button style={{ width: '5em', backgroundColor: '#f77c7c' }}>
+                            <LogoutOutlined onClick={navig} />
+                        </button>
+                    </Popover>
+                </div>
+
                 <div style={{ marginTop: 160 }}>
                     {/* <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {data.month} {data.year} status</center></h1> */}
                     <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet { } { } status</center></h1>
@@ -70,18 +84,18 @@ const EDashboard = () => {
         return (
             <div>
                 <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -250 }}>
-        <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20  }}>
-        <Link to="/EDashboard">Dashboard</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Etimesheetsummary">Timesheet summary</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Eaddtimesheet">Timesheet</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Ehrinfo">HR contact info</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Euserprofile">User Profile</Link>
-        </Button><br/><br/>
-      </Sider>
+                    <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
+                        <Link to="/EDashboard">Dashboard</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Etimesheetsummary">Timesheet summary</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Eaddtimesheet">Timesheet</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Ehrinfo">HR contact info</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Euserprofile">User Profile</Link>
+                    </Button><br /><br />
+                </Sider>
                 <div style={{ marginTop: 160 }}>
                     <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {data.month} {data.year} status</center></h1>
                 </div>
@@ -103,18 +117,18 @@ const EDashboard = () => {
         return (
             <div>
                 <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -250 }}>
-        <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20  }}>
-        <Link to="/EDashboard">Dashboard</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Etimesheetsummary">Timesheet summary</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Eaddtimesheet">Timesheet</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Ehrinfo">HR contact info</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Euserprofile">User Profile</Link>
-        </Button><br/><br/>
-      </Sider>
+                    <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
+                        <Link to="/EDashboard">Dashboard</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Etimesheetsummary">Timesheet summary</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Eaddtimesheet">Timesheet</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Ehrinfo">HR contact info</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Euserprofile">User Profile</Link>
+                    </Button><br /><br />
+                </Sider>
                 <div style={{ marginTop: 160 }}>
                     <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {data.month} {data.year} status</center></h1>
                 </div>
@@ -136,18 +150,18 @@ const EDashboard = () => {
         return (
             <div>
                 <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -250 }}>
-        <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20  }}>
-        <Link to="/EDashboard">Dashboard</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Etimesheetsummary">Timesheet summary</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Eaddtimesheet">Timesheet</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Ehrinfo">HR contact info</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Euserprofile">User Profile</Link>
-        </Button><br/><br/>
-      </Sider>
+                    <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
+                        <Link to="/EDashboard">Dashboard</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Etimesheetsummary">Timesheet summary</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Eaddtimesheet">Timesheet</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Ehrinfo">HR contact info</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Euserprofile">User Profile</Link>
+                    </Button><br /><br />
+                </Sider>
                 <div style={{ marginTop: 160 }}>
                     <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {data.month} {data.year} status</center></h1>
                 </div>
@@ -175,18 +189,18 @@ const EDashboard = () => {
         return (
             <div>
                 <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -250 }}>
-        <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20  }}>
-        <Link to="/EDashboard">Dashboard</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Etimesheetsummary">Timesheet summary</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Eaddtimesheet">Timesheet</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Ehrinfo">HR contact info</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Euserprofile">User Profile</Link>
-        </Button><br/><br/>
-      </Sider>
+                    <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
+                        <Link to="/EDashboard">Dashboard</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Etimesheetsummary">Timesheet summary</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Eaddtimesheet">Timesheet</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Ehrinfo">HR contact info</Link>
+                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                        <Link to="/Euserprofile">User Profile</Link>
+                    </Button><br /><br />
+                </Sider>
                 <div style={{ marginTop: 160 }}>
                     <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {data.month} {data.year} status</center></h1>
                 </div>

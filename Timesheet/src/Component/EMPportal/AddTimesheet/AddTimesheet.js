@@ -1,7 +1,10 @@
-import { Modal, Space, Table, Card } from 'antd';
+import { Modal, Space, Table, Card,Popover } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import axios from 'axios';
+import { LogoutOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+
 import { Select, Input, Button, message, Layout } from 'antd';
 import { UploadOutlined, DownloadOutlined } from '@ant-design/icons';
 import { Link, useLocation, useSearchParams } from "react-router-dom";
@@ -35,6 +38,10 @@ const setMessage = (statusCode, responseMessage) => {
 
 
 function AddTimesheet() {
+    const navigate = useNavigate();
+const navig = () => {
+    navigate("/#");
+}
     const month_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [modal, setModal] = useState(false);
@@ -464,11 +471,20 @@ function AddTimesheet() {
 
                     <h1 style={{ color: 'Blue', paddingLeft: 30 }}><b>{`${month_name[month]}`}-2022 TIMESHEET</b></h1>
                     <div style={{ position: "relative", left: 350, top: -40 }}>
+                   
                         <Space>
                             {/* <Button type="primary" onClick={downloadXL}><DownloadOutlined /> Download XL</Button> */}
                             <Button type="primary" onClick={showModal}><UploadOutlined /> Approved Timesheet</Button>
                             <Button type="primary" onClick={showModal1}><UploadOutlined /> Approval Image</Button>
                         </Space>
+                      
+                      <Popover position="top" content='Logout'>
+                <Button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'3%'  ,marginTop:'5%'}}>
+                <LogoutOutlined  onClick={navig}   />
+                </Button>
+                </Popover>
+                    
+                       
                     </div>
 
                     <div style={{ paddingLeft: '200px' }}>
@@ -487,8 +503,19 @@ function AddTimesheet() {
                                     <Button type="primary" onClick={downloadXL3}><DownloadOutlined /> Download XL1</Button> : ""
                             }
                         </Space>
+                       
+                        
                     </div>
+                    {/* <div style={{marginTop:'-2%',marginLeft:'-15%',marginBottom:'20%'}}>
+                    <Popover position="top" content='Logout'>
+                <Button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'70em',  marginTop:'5%'}}>
+                <LogoutOutlined  onClick={navig}   />
+                </Button>
+                </Popover>
 
+                    </div> */}
+                    
+                    
 
                     <Table
                         columns={columns_summary}

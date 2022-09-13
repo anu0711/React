@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
 import 'antd/dist/antd.css';
 import axios from "axios";
-import { Row, Col, Card, Space, Layout,Button } from 'antd';
+import { Row, Col, Card, Space, Layout, Button, Popover } from 'antd';
 import { Link, } from "react-router-dom";
+import { LogoutOutlined } from '@ant-design/icons';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 
 const EUserprofile = () => {
     const { Sider } = Layout;
     const [users, setUsers] = useState([]);
     const mail = sessionStorage.getItem("mailId");
+    const navigate = useNavigate();
+    const navig = () => {
+        navigate("/#");
+    }
     const toke = sessionStorage.getItem("token");
 
     useEffect(() => {
@@ -22,21 +29,28 @@ const EUserprofile = () => {
 
     return (
         <><Space>
-              <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100 }}>
-        <Button  style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20  }}>
-        <Link to="/EDashboard">Dashboard</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Etimesheetsummary">Timesheet summary</Link>
-        </Button><br/><br/><Button  style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Eaddtimesheet">Timesheet</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Ehrinfo">HR contact info</Link>
-        </Button><br/><br/><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Euserprofile">User Profile</Link>
-        </Button><br/><br/>
-      </Sider>
-      
+            <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100 }}>
+                <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
+                    <Link to="/EDashboard">Dashboard</Link>
+                </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                    <Link to="/Etimesheetsummary">Timesheet summary</Link>
+                </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                    <Link to="/Eaddtimesheet">Timesheet</Link>
+                </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                    <Link to="/Ehrinfo">HR contact info</Link>
+                </Button><br /><br /><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                    <Link to="/Euserprofile">User Profile</Link>
+                </Button><br /><br />
+            </Sider>
+            <div style={{marginLeft:"90%",position:"fixed"}}>
+            <Popover position="top" content='Logout'>
+                <button style={{ width: '5em', backgroundColor: '#f77c7c' }}>
+                    <LogoutOutlined onClick={navig} />
+                </button>
+            </Popover>
+            </div>
             <Card style={{ width: 630, height: 550, marginLeft: 270, marginTop: 20, position: "fixed" }}>
+           
                 <div style={{ marginLeft: 190, marginTop: 10, position: "fixed" }}>
                     <h1>{users.map(user => (
                         <h1 style={{ color: "blue", fontSize: 40, marginLeft: -50 }}>{user.employee_Name}</h1>
