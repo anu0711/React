@@ -533,20 +533,29 @@ const Hrinfo = () => {
                     icon={<CloseCircleOutlined />}
                   >
                     Deactivate
-                  </Button></div>
-
-                {/* EDIT ==================>*/}
-
-                <div style={{ marginLeft: 20 }}>
+                  </Button>
+                  <div style={{ marginLeft: '113%',marginTop:'-12%' }}>
                   <Button type="primary" icon={<EditOutlined />} title="Edit"
                     hidden={!hassSelect}
                     onClick={() => {
                       onEdit();
                     }} >EDIT</Button>
                 </div>
+                  </div>
+
+                {/* EDIT ==================>*/}
+
+                {/* <div style={{ marginLeft: 20 }}>
+                  <Button type="primary" icon={<EditOutlined />} title="Edit"
+                    hidden={!hassSelect}
+                    onClick={() => {
+                      onEdit();
+                    }} >EDIT</Button>
+                </div> */}
               </Space>
               <div id="hrtable" style={{ marginTop: 15, marginLeft: -180 }}>
                 <Table
+
                   columns={clientDtlColumns}
                   dataSource={filteredClient}
                   rowKey={record => record.hr_Contact_Id}

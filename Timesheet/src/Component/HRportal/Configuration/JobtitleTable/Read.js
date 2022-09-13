@@ -473,9 +473,8 @@ function ReadJob() {
                   icon={<CloseCircleOutlined />}
                 >
                   Deactivate
-                </Button></div>
-                <div style={{ marginLeft: '650%' }}>
-
+                </Button>
+                <div style={{ marginTop: "-27%", marginLeft: "115%" }}>
 <Button type="primary" icon={<EditOutlined />} title="Edit"
 
   hidden={!hassSelected}
@@ -491,6 +490,9 @@ function ReadJob() {
 >EDIT</Button>
 
 </div>
+
+                </div>
+               
             </Space>
             <div id="destable" style={{ marginTop: 30 }}>
               <Table
