@@ -497,6 +497,8 @@ const Tablee = () => {
     setFilteredEmployee(result);
   }, [search])
 
+  // var state = document.getElementById('validemp').value;
+
   $("#dctemptable").hide();
   $(document).ready(function () {
     $('#validemp').on('change', function () {

@@ -4,7 +4,6 @@ import { format } from 'date-fns';
 import axios from 'axios';
 import { LogoutOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-
 import { Select, Input, Button, message, Layout } from 'antd';
 import { UploadOutlined, DownloadOutlined } from '@ant-design/icons';
 import { Link, useLocation, useSearchParams } from "react-router-dom";
@@ -428,24 +427,24 @@ const navig = () => {
         setState2(newState1);
         setState3(newState2);
 
-        axios({
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-            },
-            url: 'https://timesheetjy.azurewebsites.net/api/Employee/AddTimeSheet',
-            data: {
-                employee_Id: 95,
-                fiscalYear_Id: month + 1,
-                year: year,
-                noOfdays_Worked: summary_data[0].no_of_days_worked,
-                noOfLeave_Taken: summary_data[0].no_of_leaves_taken,
-                total_Working_Hours: summary_data[0].total_duration,
-                addTimesheetDay: dummystate
-            }
-        })
+        // axios({
+        //     method: 'post',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Access-Control-Allow-Origin': '*',
+        //         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+        //     },
+        //     url: 'https://timesheetjy.azurewebsites.net/api/Employee/AddTimeSheet',
+        //     data: {
+        //         employee_Id: 95,
+        //         fiscalYear_Id: month + 1,
+        //         year: year,
+        //         noOfdays_Worked: summary_data[0].no_of_days_worked,
+        //         noOfLeave_Taken: summary_data[0].no_of_leaves_taken,
+        //         total_Working_Hours: summary_data[0].total_duration,
+        //         addTimesheetDay: dummystate
+        //     }
+        // })
 
     }
 
@@ -496,11 +495,11 @@ const navig = () => {
                             }
                             {
                                 state2.length > 1 ?
-                                    <Button type="primary" onClick={downloadXL2}><DownloadOutlined /> Download XL1</Button> : ""
+                                    <Button type="primary" onClick={downloadXL2}><DownloadOutlined /> Download XL2</Button> : ""
                             }
                             {
                                 state3.length > 1 ?
-                                    <Button type="primary" onClick={downloadXL3}><DownloadOutlined /> Download XL1</Button> : ""
+                                    <Button type="primary" onClick={downloadXL3}><DownloadOutlined /> Download XL3</Button> : ""
                             }
                         </Space>
                        
