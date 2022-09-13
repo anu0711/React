@@ -482,9 +482,9 @@ function ReadEmpType() {
                   icon={<CloseCircleOutlined />}
                 >
                   Deactivate
-                </Button></div>
-                <div style={{ marginLeft: '650%' }}>
-
+                </Button>
+                
+                <div style={{ marginTop: "-27%", marginLeft: "115%" }}>
 <Button type="primary" icon={<EditOutlined />} title="Edit"
 
   hidden={!hassSelected}
@@ -500,6 +500,8 @@ function ReadEmpType() {
 >EDIT</Button>
 
 </div>
+                </div>
+                
             </Space>
             <div id="emptypetable" style={{ marginTop: 30 }}>
               <Table

@@ -175,14 +175,14 @@ function ClientRead() {
         headers: {
           'Authorization': `Bearer ${toke}`
         }
-        
+
       })
-      
+
         .then(data => setFilteredClient(data.data))
-       
+
       setIsEditing(!isEditing);
     }).catch((error) => {
-      
+
       setMessage(error.request.status, error.response.data);
     });
     const timeoutmsg = setTimeout(() => {
@@ -318,18 +318,18 @@ function ClientRead() {
 
   return (
     <>
-      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100,}}>
-        <Button  style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20 }}>
+      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100, }}>
+        <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
           <Link to="/dashboard"><b>Dashboard</b></Link>
-        </Button><br/><br/><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20 }}>
+        </Button><br /><br /><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/Configuration/Client"><b>Configuration</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/employee"><b>Employees</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/userprofile"><b>User Profile</b></Link>
-        </Button><br/><br/>
+        </Button><br /><br />
       </Sider>
       <Popover position="top" content='Logout'>
         <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '2%' }}>
@@ -348,6 +348,7 @@ function ClientRead() {
           <h1 style={{ marginLeft: 50, color: "blue", fontSize: 30 }}><b>Client</b></h1>
           <div style={{ marginLeft: 150, width: 600, marginTop: -30 }}>
             <Space direction="Horizantal" style={{ marginTop: 10 }}>
+
               <div id="abc" style={{ position: "fixed" }}>
                 <Input
                   type="text"
@@ -373,15 +374,28 @@ function ClientRead() {
                   icon={<CloseCircleOutlined />}
                 >
                   Deactivate
-                </Button> </div>
-              <div style={{ marginLeft: 20 }}>
+                </Button>
+                <div style={{ marginTop: "-8%", marginLeft: "115%", }}>
+                  <Button style={{ position: 'fixed' }} type="primary" icon={<EditOutlined />} title="Edit"
+                    hidden={!hassSelect}
+
+                    onClick={() => {
+                      onEdit();
+                    }} >EDIT</Button>
+                </div>
+              </div>
+
+            </Space>
+
+            {/* <div style={{ marginLeft: 20 }}>
                 <Button type="primary" icon={<EditOutlined />} title="Edit"
                   hidden={!hassSelect}
+                  
                   onClick={() => {
                     onEdit();
                   }} >EDIT</Button>
-              </div>
-            </Space>
+              </div> */}
+
             <div id="clitable" style={{ marginTop: 30 }}>
               <Table
                 columns={clientDtlColumns}
