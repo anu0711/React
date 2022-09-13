@@ -1,4 +1,5 @@
 import { VictoryPie } from "victory-pie";
+import { VictoryLegend } from "victory-legend";
 import axios from "axios";
 import { Layout, Card, Col, Space, Select, Divider, Button, Popover } from 'antd';
 import { useState, useEffect, React } from 'react';
@@ -161,18 +162,18 @@ const Dashboard = (props) => {
 
   return (
     <div style={{ backgroundColor: "white", marginTop: 0 }}>
-      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100,}}>
-        <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20 }}>
+      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100, }}>
+        <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
           <Link to="/dashboard"><b>Dashboard</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20 }}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/Configuration/Client"><b>Configuration</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/employee"><b>Employees</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/userprofile"><b>User Profile</b></Link>
-        </Button><br/><br/>
+        </Button><br /><br />
       </Sider>
 
       <Popover position="top" content='Logout'>
@@ -180,7 +181,7 @@ const Dashboard = (props) => {
           <LogoutOutlined onClick={navig} />
         </button>
       </Popover>
-      <div style={{ width: 750, height: 600, marginLeft: 250, marginTop: -100, backgroundColor: "white" }}>
+      <div style={{ width: 750, height: 600, marginLeft: 150, marginTop: -100, backgroundColor: "white" }}>
         <Layout>
           <Space direction="horizontal">
             <Space direction="horizantal">
@@ -232,7 +233,7 @@ const Dashboard = (props) => {
                 </Select>
               </div>
             </Space>
-            <div style={{ position: "fixed", border: "2px solid black", marginTop: 120, marginLeft: 450 }}>
+            <div style={{ position: "fixed", border: "2px solid black", marginTop: 120, marginLeft: 430 }}>
               <div id="ef">
                 <h1 id="xy" style={{ color: 'lightskyblue', }}>Timesheet {month} - {year} status</h1>
                 <div style={{ marginTop: -50, marginLeft: 10 }}>
@@ -246,7 +247,7 @@ const Dashboard = (props) => {
                       labels: { fontSize: 18, fill: "white" }
 
                     }}
-                    labels={({ datum }) => datum.x + "\n" + datum.y}
+                    labels={({ datum }) => datum.y}
                     labelRadius={53}
                     colorScale={colorScale}
                     radius={145}
@@ -257,10 +258,25 @@ const Dashboard = (props) => {
                 </div>
               </div>
             </div>
+
           </Space>
 
-
         </Layout>
+        <div style={{ position: "fixed",width:600, marginTop: 420, marginLeft: 870 }}>
+          <VictoryLegend x={0} y={0}
+
+            orientation="vertical"
+            gutter={0}
+            style={{ border: { stroke: "white" } }}
+            data={[
+              { name: "Approved", symbol: { fill: "blue", type: "square" } },
+              { name: "Pending", symbol: { fill: "rgb(233, 127, 41)", type: "square" } },
+              { name: "Rejected", symbol: { fill: "rgba(119, 136, 153, 0.849)", type: "square" } },
+
+            ]}
+
+          />
+        </div>
       </div>
     </div>
 
