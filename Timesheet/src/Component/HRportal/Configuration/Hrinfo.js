@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Input, Space, Form, Modal, Col, Row, Table, Select, message, Card, Layout } from "antd";
+import { Input, Space, Form, Modal, Col, Row, Table, Select, message, Card, Layout, Popover } from "antd";
 import { PlusCircleOutlined, EditOutlined, CloseCircleOutlined, SearchOutlined } from '@ant-design/icons';
 import Deactivatehrinfo from './Deactivehrinfo';
 import $, { data } from 'jquery';
 import Button from 'antd-button-color';
 import { Checkbox } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { LogoutOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+
 
 
 
 const { Option } = Select;
+
 const Hrinfo = () => {
 
   function refreshPage1() {
@@ -42,6 +46,10 @@ const Hrinfo = () => {
   const [actCli, setActCli] = useState([]);
   const toke = sessionStorage.getItem("token");
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
+  const navig = () => {
+    navigate("/#");
+  }
   const [pageSize, setPageSize] = useState(4);
   const setMessage = (statusCode, responseMessage) => {
     if (statusCode == 200) {
@@ -497,7 +505,12 @@ const Hrinfo = () => {
           <Link to="/userprofile"><b>User Profile</b></Link>
         </Button><br/><br/>
       </Sider>
-      <div style={{ position: "fixed", width: "85%", marginLeft: 250 }}>
+      <Popover position="top" content='Logout'>
+        <button style={{ width: '3em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '2%' }}>
+          <LogoutOutlined onClick={navig} />
+        </button>
+      </Popover>
+      <div style={{ width: "85%", marginLeft: 250 }}>
         <p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p>
         <div style={{ position: "fixed", width: "85%" }}>
           <Row><Col span={2}></Col>
