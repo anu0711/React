@@ -450,6 +450,13 @@ function ReadProject() {
             setMessage(r.request.status, r.data.name + " Updated Successfuly");
         })
         getClients();
+        const timout1 = setTimeout(() => {
+
+            window.location.reload();
+
+        }, 1100);
+
+        return () => clearTimeout(timout1);
         // window.location.reload(false);
     }
 
@@ -532,7 +539,7 @@ function ReadProject() {
                                                         handleActivateSearch(e)
                                                         setSearch(e.target.value);
                                                     }}
-                                                    style={{ width: 200 }}
+                                                    style={{ width: 150 }}
                                                 />
                                             </Popover>
                                         </>
@@ -548,7 +555,7 @@ function ReadProject() {
                                                         handleDeactivateSeach(e);
                                                         setSearch(e.target.value);
                                                     }}
-                                                    style={{ width: 200 }}
+                                                    style={{ width: 150 }}
                                                 />
                                             </Popover>
                                         </>
@@ -557,7 +564,7 @@ function ReadProject() {
                             }
                             <label style={{ paddingRight: '2%', paddingLeft: '5%', fontSize: 20, fontWeight: 'bolder' }}>Active :</label>
                             <Popover content='Select a State' placement="right">
-                                <Select style={{ width: '10%' }} defaultValue={'yes'} onChange={onOptionSelect}>
+                                <Select style={{ width: '12%' }} defaultValue={'yes'} onChange={onOptionSelect}>
                                     <optgroup value={'yes'}>Yes</optgroup>
                                     <optgroup value={'no'}>No</optgroup>
                                 </Select>

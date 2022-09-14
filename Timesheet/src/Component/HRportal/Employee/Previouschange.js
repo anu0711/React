@@ -89,7 +89,7 @@ const AuthStr = 'Bearer '.concat(toke);
     },
     {
       key: '2',
-      title: 'Employee ID',
+      title: 'Change No',
       dataIndex: 'employee_Id'
     },
     {
@@ -124,7 +124,7 @@ const AuthStr = 'Bearer '.concat(toke);
     },
     {
       key: '6',
-      title: 'Modified Date',
+      title: 'End Date',
       dataIndex: 'modified_Date'
     },
     {
@@ -144,7 +144,7 @@ const AuthStr = 'Bearer '.concat(toke);
     },
     {
       key: '10',
-      title: 'Contact No',
+      title: 'Contact NO',
       dataIndex: 'contact_No'
     }
   ];
