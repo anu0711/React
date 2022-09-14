@@ -44,16 +44,15 @@ const Userprofile = () => {
           <Link to="/userprofile"><b>User Profile</b></Link>
         </Button><br /><br />
       </Sider>
-      <div style={{marginTop:"10%",marginLeft:"90%",position:"fixed"}}>
+      <div style={{ width: 750, height: 600, marginLeft: 250, marginTop: 30, backgroundColor: "white" }}>
+        <div style={{ marginLeft: 200, marginTop: 30 }}>
+        <div style={{marginTop:"1%",marginLeft:"60%",position:"fixed"}}>
             <Popover position="top" content='Logout'>
                 <button style={{ width: '5em', backgroundColor: '#f77c7c' }}>
                     <LogoutOutlined onClick={navig} />
                 </button>
             </Popover>
             </div>
-      <div style={{ width: 750, height: 600, marginLeft: 250, marginTop: 30, backgroundColor: "white" }}>
-        <div style={{ marginLeft: 200, marginTop: 30 }}>
-          
           <h1>{users.map(user => (
             <h1 style={{ color: "blue", fontSize: 60, marginLeft: -50 }}>{user.name}</h1>
           ))}</h1>
