@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Input } from 'antd'
 
 function Duration(props) {
 
+    const [value, setValue] = useState();
+
+    useEffect(() => {
+        setValue(props.defaultValue);
+    }, [])
+
+
     const onDuration = (value) => {
+        setValue(value);
         const row = props.row;
         var dataSource = props.allRecord;
         var filteredColumn = dataSource.filter((a) => a.key === row.key)[0];
@@ -13,8 +21,10 @@ function Duration(props) {
 
     return (
         <Input
+            // ref={props.defaultValue === 0 ? 0 : props.defaultValue}
+            value={value}
             type='number'
-            defaultValue={props.row.duration}
+            defaultValue={props.row.defaultValue}
             onChange={(e) => onDuration(e.target.value)}
             onKeyDown={(evt) => {
                 evt.key === 'e' && evt.preventDefault();

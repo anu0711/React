@@ -1,4 +1,4 @@
-import { Modal, Space, Table, Card,Popover } from 'antd';
+import { Modal, Space, Table, Card, Popover } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import axios from 'axios';
@@ -14,8 +14,6 @@ import Status from './Status';
 import Duration from './Duration';
 import UploadImage from './UploadImage';
 import UploadApTimesheet from './UploadApTimesheet';
-import ImageUpload from './ImageUpload';
-
 
 const setMessage = (statusCode, responseMessage) => {
     if (statusCode == 200) {
@@ -35,12 +33,11 @@ const setMessage = (statusCode, responseMessage) => {
     }
 }
 
-
 function AddTimesheet() {
     const navigate = useNavigate();
-const navig = () => {
-    navigate("/#");
-}
+    const navig = () => {
+        navigate("/#");
+    }
     const month_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [modal, setModal] = useState(false);
@@ -61,12 +58,7 @@ const navig = () => {
         "Friday",
         "Saturday",
     ];
-    const status_options = [
-        { value: "Present", label: "Present", key: "Present" },
-        { value: "Leave", label: "Leave", key: "Leave" },
-        { value: "WFH", label: "WFH", key: "WFH" },
-        { label: "Holiday", value: "Holiday", key: "Holiday" }
-    ];
+
     const noOfDays = new Date(year, month + 1, 0).getDate();
     var [data, SetData] = useState([]);
     for (let i = 1; i <= noOfDays; i++) {
@@ -76,7 +68,8 @@ const navig = () => {
             day: Day_list[new Date(year, month, i).getDay()],
             status: Day_list[new Date(year, month, i).getDay()].toLowerCase() === 'saturday' || Day_list[new Date(year, month, i).getDay()].toLowerCase() === 'sunday' ? "Holiday" : "",
             project: "",
-            duration: null
+            duration: null,
+            count: 2
         });
     }
 
@@ -84,13 +77,33 @@ const navig = () => {
     const [daysWorked, setDaysWorked] = useState(0);
     const [leavesTaken, setLeavesTaken] = useState(0);
     const [totalDuration, setTotalDuration] = useState(0);
+    const [isDisabled, setIsDisabled] = useState(true);
 
+    useEffect(() => {
+        var count = 0;
+        currentState.forEach(element => {
+            if (element.status === '') {
+                count += 1;
+            }
+            if (element.duration === 0 && element.status != "") {
+                count += 1;
+            }
+            if (element.project === "") {
+                count += 1;
+            }
+        });
+        if (count === 0) {
+            setIsDisabled(!isDisabled);
+        }
+    }, [currentState]);
 
 
     useEffect(() => {
         calculateAttendance();
         calculateTotalDuration();
     }, [currentState]);
+
+
 
     const columns = [
         {
@@ -136,6 +149,7 @@ const navig = () => {
             dataIndex: "duration",
             render: (_, record) => (
                 <Duration
+                    defaultValue={record.duration}
                     row={record}
                     allRecord={currentState}
                     onSaveData={saveCurrentState}
@@ -148,14 +162,24 @@ const navig = () => {
             render: row => (
                 <>
                     <Space>
-                        <Button
-                            type='info'
-                            onClick={() => onAddProject(row)}
-                            disabled={row.status.toLowerCase() === 'leave' || row.status.toLowerCase() === 'holiday' ? true : false}
-                        >
-                            Add Project
-                        </Button>
-                        {row.key > 99 ? <Button type='danger' onClick={() => onDeleteRow(row)} disabled={row.status.toLowerCase() === 'leave' || row.status.toLowerCase() === 'holiday' ? true : false}>Delete</Button> : ''}
+
+                        {
+                            row.key <= noOfDays ?
+                                <Button
+                                    type='info'
+                                    onClick={() => onAddProject(row)}
+                                    disabled={row.status.toLowerCase() === 'leave' || row.status.toLowerCase() === 'holiday' || row.count === 0 ? true : false}
+                                >
+                                    Add Project</Button>
+                                :
+                                <Button
+                                    type='danger'
+                                    style={{ width: "6.5rem" }}
+                                    onClick={() => onDeleteRow(row)}
+                                    disabled={row.status.toLowerCase() === 'leave' || row.status.toLowerCase() === 'holiday' ? true : false}
+                                >Delete</Button>
+                        }
+
                     </Space>
                 </>
             )
@@ -215,6 +239,10 @@ const navig = () => {
     ];
 
     const onAddProject = (row) => {
+
+        var filteredColumn = currentState.filter(a => a.key == row.key)[0];
+        filteredColumn.count -= 1;
+
         const newRecord = {
             key: Math.random() + 100,
             date: row.date,
@@ -224,6 +252,7 @@ const navig = () => {
             project: row.project,
             duration: Number(0),
         }
+
         const newState = [...currentState];
         const index = currentState.indexOf(row);
         newState.splice(index + 1, 0, newRecord);
@@ -231,10 +260,13 @@ const navig = () => {
     }
 
     const onDeleteRow = (row) => {
+        var filteredColumn = currentState.filter(a => a.date == row.date)[0];
+        filteredColumn.count += 1;
         const record = [...currentState];
         const index = record.indexOf(row);
         record.splice(index, 1);
         setCurrentState(record);
+
     }
 
     const calculateAttendance = () => {
@@ -452,38 +484,38 @@ const navig = () => {
 
     return (
         <Space direction='horizantal'>
-           <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100 }}>
-        <Button  style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20  }}>
-        <Link to="/EDashboard">Dashboard</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Etimesheetsummary">Timesheet summary</Link>
-        </Button><br/><br/><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Eaddtimesheet">Timesheet</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Ehrinfo">HR contact info</Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20  }}>
-        <Link to="/Euserprofile">User Profile</Link>
-        </Button><br/><br/>
-      </Sider>
+            <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100 }}>
+                <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
+                    <Link to="/EDashboard">Dashboard</Link>
+                </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                    <Link to="/Etimesheetsummary">Timesheet summary</Link>
+                </Button><br /><br /><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                    <Link to="/Eaddtimesheet">Timesheet</Link>
+                </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                    <Link to="/Ehrinfo">HR contact info</Link>
+                </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                    <Link to="/Euserprofile">User Profile</Link>
+                </Button><br /><br />
+            </Sider>
             <Card style={{ marginLeft: 300 }}>
                 <React.Fragment>
 
                     <h1 style={{ color: 'Blue', paddingLeft: 30 }}><b>{`${month_name[month]}`}-2022 TIMESHEET</b></h1>
                     <div style={{ position: "relative", left: 350, top: -40 }}>
-                   
+
                         <Space>
                             {/* <Button type="primary" onClick={downloadXL}><DownloadOutlined /> Download XL</Button> */}
                             <Button type="primary" onClick={showModal}><UploadOutlined /> Approved Timesheet</Button>
                             <Button type="primary" onClick={showModal1}><UploadOutlined /> Approval Image</Button>
                         </Space>
-                      
-                      <Popover position="top" content='Logout'>
-                <Button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'3%'  ,marginTop:'5%'}}>
-                <LogoutOutlined  onClick={navig}   />
-                </Button>
-                </Popover>
-                    
-                       
+
+                        <Popover position="top" content='Logout'>
+                            <Button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '3%', marginTop: '5%' }}>
+                                <LogoutOutlined onClick={navig} />
+                            </Button>
+                        </Popover>
+
+
                     </div>
 
                     <div style={{ paddingLeft: '200px' }}>
@@ -502,8 +534,8 @@ const navig = () => {
                                     <Button type="primary" onClick={downloadXL3}><DownloadOutlined /> Download XL3</Button> : ""
                             }
                         </Space>
-                       
-                        
+
+
                     </div>
                     {/* <div style={{marginTop:'-2%',marginLeft:'-15%',marginBottom:'20%'}}>
                     <Popover position="top" content='Logout'>
@@ -513,8 +545,8 @@ const navig = () => {
                 </Popover>
 
                     </div> */}
-                    
-                    
+
+
 
                     <Table
                         columns={columns_summary}
@@ -527,7 +559,7 @@ const navig = () => {
                         pagination={false}
                     />
                     <div style={{ paddingLeft: '85%', paddingTop: 10 }}>
-                        <Button onClick={() => postData()} type="primary">Post</Button>
+                        <Button onClick={() => postData()} type="primary" disabled={isDisabled}>Post</Button>
                     </div>
 
                     <Modal

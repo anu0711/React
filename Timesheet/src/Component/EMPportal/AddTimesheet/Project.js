@@ -4,9 +4,14 @@ import axios from 'axios';
 
 function Project(props) {
 
+    const toke = sessionStorage.getItem("token");
     const [project, setProject] = useState([]);
     useEffect(() => {
-        axios.get("https://timesheetjy.azurewebsites.net/api/Admin/GetAllProjects").then(r => setProject(r.data));
+        axios.get("https://timesheetjy.azurewebsites.net/api/Employee/GetAllProjects", {
+            headers: {
+                'Authorization': `Bearer ${toke}`
+            }
+        }).then(r => setProject(r.data));
     }, []);
 
     const onProjectSelect = (value) => {

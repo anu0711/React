@@ -16,6 +16,7 @@ function Status(props) {
         var dataSource = props.allRecord;
         var filteredColumn = dataSource.filter((a) => a.key === row.key)[0];
         filteredColumn.status = value;
+        filteredColumn.duration = 0;
         props.onSaveData(dataSource);
         if (value.toLowerCase() == "leave" || value.toLowerCase() == "holiday") {
             if (row.key > 99)
