@@ -427,24 +427,24 @@ const navig = () => {
         setState2(newState1);
         setState3(newState2);
 
-        // axios({
-        //     method: 'post',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Access-Control-Allow-Origin': '*',
-        //         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-        //     },
-        //     url: 'https://timesheetjy.azurewebsites.net/api/Employee/AddTimeSheet',
-        //     data: {
-        //         employee_Id: 95,
-        //         fiscalYear_Id: month + 1,
-        //         year: year,
-        //         noOfdays_Worked: summary_data[0].no_of_days_worked,
-        //         noOfLeave_Taken: summary_data[0].no_of_leaves_taken,
-        //         total_Working_Hours: summary_data[0].total_duration,
-        //         addTimesheetDay: dummystate
-        //     }
-        // })
+        axios({
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            },
+            url: 'https://timesheetjy.azurewebsites.net/api/Employee/AddTimeSheet',
+            data: {
+                employee_Id: 95,
+                fiscalYear_Id: month + 1,
+                year: year,
+                noOfdays_Worked: summary_data[0].no_of_days_worked,
+                noOfLeave_Taken: summary_data[0].no_of_leaves_taken,
+                total_Working_Hours: summary_data[0].total_duration,
+                addTimesheetDay: dummystate
+            }
+        })
 
     }
 
