@@ -522,6 +522,9 @@ function ReadEmpType() {
                 }}
                 size="small"
                 bordered
+                 scroll={{
+                  y: 200
+                }}
               /></div>
             <Button id="add1"
               type="link" rowKey="id"

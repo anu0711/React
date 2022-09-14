@@ -28,7 +28,7 @@ function ClientRead() {
   const [isactive, setIsActive] = useState(false);
   const [actCli, setActCli] = useState([]);
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(5);
   const navigate = useNavigate();
   const navig = () => {
     navigate("/#");
@@ -415,9 +415,9 @@ function ClientRead() {
                 }}
                 size="small"
                 bordered
-                scroll={{
-                  y: 200
-                }}
+                // scroll={{
+                //   y: 200
+                // }}
               /></div>
             <Button id="efg"
               type="link" rowKey="id"

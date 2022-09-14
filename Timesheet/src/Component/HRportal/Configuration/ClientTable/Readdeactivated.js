@@ -14,7 +14,7 @@ function Readdeactivated() {
   const [isactive, setIsActive] = useState(false);
   const [actCli, setActCli] = useState([]);
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(5);
   const toke = sessionStorage.getItem("token");
   const setMessage = (statusCode, responseMessage) => {
     if (statusCode == 200) {
@@ -174,9 +174,9 @@ function Readdeactivated() {
             }}
             size="small"
             bordered
-            scroll={{
-              y:200
-            }}
+            // scroll={{
+            //   y:200
+            // }}
           />
           <Modal
             visible={isConfirmModalVisible}

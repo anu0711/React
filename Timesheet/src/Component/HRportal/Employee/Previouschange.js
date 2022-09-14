@@ -2,11 +2,16 @@ import { Card, Table, Layout, Button } from 'antd';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
+import { data } from 'jquery';
 
 const Previouschange = () => {
   const { Sider, Content } = Layout;
   const [dataPrevious, setDataPrevious] = useState([]);
+  const [dataP1, setDataP1] = useState([]);
+  const [dataP2, setDataP2] = useState([]);
   const location = useLocation();
+  const hStyle = { color: 'red' };
+
   const { id } = location.state;
   const { editEmployee_Name } = location.state;
 
@@ -14,7 +19,30 @@ const Previouschange = () => {
     console.log(id, location.state);
     debugger
     axios(`https://timesheetjy.azurewebsites.net/api/Admin/Getviewpreviouschanges?id=${parseInt(id)}`)
-      .then(data => setDataPrevious(data.data))
+      .then((data) => {
+        setDataPrevious(data.data);
+
+        console.log(data.data.length);
+        var len = data.data.length;
+
+        setDataP1(data.data[len-2]);
+        setDataP2(data.data[len-1]);
+
+        debugger
+        //console.log(data.data.length);
+        console.log(dataP1);
+        debugger
+        console.log(dataP2);
+        debugger
+
+        // if (dataP1.employee_Type_Name === dataP2.employee_Type_Name) {
+        //   console.log(dataP2.employee_Type_Name);
+        // }else{
+ 
+        //   debugger
+        // }
+      });
+
   }, [])
 
   const columns = [
@@ -31,7 +59,24 @@ const Previouschange = () => {
     {
       key: '3',
       title: 'Employee Name',
-      dataIndex: 'employee_Name'
+      // dataIndex: 'employee_Name'
+      render:(dataPrevious,color) =>{
+        if (dataP1.employee_Type_Name === dataP2.employee_Type_Name) {
+          console.log(dataP2.employee_Type_Name);
+        }else{
+        return  (
+                  
+        dataPrevious.employee_Type_Name
+                  
+          
+                                        )
+
+      
+                 
+        
+            
+        }
+      } 
     },
     {
       key: '4',
@@ -72,18 +117,18 @@ const Previouschange = () => {
 
   return (
     <div style={{ color: "white" }}>
-     <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100,}}>
-        <Button  style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20 }}>
+      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100, }}>
+        <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
           <Link to="/dashboard"><b>Dashboard</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20 }}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/Configuration/Client"><b>Configuration</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
-        </Button><br/><br/><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/employee"><b>Employees</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/userprofile"><b>User Profile</b></Link>
-        </Button><br/><br/>
+        </Button><br /><br />
       </Sider>
       <Card style={{ marginLeft: 250 }}>
         <div>

@@ -64,7 +64,7 @@ const Userprofile = () => {
                 <table>
                   <tbody>
                     <div style={{ marginLeft: -100, marginTop: -5, fontSize: 20, position: "fixed" }}>
-                      <tr><b>HrContact Id</b><b style={{ marginLeft: 44 }}>:</b></tr><br />
+                      <tr><b>HR Contact Id</b><b style={{ marginLeft: 44 }}>:</b></tr><br />
                       <tr><b>Name</b><b style={{ marginLeft: 108 }}>:</b></tr><br />
                       <tr><b>Designation</b><b style={{ marginLeft: 50 }}>:</b></tr><br />
                       <tr><b>Joining Date</b><b style={{ marginLeft: 43 }}>:</b></tr><br />
