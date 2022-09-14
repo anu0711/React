@@ -517,7 +517,7 @@ const Hrinfo = () => {
                     className="w-25% form-control"
                     suffix={<SearchOutlined />}
                     value={search}
-                    style={{ width: 150, marginLeft: -180, marginTop: -15 }}
+                    style={{ width: 150, marginLeft: -180, marginTop: "-1px" }}
                     onChange={(e) => setSearch(e.target.value)} /></div>
                 <p style={{ fontWeight: "bold", fontSize: 20, position: "fixed", marginLeft: 5 }}>Active :</p>
                 <select id="validhr" style={{ width: 70, height: 30, position: "fixed", marginLeft: 70 }}>
@@ -525,7 +525,7 @@ const Hrinfo = () => {
                   <option value={1} selected="selector">Yes</option>
                   <option value={0}>No</option>
                 </select>
-                <div id="hrisactive" style={{position:'fixed', marginLeft: 140, paddingLeft: '5%', display: 'inline' }}>
+                <div id="hrisactive" style={{position:'fixed', marginLeft: 80, paddingLeft: '5%', display: 'inline' }}>
                   <Button
                     hidden={!hasSelected}
                     type="danger"
@@ -534,7 +534,7 @@ const Hrinfo = () => {
                   >
                     Deactivate
                   </Button>
-                  <div style={{ marginLeft: '113%',marginTop:'-12%' }}>
+                  <div style={{ marginLeft: '113%',marginTop:'-27%' }}>
                   <Button style={{position:'fixed'}} type="primary" icon={<EditOutlined />} title="Edit"
                     hidden={!hassSelect}
                     onClick={() => {
@@ -553,9 +553,9 @@ const Hrinfo = () => {
                     }} >EDIT</Button>
                 </div> */}
               </Space>
-              <div id="hrtable" style={{ marginTop: 15, marginLeft: -180 }}>
+              <div id="hrtable" style={{ marginTop: 10, marginLeft: -180 }}>
                 <Table
-style={{marginTop:"15%"}}
+style={{marginTop:"5%"}}
                   columns={clientDtlColumns}
                   dataSource={filteredClient}
                   rowKey={record => record.hr_Contact_Id}
