@@ -11,39 +11,75 @@ const Previouschange = () => {
   const [dataP2, setDataP2] = useState([]);
   const location = useLocation();
   const hStyle = { color: 'red' };
-
+ const toke = sessionStorage.getItem("token");
   const { id } = location.state;
   const { editEmployee_Name } = location.state;
 
-  useEffect(() => {
-    console.log(id, location.state);
-    debugger
-    axios(`https://timesheetjy.azurewebsites.net/api/Admin/Getviewpreviouschanges?id=${parseInt(id)}`)
-      .then((data) => {
-        setDataPrevious(data.data);
-
-        console.log(data.data.length);
-        var len = data.data.length;
-
-        setDataP1(data.data[len-2]);
-        setDataP2(data.data[len-1]);
-
-        debugger
-        //console.log(data.data.length);
-        console.log(dataP1);
-        debugger
-        console.log(dataP2);
-        debugger
-
-        // if (dataP1.employee_Type_Name === dataP2.employee_Type_Name) {
-        //   console.log(dataP2.employee_Type_Name);
-        // }else{
  
-        //   debugger
-        // }
-      });
+// const AuthStr = 'Bearer '.concat(toke);
+//   axios.get(`https://timesheetjy.azurewebsites.net/api/Admin/Getviewpreviouschanges?id=${parseInt(id)}`, { headers: { Authorization: `Bearer ${toke}` } })
+//      .then(data => {
+//       setDataPrevious(data.data);
 
-  }, [])
+//   console.log(data.data.length);
+//   var len = data.data.length;
+
+//   setDataP1(data.data[len-2]);
+//   setDataP2(data.data[len-1]);
+//      })
+   
+const AuthStr = 'Bearer '.concat(toke);
+
+  axios.get(`https://timesheetjy.azurewebsites.net/api/Admin/Getviewpreviouschanges?id=${parseInt(id)}`, { headers: { Authorization: `Bearer ${toke}` } })
+
+       .then(data => {
+        setDataPrevious(data.data);
+  
+    console.log(data.data.length);
+    var len = data.data.length;
+  debugger
+    setDataP1(data.data[len-2]);
+    setDataP2(data.data[len-1]);
+       })
+
+    .catch((error) => {
+      console.log('error ' + error);
+    });
+  
+    
+
+
+
+
+  // useEffect(() => {
+  //   console.log(id, location.state);
+  //   debugger
+  //   axios(`https://timesheetjy.azurewebsites.net/api/Admin/Getviewpreviouschanges?id=${parseInt(id)}`)
+  //     .then((data) => {
+  //       setDataPrevious(data.data);
+
+  //       console.log(data.data.length);
+  //       var len = data.data.length;
+
+  //       setDataP1(data.data[len-2]);
+  //       setDataP2(data.data[len-1]);
+
+  //       debugger
+  //       //console.log(data.data.length);
+  //       console.log(dataP1);
+  //       debugger
+  //       console.log(dataP2);
+  //       debugger
+
+  //       // if (dataP1.employee_Type_Name === dataP2.employee_Type_Name) {
+  //       //   console.log(dataP2.employee_Type_Name);
+  //       // }else{
+ 
+  //       //   debugger
+  //       // }
+  //     });
+
+  // }, [])
 
   const columns = [
     {
@@ -59,24 +95,22 @@ const Previouschange = () => {
     {
       key: '3',
       title: 'Employee Name',
-      // dataIndex: 'employee_Name'
-      render:(dataPrevious,color) =>{
-        if (dataP1.employee_Type_Name === dataP2.employee_Type_Name) {
-          console.log(dataP2.employee_Type_Name);
-        }else{
-        return  (
+       dataIndex: 'employee_Name'
+      // render:(dataPrevious,color) =>{
+      //   if (dataP1.employee_Type_Name === dataP2.employee_Type_Name) {
+      //     console.log(dataP2.employee_Type_Name);
+      //   }else{
+      //   return  (
                   
-        dataPrevious.employee_Type_Name
-                  
-          
-                                        )
+      //  dataPrevious.employee_Type_Name
+      //                                   )
 
       
                  
         
             
-        }
-      } 
+      //   }
+      // } 
     },
     {
       key: '4',
