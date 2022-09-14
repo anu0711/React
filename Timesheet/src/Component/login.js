@@ -1,9 +1,10 @@
-import { Card, Input, Form, message, Space } from 'antd';
+import { Card, Input, Form, message, Space, Menu } from 'antd';
 import Button from "antd-button-color";
 import { createSearchParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState, React } from 'react';
 import Dashboard from './HRportal/Dashboard/Dashboard';
+
 
 const Login = () => {
     const navigate = useNavigate();
@@ -76,9 +77,10 @@ const Login = () => {
     }
 
     return (
+       
         <>
-            <Card style={{ marginTop: 100, marginLeft: 210, backgroundColor: "ButtonShadow", width: 900, position: "fixed" }}>
-                <div style={{ marginLeft: 200, padding: 10 }}>
+            <Card style={{  marginTop: 50, marginLeft: 85, backgroundColor: " #d9edff", width: 1200, position: "fixed" ,display: "flex",borderRadius:12}}>
+                <div style={{ marginLeft: 300, padding: 10 ,backgroundColor: "white",borderRadius:12,boxShadow:"0 0 40px rgba(0,0,0,0.16)" }}>
                     <h1 style={{ color: "blue", fontSize: 35 }}>TIME SHEET AUTOMATION</h1>
                     {/* <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="dashboard"><b>HR Portal</b></Link></Button><br /><br />
                     <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="/Siders"><b>Employee Portal</b></Link></Button> */}
@@ -121,7 +123,8 @@ const Login = () => {
                     </Form>
                 </div>
             </Card>
-        </>
+           
+        </> 
     )
 }
 
