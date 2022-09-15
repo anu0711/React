@@ -9,7 +9,36 @@ import { LogoutOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
 
+
+
 const EDashboard = () => {
+
+    const month_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [modal, setModal] = useState(false);
+    const [project, setProject] = useState([]);
+    const currentDate = new Date();
+ 
+    const [state1, setState1] = useState([])
+    const [state2, setState2] = useState([])
+    const [state3, setState3] = useState([])
+    const month = currentDate.getMonth() - 1;
+    const year = currentDate.getFullYear();
+    const Day_list = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+    ];
+
+
+
+
+
+
     const [sts, setsts] = useState([]);
     const toke = sessionStorage.getItem("token");
     const id = sessionStorage.getItem("id");
@@ -59,7 +88,7 @@ const EDashboard = () => {
 
                 <div style={{ marginTop: 160 }}>
                     {/* <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {data.month} {data.year} status</center></h1> */}
-                    <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet { } { } status</center></h1>
+                    <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {`${month_name[month]}`} - {year} status</center></h1>
                 </div>
                 <br /><br /><br />
                 <div>
@@ -97,7 +126,7 @@ const EDashboard = () => {
                     </Button><br /><br />
                 </Sider>
                 <div style={{ marginTop: 160 }}>
-                    <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {data.month} {data.year} status</center></h1>
+                <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {`${month_name[month]}`} - {year} status</center></h1>
                 </div>
                 <br /><br /><br />
                 <div>
@@ -130,7 +159,7 @@ const EDashboard = () => {
                     </Button><br /><br />
                 </Sider>
                 <div style={{ marginTop: 160 }}>
-                    <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {data.month} {data.year} status</center></h1>
+                <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {`${month_name[month]}`} - {year} status</center></h1>
                 </div>
                 <br /><br /><br />
                 <div>
@@ -163,7 +192,7 @@ const EDashboard = () => {
                     </Button><br /><br />
                 </Sider>
                 <div style={{ marginTop: 160 }}>
-                    <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {data.month} {data.year} status</center></h1>
+                <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {`${month_name[month]}`} - {year} status</center></h1>
                 </div>
                 <br /><br /><br />
                 <div>
@@ -202,7 +231,7 @@ const EDashboard = () => {
                     </Button><br /><br />
                 </Sider>
                 <div style={{ marginTop: 160 }}>
-                    <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {data.month} {data.year} status</center></h1>
+                <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {`${month_name[month]}`} - {year} status</center></h1>
                 </div>
                 <br /><br /><br />
                 <div>
