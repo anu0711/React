@@ -51,35 +51,7 @@ const AuthStr = 'Bearer '.concat(toke);
 
 
 
-  // useEffect(() => {
-  //   console.log(id, location.state);
-  //   debugger
-  //   axios(`https://timesheetjy.azurewebsites.net/api/Admin/Getviewpreviouschanges?id=${parseInt(id)}`)
-  //     .then((data) => {
-  //       setDataPrevious(data.data);
 
-  //       console.log(data.data.length);
-  //       var len = data.data.length;
-
-  //       setDataP1(data.data[len-2]);
-  //       setDataP2(data.data[len-1]);
-
-  //       debugger
-  //       //console.log(data.data.length);
-  //       console.log(dataP1);
-  //       debugger
-  //       console.log(dataP2);
-  //       debugger
-
-  //       // if (dataP1.employee_Type_Name === dataP2.employee_Type_Name) {
-  //       //   console.log(dataP2.employee_Type_Name);
-  //       // }else{
- 
-  //       //   debugger
-  //       // }
-  //     });
-
-  // }, [])
 
   const columns = [
     {

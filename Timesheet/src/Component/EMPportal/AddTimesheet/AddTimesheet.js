@@ -61,7 +61,7 @@ function AddTimesheet() {
 
     const noOfDays = new Date(year, month + 1, 0).getDate();
     var [data, SetData] = useState([]);
-    for (let i = 1; i <= noOfDays; i++) {
+    for (let i = 1; i <= 7; i++) {
         data.push({
             key: i,
             date: format(new Date(year, month, i), 'yyyy-MM-dd'),
@@ -88,15 +88,22 @@ function AddTimesheet() {
             if (element.duration === 0 && element.status != "") {
                 count += 1;
             }
-            if (element.project === "") {
+            if ((element.status.toLowerCase() === "leave" || element.status.toLowerCase() === "holiday")
+                && (element.duration === 0 || element.dutation === '')) {
+                count -= 1;
+            }
+            if (element.status != "" && (element.duration == '' || element.duration == 0)) {
                 count += 1;
             }
         });
+        console.log(currentState);
         if (count === 0) {
-            setIsDisabled(!isDisabled);
+            setIsDisabled(false);
+        }
+        if (count > 0) {
+            setIsDisabled(true);
         }
     }, [currentState]);
-
 
     useEffect(() => {
         calculateAttendance();

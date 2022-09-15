@@ -10,9 +10,6 @@ import { Link } from 'react-router-dom';
 import { LogoutOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
-
-
-
 const { Option } = Select;
 
 const Hrinfo = () => {
