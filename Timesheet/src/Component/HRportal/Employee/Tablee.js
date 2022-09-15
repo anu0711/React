@@ -194,9 +194,9 @@ const Tablee = () => {
       //   const timout1 = setTimeout(() => {
       //     window.location.reload();
       //   }, 1100);  
-       
+
       // return () => clearTimeout(timout1);
-      setIsEditing(!isEditing); 
+      setIsEditing(!isEditing);
       const timeout1 = setTimeout(() => {
         window.location.reload();
       }, 1000);
@@ -402,9 +402,9 @@ const Tablee = () => {
       console.log(error);
       debugger
 
-      setMessage(error.request.status, error.response.data.errors.Alternate_Email[0]);
+      setMessage(error.request.status, error.response.data);
       debugger
-      console.log(error.response.data.errors.Alternate_Email[0]);
+      //console.log(error.response.data.errors.Alternate_Email[0]);
       debugger
 
     })
@@ -506,18 +506,21 @@ const Tablee = () => {
         $("#emptable").show();
         $("#abc").show();
         $("#activate").show();
-        $("#clientisactive").show();
+        //$("#clientisactive").show();
         $("#dctemptable").hide();
+        window.location.reload();
         axios("https://timesheetjy.azurewebsites.net/api/Admin/GetAllEmployee", {
           headers: {
             'Authorization': `Bearer ${toke}`
           }
+          
         })
           .then(data => setFilteredEmployee(data.data))
       } else if (this.value == 0) {
+        $("#dct1").hide();
         $("#dctemptable").show();
         $("#activate").hide();
-        $("#clientisactive").hide();
+        //$("#clientisactive").hide();
         $("#abc").hide();
         $("#emptable").hide();
       }
@@ -526,18 +529,18 @@ const Tablee = () => {
 
   return (
     <>
-      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -100,}}>
-        <Button  style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20 }}>
+      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginTop: -100, }}>
+        <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
           <Link to="/dashboard"><b>Dashboard</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20 }}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/Configuration/Client"><b>Configuration</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
-        </Button><br/><br/><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/employee"><b>Employees</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/userprofile"><b>User Profile</b></Link>
-        </Button><br/><br/>
+        </Button><br /><br />
       </Sider>
 
       <Popover position="top" content='Logout'>
@@ -805,25 +808,27 @@ const Tablee = () => {
                 </Modal>
               </div>
               <div id="dct" style={{ marginLeft: 50, paddingLeft: '5%', display: 'inline' }}>
-                <Space direction="horizantal">
-                  <Button
-                    hidden={!hasSelected}
-                    type="danger"
-                    title="Deactivate"
-                    onClick={showDeactivateModal}
-                    icon={<CloseCircleOutlined />}
-                  >
-                    Deactivate
-                  </Button>
+                <div id="dct1" style={{ marginLeft: 50, paddingLeft: '5%', display: 'inline' }}>
+                  <Space direction="horizantal">
+                    <Button
+                      hidden={!hasSelected}
+                      type="danger"
+                      title="Deactivate"
+                      onClick={showDeactivateModal}
+                      icon={<CloseCircleOutlined />}
+                    >
+                      Deactivate
+                    </Button>
 
-                  {
-                    selectedRows.length === 1 ?
-                      <Button type="primary" icon={<EditOutlined />} title="Edit" onClick={() => {
-                        onEdit();
-                      }} >Edit</Button> : ""
-                  }
+                    {
+                      selectedRows.length === 1 ?
+                        <Button type="primary" icon={<EditOutlined />} title="Edit" onClick={() => {
+                          onEdit();
+                        }} >Edit</Button> : ""
+                    }
 
-                </Space>
+                  </Space>
+                </div>
               </div>
             </Space>
             <div id="emptable" style={{ width: "72%" }}>

@@ -51,9 +51,9 @@ function ReadProject() {
     const [startValue, setStartValue] = useState(null);
     const [endValue, setEndValue] = useState(null);
     const [page, setPage] = useState(1);
-    const [pageSize, setPageSize] = useState(5);
+    const [pageSize, setPageSize] = useState(4);
     const [page1, setPage1] = useState(1);
-    const [pageSize1, setPageSize1] = useState(5);
+    const [pageSize1, setPageSize1] = useState(4);
 
     const toke = sessionStorage.getItem("token");
 
@@ -298,7 +298,7 @@ function ReadProject() {
     const columns_Deactivate = [
         {
             title: "COL_ID",
-            render: (value, item, index) => (page1 - 1) * 5+ index + 1,
+            render: (value, item, index) => (page1 - 1) * 4 + index + 1,
         },
         {
             title: "Project Code",
@@ -523,7 +523,7 @@ function ReadProject() {
                     <Col span={4} stylw={{ marginLeft: 10 }}><Link to="/Configuration/EmployeeType"><Button style={{ width: 130 }}>Employee Type</Button></Link></Col>
                     <Col span={4}><Link to="/Configuration/HrInfo" ><Button style={{ width: 130 }} >HR Contact Info</Button></Link></Col><Col span={2}></Col>
                 </Row><Card className="table_border_antd" style={{ width: 1000, borderTopColor: "blue", borderLeftColor: "black", borderRightColor: "black", borderBottomColor: "black", borderTopWidth: 5, position: "fixed" }}>
-                    <div className="container" style={{ width: "65%", margin: "-2% 0% 0% 15%" }}>
+                    <div className="container" style={{ width: "65%", margin: "-2% 0% 0% 15%",paddingTop:'-1%' }}>
                         <div style={{ paddingBottom: 10 }}>
                             <h1 style={{ color: 'blue', fontSize: 30, marginLeft: -80 }}><b>Project</b></h1>
                             {

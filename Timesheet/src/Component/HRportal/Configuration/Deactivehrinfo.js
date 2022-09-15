@@ -115,7 +115,7 @@ function Deactivatehrinfo() {
           is_Active: true
         },      
       }).then((r) => {
-        // setMessage(r.request.status, element.hr_Name + "Activated Successfully");
+        setMessage(r.request.status, element.hr_Name + "Activated Successfully");
         $("#hractbtn").hide();
         if(page == 1)
         {
@@ -141,7 +141,7 @@ function Deactivatehrinfo() {
     });
     activateDesignation = activateDesignation.substring(0, activateDesignation.length - 2) + " ";
     debugger
-    setMessage(200, activateDesignation  + " Activated Successfully");
+    //setMessage(200, activateDesignation  + " Activated Successfully");
     debugger
     setIsConfirmModalVisible(false);
   }
