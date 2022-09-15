@@ -36,7 +36,7 @@ const EDashboard = () => {
     if (data == undefined) {
         return (
             <div>
-                <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -250 }}>
+                <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -250 }}>
                     <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
                         <Link to="/EDashboard">Dashboard</Link>
                     </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
@@ -83,7 +83,7 @@ const EDashboard = () => {
     else if (data.status == "Approved") {
         return (
             <div>
-                <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -250 }}>
+                <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -250 }}>
                     <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
                         <Link to="/EDashboard">Dashboard</Link>
                     </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
@@ -116,7 +116,7 @@ const EDashboard = () => {
     else if (data.status == "Rejected") {
         return (
             <div>
-                <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -250 }}>
+                <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -250 }}>
                     <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
                         <Link to="/EDashboard">Dashboard</Link>
                     </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
@@ -149,7 +149,7 @@ const EDashboard = () => {
     else if (data.status == "Pending") {
         return (
             <div>
-                <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -250 }}>
+                <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -250 }}>
                     <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
                         <Link to="/EDashboard">Dashboard</Link>
                     </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
@@ -188,7 +188,7 @@ const EDashboard = () => {
     else {
         return (
             <div>
-                <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -250 }}>
+                <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -250 }}>
                     <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
                         <Link to="/EDashboard">Dashboard</Link>
                     </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
@@ -220,7 +220,7 @@ const EDashboard = () => {
     }
     return (
         <div style={{ backgroundColor: "white", marginTop: 0 }}>
-            <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white", marginLeft: 20, marginTop: -250 }}>
+            <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "100%", backgroundColor: "white",  marginTop: -250 }}>
                 <Button type="primary" style={{ width: 200, margin: "0 10%", height: 50, marginTop: 20 }}>
                     <Link to="/EDashboard">Dashboard</Link>
                 </Button><Button style={{ margin: "0 10%", width: 200, height: 50 }}>

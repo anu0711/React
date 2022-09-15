@@ -77,10 +77,10 @@ const Login = () => {
     }
 
     return (
-       
+
         <>
-            <Card style={{  marginTop: 50, marginLeft: 85, backgroundColor: " #d9edff", width: 1200, position: "fixed" ,display: "flex",borderRadius:12}}>
-                <div style={{ marginLeft: 300, padding: 10 ,backgroundColor: "white",borderRadius:12,boxShadow:"0 0 40px rgba(0,0,0,0.16)" }}>
+            <Card style={{ backgroundColor: " #d9edff", width: 1370, position: "fixed", display: "flex", height: 650 }}>
+                <div style={{ marginLeft: 430, padding: 10, backgroundColor: "white", borderRadius: 12, boxShadow: "0 0 40px rgba(0,0,0,0.16)", marginTop: 50 }}>
                     <h1 style={{ color: "blue", fontSize: 35 }}>TIME SHEET AUTOMATION</h1>
                     {/* <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="dashboard"><b>HR Portal</b></Link></Button><br /><br />
                     <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="/Siders"><b>Employee Portal</b></Link></Button> */}
@@ -112,7 +112,7 @@ const Login = () => {
                         ]}>
                             <Input type="password" style={{ width: 450 }} />
                         </Form.Item><br />
-                        <p>Change password?<span style={{marginLeft:5}}><Link to="/resetPassword"><b><u>click here..</u></b></Link></span></p><br />
+                        <p>Change password?<span style={{ marginLeft: 5 }}><Link to="/resetPassword"><b><u>click here..</u></b></Link></span></p><br />
                         {/* <Link>click here..</Link> */}
                         <Form.Item>
                             <Space>
@@ -123,8 +123,8 @@ const Login = () => {
                     </Form>
                 </div>
             </Card>
-           
-        </> 
+
+        </>
     )
 }
 

@@ -31,7 +31,7 @@ const Userprofile = () => {
 
   return (
     <div style={{ backgroundColor: "white", marginTop: -30 }}>
-      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginLeft: 20, marginTop: -100, }}>
+      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -100, }}>
         <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
           <Link to="/dashboard"><b>Dashboard</b></Link>
         </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
