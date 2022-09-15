@@ -45,10 +45,7 @@ const Previouschange = () => {
 
     .catch((error) => {
       console.log('error ' + error);
-      const timeout1 = setTimeout(() => {
-        window.location.reload();
-      }, 1500);  
-    return () => clearTimeout(timeout1);
+      
 
     }
     );
