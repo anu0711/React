@@ -85,15 +85,14 @@ function AddTimesheet() {
             if (element.status === '') {
                 count += 1;
             }
-            if (element.duration === 0 && element.status != "") {
+            if (element.project == "") {
                 count += 1;
             }
-            if ((element.status.toLowerCase() === "leave" || element.status.toLowerCase() === "holiday")
-                && (element.duration === 0 || element.dutation === '')) {
-                count -= 1;
-            }
-            if (element.status != "" && (element.duration == '' || element.duration == 0)) {
+            if ((element.duration === 0 || element.duration === null)) {
                 count += 1;
+            }
+            if ((element.status === "Leave" || element.status === "Holiday") && element.project === "" && (element.duration === 0 || element.duration === null)) {
+                count -= 2;
             }
         });
         console.log(currentState);
