@@ -50,7 +50,7 @@ const Hrinfo = () => {
   const navig = () => {
     navigate("/#");
   }
-  const [pageSize, setPageSize] = useState(4);
+  const [pageSize, setPageSize] = useState(5);
   const setMessage = (statusCode, responseMessage) => {
     if (statusCode == 200) {
       message.success(responseMessage, 4);

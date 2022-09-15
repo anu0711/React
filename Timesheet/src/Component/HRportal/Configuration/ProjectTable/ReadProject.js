@@ -51,9 +51,9 @@ function ReadProject() {
     const [startValue, setStartValue] = useState(null);
     const [endValue, setEndValue] = useState(null);
     const [page, setPage] = useState(1);
-    const [pageSize, setPageSize] = useState(4);
+    const [pageSize, setPageSize] = useState(5);
     const [page1, setPage1] = useState(1);
-    const [pageSize1, setPageSize1] = useState(4);
+    const [pageSize1, setPageSize1] = useState(5);
 
     const toke = sessionStorage.getItem("token");
 
@@ -298,7 +298,7 @@ function ReadProject() {
     const columns_Deactivate = [
         {
             title: "COL_ID",
-            render: (value, item, index) => (page1 - 1) * 4 + index + 1,
+            render: (value, item, index) => (page1 - 1) * 5+ index + 1,
         },
         {
             title: "Project Code",
