@@ -61,7 +61,7 @@ function AddTimesheet() {
 
     const noOfDays = new Date(year, month + 1, 0).getDate();
     var [data, SetData] = useState([]);
-    for (let i = 1; i <= 7; i++) {
+    for (let i = 1; i <= noOfDays; i++) {
         data.push({
             key: i,
             date: format(new Date(year, month, i), 'yyyy-MM-dd'),
