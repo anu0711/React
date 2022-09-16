@@ -38,7 +38,7 @@ function AddTimesheet() {
     const navig = () => {
         navigate("/#");
     }
-    const employee_Id=sessionStorage.id;
+    const employee_Id = sessionStorage.id;
     debugger;
     const month_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -116,17 +116,17 @@ function AddTimesheet() {
     const columns = [
         {
             key: "date",
-            title: (<h4><b>Date</b></h4>),
+            title: (<center><h4><b>Date</b></h4></center>),
             dataIndex: "date",
         },
         {
             key: "day",
-            title: (<h4><b>Day</b></h4>),
+            title: (<center><h4><b>Day</b></h4></center>),
             dataIndex: "day",
         },
         {
             key: "status",
-            title: (<h4><b>Status</b></h4>),
+            title: (<center><h4><b>Status</b></h4></center>),
             dataIndex: 'status',
             render: (_, record) => (
                 <Status
@@ -140,20 +140,22 @@ function AddTimesheet() {
         },
         {
             key: "project",
-            title: (<h4><b>Project</b></h4>),
+            title: (<center><h4><b>Project</b></h4></center>),
             dataIndex: 'project',
             render: (_, record) => (
-                <Project
-                    allRecord={currentState}
-                    row={record}
-                    onSaveData={saveCurrentState}
-                    setProject={setProject}
-                />
+                <div style={{ width: 200 }}>
+                    <Project
+                        allRecord={currentState}
+                        row={record}
+                        onSaveData={saveCurrentState}
+                        setProject={setProject}
+                    />
+                </div>
             )
         },
         {
             key: "duration",
-            title: (<h4><b>Duration</b></h4>),
+            title: (<center><h4><b>Duration</b></h4></center>),
             dataIndex: "duration",
             render: (_, record) => (
                 <Duration
@@ -166,7 +168,7 @@ function AddTimesheet() {
         },
         {
             key: "action",
-            title: (<h4><b>Action</b></h4>),
+            title: (<center><h4><b>Action</b></h4></center>),
             render: row => (
                 <>
                     <Space>
