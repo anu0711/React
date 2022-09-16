@@ -5,6 +5,7 @@ import axios from 'axios';
 function Project(props) {
 
     const toke = sessionStorage.getItem("token");
+    debugger;
     const [project, setProject] = useState([]);
     useEffect(() => {
         axios.get("https://timesheetjy.azurewebsites.net/api/Employee/GetAllProjects", {

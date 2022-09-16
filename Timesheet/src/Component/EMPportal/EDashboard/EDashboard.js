@@ -80,7 +80,7 @@ const EDashboard = () => {
                 </Sider>
                 <div style={{ marginLeft: "90%", marginTop:"-3%",position:'fixed' }}>
                     <Popover position="top" content='Logout'>
-                        <button style={{ width: '3em', backgroundColor: '#f77c7c' }}>
+                        <button style={{ width: '5em', backgroundColor: '#f77c7c' }}>
                             <LogoutOutlined onClick={navig} />
                         </button>
                     </Popover>

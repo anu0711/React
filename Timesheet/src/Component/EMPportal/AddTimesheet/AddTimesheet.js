@@ -38,6 +38,8 @@ function AddTimesheet() {
     const navig = () => {
         navigate("/#");
     }
+    const employee_Id=sessionStorage.id;
+    debugger;
     const month_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [modal, setModal] = useState(false);
@@ -474,7 +476,7 @@ function AddTimesheet() {
             },
             url: 'https://timesheetjy.azurewebsites.net/api/Employee/AddTimeSheet',
             data: {
-                employee_Id: 95,
+                employee_Id: parseInt(employee_Id),
                 fiscalYear_Id: month + 1,
                 year: year,
                 noOfdays_Worked: summary_data[0].no_of_days_worked,
