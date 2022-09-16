@@ -5,6 +5,7 @@ import axios from 'axios';
 function Project(props) {
 
     const toke = sessionStorage.getItem("token");
+    debugger;
     const [project, setProject] = useState([]);
     useEffect(() => {
         axios.get("https://timesheetjy.azurewebsites.net/api/Employee/GetAllProjects", {
@@ -32,7 +33,6 @@ function Project(props) {
             defaultValue={props.row.project}
             onChange={(value) => onProjectSelect(value)}
             disabled={props.row.status.toLowerCase() === 'holiday' || props.row.status.toLowerCase() === 'leave' ? true : false}
-            // onBlur={}
         >
             {
                 project.map(opt => (
