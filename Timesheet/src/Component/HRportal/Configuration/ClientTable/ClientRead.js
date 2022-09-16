@@ -332,7 +332,7 @@ function ClientRead() {
         </Button><br /><br />
       </Sider>
       <Popover position="top" content='Logout'>
-        <button style={{ width: '3em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '2%' }}>
+        <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '2%' }}>
           <LogoutOutlined onClick={navig} />
         </button>
       </Popover>

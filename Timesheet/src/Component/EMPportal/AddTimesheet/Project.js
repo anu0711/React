@@ -32,6 +32,7 @@ function Project(props) {
             defaultValue={props.row.project}
             onChange={(value) => onProjectSelect(value)}
             disabled={props.row.status.toLowerCase() === 'holiday' || props.row.status.toLowerCase() === 'leave' ? true : false}
+            // onBlur={}
         >
             {
                 project.map(opt => (
