@@ -48,6 +48,7 @@ class UploadedImage extends Component {
             .then(res => {
                 console.log(res);
                 setMessage(res.status, res.data);
+                
             })
 
     }

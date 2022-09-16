@@ -399,13 +399,8 @@ const Tablee = () => {
 
     }).catch((error) => {
 
-      console.log(error);
-      debugger
-
       setMessage(error.request.status, error.response.data);
-      debugger
-      //console.log(error.response.data.errors.Alternate_Email[0]);
-      debugger
+      //setMessage(error.request.status, error.response.data.errors.Alternate_Email[0]);
 
     })
   }
@@ -513,7 +508,7 @@ const Tablee = () => {
           headers: {
             'Authorization': `Bearer ${toke}`
           }
-          
+
         })
           .then(data => setFilteredEmployee(data.data))
       } else if (this.value == 0) {
@@ -780,10 +775,39 @@ const Tablee = () => {
                         </Col>
                         <Col span={1}></Col>
                         <Col span={5}>
-                          <Form.Item type={"email"} name="alteremail" rules={[{
-                            pattern: new RegExp(/^([a-z0-9-_\.]+)@([a-z0-9]+)\.([a-z]{2,10})(\.[a-z]{2,8})?$/),
-                            message: "Enter valid Email"
-                          }]}>
+                          <Form.Item name="alteremail" dependencies={["email"]}
+
+                            hasFeedback
+
+                            rules={[{
+
+                              pattern: new RegExp(/^([a-z0-9-_\.]+)@([a-z0-9]+)\.([a-z]{2,10})(\.[a-z]{2,8})?$/),
+
+                              message: "Enter valid Email"
+
+                            },
+
+                            ({ getFieldValue }) => ({
+
+                              validator(_, value) {
+
+                                if (!value || getFieldValue("email") != value)
+
+                                  return Promise.resolve();
+
+
+
+                                return Promise.reject(
+
+                                  new Error("Alternate mail and Official mail should not be same")
+
+                                );
+
+                              },
+
+                            })
+
+                            ]}>
                             <Input type={"email"} id='alteremail' value={email}
                               onChange={(e) => setAlternate_Email(e.target.value)} />
                           </Form.Item>

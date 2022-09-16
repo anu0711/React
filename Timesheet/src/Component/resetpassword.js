@@ -2,6 +2,7 @@ import { Card, Input, Form, message, Space } from 'antd';
 import Button from "antd-button-color";
 import { createSearchParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './login.css';
 import { useState, React } from 'react';
 import Dashboard from './HRportal/Dashboard/Dashboard';
 
@@ -83,8 +84,8 @@ const ResetPassword = () => {
 
     return (
         <>
-            <Card style={{ marginTop: 10, marginLeft: 210, backgroundColor: "ButtonShadow", width: 900, position: "fixed" }}>
-                <div style={{ marginLeft: 200, padding: 10 }}>
+            <Card className='login'>
+                <div style={{ marginLeft: 430, padding: 20,width:500, backgroundColor: "white", borderRadius: 15, boxShadow: "0 0 40px rgba(0,0,0,16)", marginTop: 15 }}>
                     {/* <h1 style={{ color: "blue", fontSize: 35 }}>TIME SHEET AUTOMATION</h1> */}
                     {/* <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="dashboard"><b>HR Portal</b></Link></Button><br /><br />
                     <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="/Siders"><b>Employee Portal</b></Link></Button> */}

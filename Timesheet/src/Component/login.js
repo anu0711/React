@@ -2,6 +2,7 @@ import { Card, Input, Form, message, Space, Menu } from 'antd';
 import Button from "antd-button-color";
 import { createSearchParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './login.css';
 import { useState, React } from 'react';
 import Dashboard from './HRportal/Dashboard/Dashboard';
 
@@ -79,9 +80,9 @@ const Login = () => {
     return (
 
         <>
-            <Card style={{ backgroundColor: " #d9edff", width: 1370, position: "fixed", display: "flex", height: 650 }}>
-                <div style={{ marginLeft: 430, padding: 10, backgroundColor: "white", borderRadius: 12, boxShadow: "0 0 40px rgba(0,0,0,0.16)", marginTop: 50 }}>
-                    <h1 style={{ color: "blue", fontSize: 35 }}>TIME SHEET AUTOMATION</h1>
+            <Card className='login' >
+                <div style={{ marginLeft: 430, padding: 10, backgroundColor: "white", borderRadius: 15, boxShadow: "0 0 40px rgba(0,0,0,16)", marginTop: 50 }}>
+                    <h1 style={{ color: "blue", fontSize: 35 }}>TIMESHEET AUTOMATION</h1>
                     {/* <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="dashboard"><b>HR Portal</b></Link></Button><br /><br />
                     <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="/Siders"><b>Employee Portal</b></Link></Button> */}
                     <h1 style={{ marginLeft: 150, fontSize: 25 }}><b>LOGIN PAGE</b></h1>
@@ -110,7 +111,7 @@ const Login = () => {
                                 message: 'Please input your Password!'
                             },
                         ]}>
-                            <Input type="password" style={{ width: 450 }} />
+                            <Input.Password type="password" style={{ width: 450 }} />
                         </Form.Item><br />
                         <p>Change password?<span style={{ marginLeft: 5 }}><Link to="/resetPassword"><b><u>click here..</u></b></Link></span></p><br />
                         {/* <Link>click here..</Link> */}

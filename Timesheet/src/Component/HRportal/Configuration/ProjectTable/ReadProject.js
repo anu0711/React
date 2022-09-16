@@ -311,12 +311,12 @@ function ReadProject() {
         {
             title: "Start Date",
             dataIndex: 'project_Start_Date',
-            render: (project_Start_Date) => { return (<p style={{ paddingTop: '5%' }}>{moment(project_Start_Date).format('DD - MM - YYYY')}</p>) },
+            render: (project_Start_Date) => { return (<p style={{ paddingTop: '0%' }}>{moment(project_Start_Date).format('DD - MM - YYYY')}</p>) },
         },
         {
             title: "End Date",
             dataIndex: 'project_End_Date',
-            render: (project_End_Date) => { return (<p style={{ paddingTop: '5%' }}>{moment(project_End_Date).format('DD - MM - YYYY')}</p>) },
+            render: (project_End_Date) => { return (<p style={{ paddingTop: '09%' }}>{moment(project_End_Date).format('DD - MM - YYYY')}</p>) },
         }
     ];
 
