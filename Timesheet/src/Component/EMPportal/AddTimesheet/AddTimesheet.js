@@ -127,13 +127,13 @@ function AddTimesheet() {
             title: (<center><h4><b>Status</b></h4></center>),
             dataIndex: 'status',
             render: (_, record) => (
-                    <Status
-                        allRecord={currentState}
-                        defaultValue={record.status}
-                        row={record}
-                        onSaveData={saveCurrentState}
-                        onDeleteRow={onDeleteRow}
-                    />           
+                <Status
+                    allRecord={currentState}
+                    defaultValue={record.status}
+                    row={record}
+                    onSaveData={saveCurrentState}
+                    onDeleteRow={onDeleteRow}
+                />
             )
         },
         {
@@ -141,12 +141,12 @@ function AddTimesheet() {
             title: (<center><h4><b>Project</b></h4></center>),
             dataIndex: 'project',
             render: (_, record) => (
-                    <Project
-                        allRecord={currentState}
-                        row={record}
-                        onSaveData={saveCurrentState}
-                        setProject={setProject}
-                    />
+                <Project
+                    allRecord={currentState}
+                    row={record}
+                    onSaveData={saveCurrentState}
+                    setProject={setProject}
+                />
             )
         },
         {
