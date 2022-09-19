@@ -2,14 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Input, Space, Button, Form, Modal, Col, Row, Card, Table, message, Layout,Popover } from "antd";
+import { Input, Space, Button, Form, Modal, Col, Row, Card, Table, message, Layout, Popover } from "antd";
 import { PlusCircleOutlined, EditOutlined, CloseCircleOutlined, SearchOutlined } from '@ant-design/icons';
 import Readdeactivated from "./Readdeactivated";
 import { Checkbox, Label } from 'semantic-ui-react';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
-import {LogoutOutlined} from '@ant-design/icons';
-import {  useNavigate } from 'react-router-dom';
+import { LogoutOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 
 function ReadEmpType() {
@@ -47,8 +47,8 @@ function ReadEmpType() {
   const [hideOrShow, setHideOrShow] = useState(false);
   const navigate = useNavigate();
   const navig = () => {
-       navigate("/#");
-       }
+    navigate("/#");
+  }
   const toke = sessionStorage.getItem("token");
 
   const setMessage = (statusCode, responseMessage) => {
@@ -222,7 +222,7 @@ function ReadEmpType() {
           employee_Type_Name: e.employee_Type_Name
         }
       }).then((r) => {
-       
+
         setIsEditing(false);
         debugger
         setMessage(r.request.status, e.employee_Type_Name + " - " + "Updated Successfully");
@@ -233,18 +233,18 @@ function ReadEmpType() {
           }
         })
           .then(data => setFilteredClient(data.data))
-          const timout1 = setTimeout(() => {
-            window.location.reload();
-          }, 1100);  
-         
+        const timout1 = setTimeout(() => {
+          window.location.reload();
+        }, 1100);
+
         return () => clearTimeout(timout1);
       }).catch((error) => {
         setMessage(error.request.status, error.response.data);
-        
+
         // console.log(error.message);
         // debugger
       });
-      
+
     }
 
     return (
@@ -339,9 +339,9 @@ function ReadEmpType() {
           id: element.employee_Type_Id,
           is_Active: false
         },
-        
+
       }).then((r) => {
-        
+
         clientdtl();
 
         $('#clientisactive');
@@ -370,10 +370,10 @@ function ReadEmpType() {
           }
         })
           .then(data => setFilteredClient(data.data));
-          const timeout1 = setTimeout(() => {
-            window.location.reload();
-          }, 1500);  
-         
+        const timeout1 = setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+
         return () => clearTimeout(timeout1);
       })
       activateDesignation = activateDesignation + element.employee_Type_Name + ', ';
@@ -381,7 +381,7 @@ function ReadEmpType() {
     activateDesignation = activateDesignation.substring(0, activateDesignation.length - 2) + " ";
     debugger
     setMessage(200, activateDesignation + " Deactivated Successfully");
-    
+
     debugger
     setIsActivateModal(false);
     setToggleActivate(false);
@@ -389,9 +389,9 @@ function ReadEmpType() {
     setSelectedRowKeys([]);
     rowSelection = ''
     setIsConfirmModalVisible(false);
-   
 
-    
+
+
   }
 
   useEffect(() => {
@@ -429,26 +429,31 @@ function ReadEmpType() {
 
   return (
     <>
-     <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginTop: -100,}}>
-        <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20 }}>
+      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginTop: -100, }}>
+        <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
           <Link to="/dashboard"><b>Dashboard</b></Link>
-        </Button><br/><br/><Button type="primary"  style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20 }}>
+        </Button><br /><br /><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/Configuration/Client"><b>Configuration</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/employee"><b>Employees</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/userprofile"><b>User Profile</b></Link>
-        </Button><br/><br/>
+        </Button><br /><br />
       </Sider>
-      <Popover position="top" content='Logout'>
-     <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>
-     <LogoutOutlined  onClick={navig}   />
-     </button>
-       </Popover>
+
       <div style={{ position: "fixed", width: "85%", marginLeft: 250 }}>
-        <p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p>
+        <div style={{ marginTop: "1%" }}>
+          <Row>
+            <Col span={2}><p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p></Col>
+            <Col span={19}>
+              <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '0%' }}>
+                <LogoutOutlined onClick={navig} />
+              </button>
+            </Col>
+          </Row>
+        </div>
         <Row><Col span={2}></Col>
           <Col span={4}><Link to="/Configuration/Client"><Button style={{ width: 130 }}>Client</Button></Link></Col>
           <Col span={4}><Link to="/Configuration/Project"><Button style={{ width: 130 }}>Project</Button></Link></Col>
@@ -483,25 +488,25 @@ function ReadEmpType() {
                 >
                   Deactivate
                 </Button>
-                
+
                 <div style={{ marginTop: "-27%", marginLeft: "115%" }}>
-<Button type="primary" icon={<EditOutlined />} title="Edit"
+                  <Button type="primary" icon={<EditOutlined />} title="Edit"
 
-  hidden={!hassSelected}
+                    hidden={!hassSelected}
 
-  onClick={() => {
+                    onClick={() => {
 
 
 
-    onEdit();
+                      onEdit();
 
-  }}
+                    }}
 
->EDIT</Button>
+                  >EDIT</Button>
 
-</div>
                 </div>
-                
+              </div>
+
             </Space>
             <div id="emptypetable" style={{ marginTop: 30 }}>
               <Table
@@ -522,7 +527,7 @@ function ReadEmpType() {
                 }}
                 size="small"
                 bordered
-                
+
               /></div>
             <Button id="add1"
               type="link" rowKey="id"
@@ -597,4 +602,4 @@ function ReadEmpType() {
     </>
   )
 }
-export default ReadEmpType ;
+export default ReadEmpType;

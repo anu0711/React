@@ -51,9 +51,9 @@ function ReadProject() {
     const [startValue, setStartValue] = useState(null);
     const [endValue, setEndValue] = useState(null);
     const [page, setPage] = useState(1);
-    const [pageSize, setPageSize] = useState(4);
+    const [pageSize, setPageSize] = useState(5);
     const [page1, setPage1] = useState(1);
-    const [pageSize1, setPageSize1] = useState(4);
+    const [pageSize1, setPageSize1] = useState(5);
 
     const toke = sessionStorage.getItem("token");
 
@@ -276,7 +276,7 @@ function ReadProject() {
                 .then((r) => {
                     // setMessage(r.request.status, element.project_Name + " Activated Successfully");
                     getClients();
-                  
+
                 });
             activateProjectName = activateProjectName + element.project_Name + ", ";
             console.log(activateProjectName);
@@ -408,8 +408,8 @@ function ReadProject() {
         setToggleActivate(false);
         const timout1 = setTimeout(() => {
             window.location.reload();
-          }, 1100);  
-         
+        }, 1100);
+
         return () => clearTimeout(timout1);
     };
 
@@ -473,8 +473,8 @@ function ReadProject() {
         setFilteredClients(result);
         if (e.target.value === '') {
             getClients();
-            
-             }
+
+        }
     }
 
     const handleDeactivateSeach = (e) => {
@@ -496,26 +496,31 @@ function ReadProject() {
 
     return (
         <>
-            <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -100,}}>
-        <Button  style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20 }}>
-          <Link to="/dashboard"><b>Dashboard</b></Link>
-        </Button><br/><br/><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20 }}>
-          <Link to="/Configuration/Client"><b>Configuration</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
-          <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
-          <Link to="/employee"><b>Employees</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
-          <Link to="/userprofile"><b>User Profile</b></Link>
-        </Button><br/><br/>
-      </Sider>
-            <Popover position="top" content='Logout'>
-                <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '2%' }}>
-                    <LogoutOutlined onClick={navig} />
-                </button>
-            </Popover>
-            <div style={{ position: "fixed", width: "85%", marginLeft: 250,marginTop:-15}}>
-                <p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p>
+            <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginTop: -100, }}>
+                <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
+                    <Link to="/dashboard"><b>Dashboard</b></Link>
+                </Button><br /><br /><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                    <Link to="/Configuration/Client"><b>Configuration</b></Link>
+                </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                    <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
+                </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                    <Link to="/employee"><b>Employees</b></Link>
+                </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                    <Link to="/userprofile"><b>User Profile</b></Link>
+                </Button><br /><br />
+            </Sider>
+
+            <div style={{ position: "fixed", width: "85%", marginLeft: 250}}>
+                <div style={{ marginTop: "1%" }}>
+                    <Row>
+                        <Col span={2}><p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p></Col>
+                        <Col span={19}>
+                            <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '0%' }}>
+                                <LogoutOutlined onClick={navig} />
+                            </button>
+                        </Col>
+                    </Row>
+                </div>
                 <Row><Col span={2}></Col>
                     <Col span={4}><Link to="/Configuration/Client"><Button style={{ width: 130 }}>Client</Button></Link></Col>
                     <Col span={4}><Link to="/Configuration/Project" disabled><Button style={{ width: 130 }} type="primary">Project</Button></Link></Col>
@@ -523,7 +528,7 @@ function ReadProject() {
                     <Col span={4} stylw={{ marginLeft: 10 }}><Link to="/Configuration/EmployeeType"><Button style={{ width: 130 }}>Employee Type</Button></Link></Col>
                     <Col span={4}><Link to="/Configuration/HrInfo" ><Button style={{ width: 130 }} >HR Contact Info</Button></Link></Col><Col span={2}></Col>
                 </Row><Card className="table_border_antd" style={{ width: 1000, borderTopColor: "blue", borderLeftColor: "black", borderRightColor: "black", borderBottomColor: "black", borderTopWidth: 5, position: "fixed" }}>
-                    <div className="container" style={{ width: "65%", margin: "-2% 0% 0% 15%",paddingTop:'-1%' }}>
+                    <div className="container" style={{ width: "65%", margin: "-2% 0% 0% 15%", paddingTop: '-1%' }}>
                         <div style={{ paddingBottom: 10 }}>
                             <h1 style={{ color: 'blue', fontSize: 30, marginLeft: -80 }}><b>Project</b></h1>
                             {
@@ -652,9 +657,9 @@ function ReadProject() {
                                         setPage1(page1);
                                         setPageSize1(pageSize1)
                                     }
-                                    
+
                                 }}
-                                
+
 
                             />
                         }
@@ -665,7 +670,7 @@ function ReadProject() {
                                         type="link" rowKey="id"
                                         icon={<PlusCircleOutlined />}
                                         onClick={showAddData}
-                                        style={{ marginLeft: "80%", fontWeight: 'bolder', fontSize: 20, marginBottom: 34 }}>ADD</Button>
+                                        style={{ marginLeft: "60%", fontWeight: 'bolder', marginTop: -30, fontSize: 20, marginBottom: 34 }}>ADD</Button>
                                 ) :
                                 ''
                         }
@@ -873,15 +878,15 @@ function ReadProject() {
                                 >
                                     <Input
                                         type='date'
-                                      
+
                                         // time='disabled'
                                         // disabledDate={disabledEndDate}
                                         // min={startValue}
                                         // format="YYYY-MM-DD"
-                                         value={endValue}
-                                        // placeholder="End"
-                                        // onChange={handleEndDate}
-                                        // onOpenChange={handleEndOpenChange}
+                                        value={endValue}
+                                    // placeholder="End"
+                                    // onChange={handleEndDate}
+                                    // onOpenChange={handleEndOpenChange}
                                     />
                                 </Form.Item>
                                 <Form.Item style={{ paddingLeft: '50%' }}>

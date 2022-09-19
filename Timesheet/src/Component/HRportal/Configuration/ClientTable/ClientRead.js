@@ -318,7 +318,7 @@ function ClientRead() {
 
   return (
     <>
-      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -100, }}>
+      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginTop: -100, }}>
         <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
           <Link to="/dashboard"><b>Dashboard</b></Link>
         </Button><br /><br /><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
@@ -331,13 +331,18 @@ function ClientRead() {
           <Link to="/userprofile"><b>User Profile</b></Link>
         </Button><br /><br />
       </Sider>
-      <Popover position="top" content='Logout'>
-        <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '2%' }}>
-          <LogoutOutlined onClick={navig} />
-        </button>
-      </Popover>
+      
       <div style={{ position: "fixed", width: "85%", marginLeft: 250 }}>
-        <p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p>
+        <div style={{ marginTop: "1%" }}>
+          <Row>
+            <Col span={2}><p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p></Col>
+            <Col span={19}>
+              <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '0%' }}>
+                <LogoutOutlined onClick={navig} />
+              </button>
+            </Col>
+          </Row>
+        </div>
         <Row><Col span={2}></Col>
           <Col span={4}><Link to="/Configuration/Client" disabled><Button style={{ width: 130 }} type="primary">Client</Button></Link></Col>
           <Col span={4}><Link to="/Configuration/Project"><Button style={{ width: 130 }}>Project</Button></Link></Col>
@@ -415,9 +420,9 @@ function ClientRead() {
                 }}
                 size="small"
                 bordered
-                // scroll={{
-                //   y: 200
-                // }}
+              // scroll={{
+              //   y: 200
+              // }}
               /></div>
             <Button id="efg"
               type="link" rowKey="id"

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Input, Space, Button, Form, Modal, Col, Row, Card, Table, message, Layout ,Popover} from "antd";
+import { Input, Space, Button, Form, Modal, Col, Row, Card, Table, message, Layout, Popover } from "antd";
 import { Checkbox, Label } from 'semantic-ui-react';
 import { PlusCircleOutlined, EditOutlined, CloseCircleOutlined, SearchOutlined } from '@ant-design/icons';
 import Readdeactivated from "./Readdeactivated";
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
-import {LogoutOutlined} from '@ant-design/icons';
-import {  useNavigate } from 'react-router-dom';
+import { LogoutOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 
 function ReadJob() {
@@ -44,8 +44,8 @@ function ReadJob() {
   const [actCli, setActCli] = useState([]);
   const navigate = useNavigate();
   const navig = () => {
-       navigate("/#");
-       }
+    navigate("/#");
+  }
   const [pagination, setPagination] = useState({
     pageSize: 5,
   });
@@ -105,7 +105,7 @@ function ReadJob() {
       title: 'No of employees',
       dataIndex: 'no_of_Employees',
     },
-   
+
   ];
 
   const showAddData = () => {
@@ -202,7 +202,7 @@ function ReadJob() {
       debugger;
 
       const data = await axios({
-        
+
         method: 'put',
         headers: {
           'Content-Type': 'application/json',
@@ -215,17 +215,17 @@ function ReadJob() {
           designation_Id: e.designation_Id,
           designation_Name: e.designation_Name
         }
-        
-      }).then((r) => {
-        
 
-        
-        
+      }).then((r) => {
+
+
+
+
         setIsEditing(false);
-      
+
         debugger
         setMessage(r.request.status, e.designation_Name + " - " + "Updated Successfully");
-        
+
         debugger
 
         axios("https://timesheetjy.azurewebsites.net/api/Admin/GetAllDesignation", {
@@ -234,13 +234,13 @@ function ReadJob() {
           }
         })
           .then(data => setFilteredClient(data.data))
-          const timout1 = setTimeout(() => {
-            window.location.reload();
-          }, 1100);  
-         
+        const timout1 = setTimeout(() => {
+          window.location.reload();
+        }, 1100);
+
         return () => clearTimeout(timout1);
       }).catch((error) => {
-        
+
         setMessage(error.request.status, error.response.data);
         console.log(error.request.status, error.response.data)
         debugger
@@ -362,7 +362,7 @@ function ReadJob() {
         // debugger
         //setMessage(r.request.status, element.designation_Name + "- Deactivated Successfully");
         // debugger
-        
+
 
         window.location.reload();
         //$('#jobisactive').hide();
@@ -385,7 +385,7 @@ function ReadJob() {
 
     const timeout1 = setTimeout(() => {
       window.location.reload();
-    }, 1500);  
+    }, 1500);
     return () => clearTimeout(timeout1);
   }
 
@@ -420,26 +420,31 @@ function ReadJob() {
 
   return (
     <>
-      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",marginTop: -100,}}>
-        <Button  style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20 }}>
+      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginTop: -100, }}>
+        <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
           <Link to="/dashboard"><b>Dashboard</b></Link>
-        </Button><br/><br/><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20 }}>
+        </Button><br /><br /><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/Configuration/Client"><b>Configuration</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/employee"><b>Employees</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/userprofile"><b>User Profile</b></Link>
-        </Button><br/><br/>
+        </Button><br /><br />
       </Sider>
-      <Popover position="top" content='Logout'>
-       <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>
-        <LogoutOutlined  onClick={navig}   />
-       </button>
-       </Popover>
+
       <div style={{ position: "fixed", width: "85%", marginLeft: 250 }}>
-        <p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p>
+        <div style={{ marginTop: "1%" }}>
+          <Row>
+            <Col span={2}><p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p></Col>
+            <Col span={19}>
+              <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '0%' }}>
+                <LogoutOutlined onClick={navig} />
+              </button>
+            </Col>
+          </Row>
+        </div>
         <Row><Col span={2}></Col>
           <Col span={4}><Link to="/Configuration/Client"><Button style={{ width: 130 }}>Client</Button></Link></Col>
           <Col span={4}><Link to="/Configuration/Project"><Button style={{ width: 130 }}>Project</Button></Link></Col>
@@ -475,24 +480,24 @@ function ReadJob() {
                   Deactivate
                 </Button>
                 <div style={{ marginTop: "-27%", marginLeft: "115%" }}>
-<Button type="primary" icon={<EditOutlined />} title="Edit"
+                  <Button type="primary" icon={<EditOutlined />} title="Edit"
 
-  hidden={!hassSelected}
+                    hidden={!hassSelected}
 
-  onClick={() => {
+                    onClick={() => {
 
 
 
-    onEdit();
+                      onEdit();
 
-  }}
+                    }}
 
->EDIT</Button>
-
-</div>
+                  >EDIT</Button>
 
                 </div>
-               
+
+              </div>
+
             </Space>
             <div id="destable" style={{ marginTop: 30 }}>
               <Table

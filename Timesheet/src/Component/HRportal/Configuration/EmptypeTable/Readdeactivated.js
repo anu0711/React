@@ -60,7 +60,7 @@ function Readdeactivated() {
   const clientDtlColumns = [
     {
       title: 'S.No',
-      render: (value, item, index) => (page - 1) * 5 + index + 1,
+      render: (value, item, index) => (page - 1) * 1 + index + 1,
       dataIndex: 'colid',
     },
     {

@@ -341,10 +341,10 @@ const Hrinfo = () => {
         }
       })
         .then(data => setFilteredClient(data.data))
-        const timout1 = setTimeout(() => {
-          window.location.reload();
-        }, 1100);  
-       
+      const timout1 = setTimeout(() => {
+        window.location.reload();
+      }, 1100);
+
       return () => clearTimeout(timout1);
       setIsEditing(!isEditing);
     }).catch((error) => {
@@ -428,13 +428,13 @@ const Hrinfo = () => {
           }
         })
           .then(data => setFilteredClient(data.data));
-          const timeout1 = setTimeout(() => {
-            window.location.reload();
-          }, 1100);  
-         
+        const timeout1 = setTimeout(() => {
+          window.location.reload();
+        }, 1100);
+
         return () => clearTimeout(timeout1);
 
-       
+
       })
       activateDesignation = activateDesignation + element.hr_Name + ', ';
     });
@@ -489,26 +489,31 @@ const Hrinfo = () => {
 
   return (
     <>
-      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -100,}}>
-        <Button  style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20,marginLeft: 20 }}>
+      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginTop: -100, }}>
+        <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
           <Link to="/dashboard"><b>Dashboard</b></Link>
-        </Button><br/><br/><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50,marginLeft: 20 }}>
+        </Button><br /><br /><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/Configuration/Client"><b>Configuration</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/timesheetstatus"><b>Timesheet Status</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/employee"><b>Employees</b></Link>
-        </Button><br/><br/><Button style={{ margin: "5 10%", width: 160, height: 50 ,marginLeft: 20}}>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
           <Link to="/userprofile"><b>User Profile</b></Link>
-        </Button><br/><br/>
+        </Button><br /><br />
       </Sider>
-      <Popover position="top" content='Logout'>
-        <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '2%' }}>
-          <LogoutOutlined onClick={navig} />
-        </button>
-      </Popover>
+
       <div style={{ width: "85%", marginLeft: 250 }}>
-        <p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p>
+        <div style={{ marginTop: "1%" }}>
+          <Row>
+            <Col span={2}><p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p></Col>
+            <Col span={19}>
+              <button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '91%', marginTop: '0%' }}>
+                <LogoutOutlined onClick={navig} />
+              </button>
+            </Col>
+          </Row>
+        </div>
         <div style={{ position: "fixed", width: "85%" }}>
           <Row><Col span={2}></Col>
             <Col span={4}><Link to="/Configuration/Client"><Button style={{ width: 130 }}>Client</Button></Link></Col>
@@ -535,7 +540,7 @@ const Hrinfo = () => {
                   <option value={1} selected="selector">Yes</option>
                   <option value={0}>No</option>
                 </select>
-                <div id="hrisactive" style={{position:'fixed', marginLeft: 80, paddingLeft: '5%', display: 'inline' }}>
+                <div id="hrisactive" style={{ position: 'fixed', marginLeft: 80, paddingLeft: '5%', display: 'inline' }}>
                   <Button
                     hidden={!hasSelected}
                     type="danger"
@@ -544,14 +549,14 @@ const Hrinfo = () => {
                   >
                     Deactivate
                   </Button>
-                  <div style={{ marginLeft: '113%',marginTop:'-27%' }}>
-                  <Button style={{position:'fixed'}} type="primary" icon={<EditOutlined />} title="Edit"
-                    hidden={!hassSelect}
-                    onClick={() => {
-                      onEdit();
-                    }} >EDIT</Button>
-                </div>
+                  <div style={{ marginLeft: '113%', marginTop: '-27%' }}>
+                    <Button style={{ position: 'fixed' }} type="primary" icon={<EditOutlined />} title="Edit"
+                      hidden={!hassSelect}
+                      onClick={() => {
+                        onEdit();
+                      }} >EDIT</Button>
                   </div>
+                </div>
 
                 {/* EDIT ==================>*/}
 
@@ -565,7 +570,7 @@ const Hrinfo = () => {
               </Space>
               <div id="hrtable" style={{ marginTop: 10, marginLeft: -180 }}>
                 <Table
-style={{marginTop:"5%"}}
+                  style={{ marginTop: "5%" }}
                   columns={clientDtlColumns}
                   dataSource={filteredClient}
                   rowKey={record => record.hr_Contact_Id}
@@ -599,33 +604,33 @@ style={{marginTop:"5%"}}
                     console.log('validate Field:', info);
                   });
               }}
-              width={400}
+                width={400}
 
-              onCancel={buttonCancel}
+                onCancel={buttonCancel}
 
-              visible={isModalVisible}
+                visible={isModalVisible}
 
-              footer={[
+                footer={[
 
-                <Button type="danger" onClick={buttonCancel}>Cancel</Button>, <Button type="primary" onClick={() => {
+                  <Button type="danger" onClick={buttonCancel}>Cancel</Button>, <Button type="primary" onClick={() => {
 
-                  form.validateFields().then((values) => {
+                    form.validateFields().then((values) => {
 
-                    buttonOk(values)
+                      buttonOk(values)
 
-                    form.resetFields();
+                      form.resetFields();
 
-                  })
+                    })
 
-                    .catch((info) => {
+                      .catch((info) => {
 
-                      console.log('validate Field:', info);
+                        console.log('validate Field:', info);
 
-                    });
+                      });
 
-                }}>Add</Button>
+                  }}>Add</Button>
 
-              ]}
+                ]}
               >
                 <AddClient />
               </Modal>
