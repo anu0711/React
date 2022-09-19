@@ -38,8 +38,7 @@ function AddTimesheet() {
     const navig = () => {
         navigate("/#");
     }
-    const employee_Id=sessionStorage.id;
-    debugger;
+    const employee_Id = sessionStorage.id;
     const month_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [modal, setModal] = useState(false);
@@ -97,7 +96,6 @@ function AddTimesheet() {
                 count -= 2;
             }
         });
-        console.log(currentState);
         if (count === 0) {
             setIsDisabled(false);
         }
@@ -116,17 +114,17 @@ function AddTimesheet() {
     const columns = [
         {
             key: "date",
-            title: (<h4><b>Date</b></h4>),
+            title: (<center><h4><b>Date</b></h4></center>),
             dataIndex: "date",
         },
         {
             key: "day",
-            title: (<h4><b>Day</b></h4>),
+            title: (<center><h4><b>Day</b></h4></center>),
             dataIndex: "day",
         },
         {
             key: "status",
-            title: (<h4><b>Status</b></h4>),
+            title: (<center><h4><b>Status</b></h4></center>),
             dataIndex: 'status',
             render: (_, record) => (
                 <Status
@@ -140,7 +138,7 @@ function AddTimesheet() {
         },
         {
             key: "project",
-            title: (<h4><b>Project</b></h4>),
+            title: (<center><h4><b>Project</b></h4></center>),
             dataIndex: 'project',
             render: (_, record) => (
                 <Project
@@ -153,20 +151,22 @@ function AddTimesheet() {
         },
         {
             key: "duration",
-            title: (<h4><b>Duration</b></h4>),
+            title: (<center><h4><b>Duration</b></h4></center>),
             dataIndex: "duration",
             render: (_, record) => (
-                <Duration
-                    defaultValue={record.duration}
-                    row={record}
-                    allRecord={currentState}
-                    onSaveData={saveCurrentState}
-                />
+                <React.Fragment>
+                    <Duration
+                        defaultValue={record.duration}
+                        row={record}
+                        allRecord={currentState}
+                        onSaveData={saveCurrentState}
+                    />
+                </React.Fragment>
             )
         },
         {
             key: "action",
-            title: (<h4><b>Action</b></h4>),
+            title: (<center><h4><b>Action</b></h4></center>),
             render: row => (
                 <>
                     <Space>
@@ -562,6 +562,7 @@ function AddTimesheet() {
                         pagination={false}
                     />
                     <Table
+                        bordered
                         columns={columns}
                         dataSource={currentState}
                         pagination={false}

@@ -1,19 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { Select } from 'antd';
+import Select from "react-select";
 import axios from 'axios';
 
 function Project(props) {
 
     const toke = sessionStorage.getItem("token");
-    debugger;
     const [project, setProject] = useState([]);
+    const [projectOption, setProjectOption] = useState([]);
     useEffect(() => {
         axios.get("https://timesheetjy.azurewebsites.net/api/Employee/GetAllProjects", {
             headers: {
                 'Authorization': `Bearer ${toke}`
             }
         }).then(r => setProject(r.data));
+        assignOptions();
     }, []);
+
+    const assignOptions = () => {
+        project.forEach(element => {
+            projectOption.push({
+                value: element.project_Id,
+                label: element.project_Name
+            });
+        });
+        setProject([...projectOption]);
+        debugger;
+    }
+
 
     const onProjectSelect = (value) => {
         const row = props.row;
@@ -28,18 +41,26 @@ function Project(props) {
     }
 
     return (
+        // <Select
+        //     // menuPortal: base => ({ ...base, zIndex: 9999 })
+        //     // style={{ width: '100%' }}
+        //     menuPortalTarget={document.body}
+        //     styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
+        //     defaultValue={props.row.project}
+        //     onChange={(value) => onProjectSelect(value)}
+        //     disabled={props.row.status.toLowerCase() === 'holiday' || props.row.status.toLowerCase() === 'leave' ? true : false}
+        // >
+        //     {
+        //         project.map(opt => (
+        //             <Select.Option value={opt.project_Id}>{opt.project_Name}</Select.Option>
+        //         ))
+        //     }
+        // </Select>
         <Select
-            style={{ width: '100%' }}
-            defaultValue={props.row.project}
-            onChange={(value) => onProjectSelect(value)}
-            disabled={props.row.status.toLowerCase() === 'holiday' || props.row.status.toLowerCase() === 'leave' ? true : false}
-        >
-            {
-                project.map(opt => (
-                    <Select.Option value={opt.project_Id}>{opt.project_Name}</Select.Option>
-                ))
-            }
-        </Select>
+            isDisabled={props.row.status.toLowerCase() === 'holiday' || props.row.status.toLowerCase() === 'leave' ? true : false}
+            isSearchable={false}
+            option={project.map(element => ({ value: element.project_Id, label: element.project_Name }))}
+        />
     )
 }
 export default Project

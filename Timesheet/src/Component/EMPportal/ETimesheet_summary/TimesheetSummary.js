@@ -91,11 +91,10 @@ function TimesheetSummary() {
       
       <div style={{ marginLeft: "250px" ,marginTop:"100px"}} className="App">
       <Popover position="top" content='Logout'>
-          <Button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '70em', marginTop: '-3%' }}>
-                <LogoutOutlined  onClick={navig}   />
-                </Button>
-                </Popover>
-      
+        <button style={{ width: '5em', backgroundColor: '#f77c7c' }}>
+          <LogoutOutlined onClick={navig} />
+        </button>
+      </Popover>
         <h1 style={{ color: 'Blue' }}> TIMESHEET  SUMMARY</h1>
        
         <header className="App-header">
