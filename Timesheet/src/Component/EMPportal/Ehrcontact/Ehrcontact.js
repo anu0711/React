@@ -86,6 +86,9 @@ const EHrInfo = () => {
                 }}
                 size="middle"
                 bordered
+                scroll={{
+                    y: 150
+                  }}
             />
             <div style={{marginLeft:"90%",position:"fixed"}}>
             <Popover position="top" content='Logout'>
