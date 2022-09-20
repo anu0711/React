@@ -1,5 +1,5 @@
 import "antd/dist/antd.css";
-import { Modal, Input, Space, Col, Row, Form, message, Table, Select, DatePicker, Card, Layout, Popover } from "antd";
+import { Modal, Input, Space, Col, Row, Form, message, Table, DatePicker, Card, Layout, Popover } from "antd";
 import Button from "antd-button-color";
 import 'antd-button-color/dist/css/style.css';
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import { Checkbox } from 'semantic-ui-react';
 import { LogoutOutlined } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Select from 'react-select';
 
 const Tablee = () => {
 
@@ -75,16 +76,15 @@ const Tablee = () => {
         'Authorization': `Bearer ${toke}`
       }
     })
-    setDesigdropdown(details0.data);
-    var optS = new Array();
-    details0.data.map((ele) => {
-      let optn = {
-        text: ele.designation_Name,
-        value: ele.designation_Name
-      }
-      optS.push(optn);
-    })
-    setFilteredoption(optS);
+    var multiverse = [];
+    details0.data.forEach(element => {
+      multiverse.push({
+        value: element.designation_Id,
+        label: element.designation_Name
+      })
+    });
+    setDesigdropdown(multiverse)
+    debugger;
   }
   useEffect(() => {
     desig();
@@ -97,7 +97,15 @@ const Tablee = () => {
         'Authorization': `Bearer ${toke}`
       }
     })
-    setTypeDropdown(details1.data);
+    var nagarjun = [];
+    details1.data.forEach(element => {
+      nagarjun.push({
+        value: element.employee_Type_Id,
+        label: element.employee_Type_Name
+      });
+    });
+    console.log(nagarjun);
+    setTypeDropdown(nagarjun);
     var optionS = new Array();
     details1.data.map((element) => {
       let Option = {
@@ -111,6 +119,7 @@ const Tablee = () => {
   useEffect(() => {
     drptypes();
   }, []);
+
 
 
   // Edit On
@@ -637,11 +646,16 @@ const Tablee = () => {
                           <Form.Item
                             name="type"
                             rules={[{ required: true, message: 'Please Select the Type' }]}>
-                            <Select onChange={(value) => { setemployee_Type_Id(value) }} placeholder="Select One">
+                            {/* <Select onChange={(value) => { setemployee_Type_Id(value) }} placeholder="Select One">
                               {(typeDropdown && typeDropdown.length > 0) && typeDropdown.map((typDown) => {
                                 return <Option value={typDown.employee_Type_Id}>{typDown.employee_Type_Name}</Option>
                               })}
-                            </Select>
+                            </Select> */}
+                            <Select
+                              isSearchable={false}
+                              onChange={(value) => { setemployee_Type_Id(value) }} placeholder="Select One"
+                              options={typeDropdown}
+                            />
                           </Form.Item>
                         </Col>
                       </Row>
@@ -660,7 +674,7 @@ const Tablee = () => {
                         </Col>
                         <Col span={1}></Col>
                         <Col span={5}>
-                          <p style={{ marginLeft: 10, fontWeight: "bold" }}>Reporting Manager</p>
+                          <p style={{ marginLeft: 15, fontWeight: "bold" }}>Reporting Manager</p>
                         </Col>
                         <Col span={1}></Col>
                       </Row>
@@ -699,11 +713,19 @@ const Tablee = () => {
                         <Col span={1}></Col>
                         <Col span={6}>
                           <Form.Item name="designation" rules={[{ required: true, message: 'Please Select the Designation' }]}>
-                            <Select style={{ width: 150 }} onChange={(value) => { setdesignation_Id(value) }} placeholder="Select One">
+                            {/* <Select style={{ width: 150 }} onChange={(value) => { setdesignation_Id(value) }} placeholder="Select One">
                               {(desigDropdown && desigDropdown.length > 0) && desigDropdown.map((dpDown) => {
                                 return <Option value={dpDown.designation_Id}>{dpDown.designation_Name}</Option>
                               })}
-                            </Select>
+                            </Select> */}
+                            <Select style={{ width: 10 }}
+                              isSearchable={false}
+
+                              onChange={(value) => { setemployee_Type_Id(value) }} placeholder="Select One"
+                              options={desigDropdown}
+                            />
+
+
                           </Form.Item>
                         </Col>
                         <Col span={5}>
@@ -711,7 +733,8 @@ const Tablee = () => {
                           // rules={[{ required: true, message: 'Please enter the Reporting Manageer' }]}
                           >
                             <Input id='reporting_Manager1' value={reporting_Manager1}
-                              onChange={(e) => setreporting_Manager1(e.target.value)} />
+                              onChange={(e) => setreporting_Manager1(e.target.value)}
+                              style={{ marginLeft: 10 }} />
                           </Form.Item>
                         </Col>
                         <Col span={1}></Col>
@@ -962,12 +985,17 @@ const Tablee = () => {
                     <Form.Item
                       name='employee_Type_Id'
                     >
-                      <Select>
+                      {/* <Select>
                         {typeDropdown.map(opt => (
                           <Select.Option value={opt.employee_Type_Id}>{opt.employee_Type_Name}</Select.Option>
                         ))
                         }
-                      </Select>
+                      </Select> */}
+                      <Select
+                        isSearchable={false}
+                        onChange={(value) => { setemployee_Type_Id(value) }} placeholder="Select One"
+                        options={typeDropdown}
+                      />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -1020,11 +1048,17 @@ const Tablee = () => {
                     <Form.Item
                       name='designation_Id'
                     >
-                      <Select>
+                      {/* <Select>
                         {desigDropdown.map(opt => (
                           <Select.Option value={opt.designation_Id}>{opt.designation_Name}</Select.Option>
                         ))}
-                      </Select>
+                      </Select> */}
+                      <Select style={{ width: 10 }}
+                        isSearchable={false}
+
+                        onChange={(value) => { setemployee_Type_Id(value) }} placeholder="Select One"
+                        options={desigDropdown}
+                      />
                     </Form.Item>
                   </Col><Col span={1}></Col>
                   <Col span={5}>
