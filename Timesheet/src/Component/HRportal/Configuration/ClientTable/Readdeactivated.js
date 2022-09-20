@@ -174,9 +174,9 @@ function Readdeactivated() {
             }}
             size="small"
             bordered
-            // scroll={{
-            //   y:200
-            // }}
+            scroll={{
+              y:150
+            }}
           />
           <Modal
             visible={isConfirmModalVisible}

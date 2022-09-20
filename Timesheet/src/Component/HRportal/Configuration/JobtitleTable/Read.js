@@ -518,6 +518,9 @@ function ReadJob() {
                 }}
                 size="small"
                 bordered
+                scroll={{
+                  y: 150
+                }}
               /></div>
             <Button id="add"
               type="link" rowKey="id"

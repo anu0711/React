@@ -637,7 +637,9 @@ function ReadProject() {
                                         setPageSize(pageSize)
                                     }
                                 }}
-
+                                scroll={{
+                                    y: 150
+                                  }}
                             />
                             :
                             <Table
@@ -660,7 +662,9 @@ function ReadProject() {
 
                                 }}
 
-
+                                scroll={{
+                                    y: 150
+                                  }}
                             />
                         }
                         {
@@ -694,7 +698,9 @@ function ReadProject() {
                                     AddProjectForm.resetFields();
                                     setIsModalVisible(!isModalVisible);
                                 }}>Cancel</Button>
+                                
                             ]}
+                            
                         >
                             <Form
                                 {...formItemLayout}

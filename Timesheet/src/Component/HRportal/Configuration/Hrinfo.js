@@ -590,6 +590,9 @@ const Hrinfo = () => {
                   }}
                   size="small"
                   bordered
+                  scroll={{
+                    y: 150
+                  }}
                 /></div>
 
               <Button id="ac"

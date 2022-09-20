@@ -194,6 +194,9 @@ function Deactivatehrinfo() {
             }}
             size="small"
             bordered
+            scroll={{
+              y: 150
+            }}
           />
           <Modal
             visible={isConfirmModalVisible}

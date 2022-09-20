@@ -420,9 +420,9 @@ function ClientRead() {
                 }}
                 size="small"
                 bordered
-              // scroll={{
-              //   y: 200
-              // }}
+              scroll={{
+                y: 150
+              }}
               /></div>
             <Button id="efg"
               type="link" rowKey="id"
