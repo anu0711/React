@@ -298,7 +298,7 @@ function ReadProject() {
     const columns_Deactivate = [
         {
             title: "COL_ID",
-            render: (value, item, index) => (page1 - 1) * 4 + index + 1,
+            render: (value, item, index) => (page1 - 1) * 5 + index + 1,
         },
         {
             title: "Project Code",
@@ -324,7 +324,7 @@ function ReadProject() {
     const columns = [
         {
             title: "COL_ID",
-            render: (value, item, index) => (page - 1) * 4 + index + 1,
+            render: (value, item, index) => (page - 1) * 5 + index + 1,
         },
         {
             title: "Project Code",
@@ -510,7 +510,7 @@ function ReadProject() {
                 </Button><br /><br />
             </Sider>
 
-            <div style={{ position: "fixed", width: "85%", marginLeft: 250}}>
+            <div style={{ position: "fixed", width: "85%", marginLeft: 250 }}>
                 <div style={{ marginTop: "1%" }}>
                     <Row>
                         <Col span={2}><p style={{ color: "blue", fontSize: 30 }}><b>Configuration</b></p></Col>
@@ -639,7 +639,7 @@ function ReadProject() {
                                 }}
                                 scroll={{
                                     y: 150
-                                  }}
+                                }}
                             />
                             :
                             <Table
@@ -664,7 +664,7 @@ function ReadProject() {
 
                                 scroll={{
                                     y: 150
-                                  }}
+                                }}
                             />
                         }
                         {
@@ -698,9 +698,9 @@ function ReadProject() {
                                     AddProjectForm.resetFields();
                                     setIsModalVisible(!isModalVisible);
                                 }}>Cancel</Button>
-                                
+
                             ]}
-                            
+
                         >
                             <Form
                                 {...formItemLayout}
@@ -774,6 +774,10 @@ function ReadProject() {
                                     ]}
                                 >
                                     <DatePicker
+                                        disabledDate={(current) => {
+                                            let customDate = moment().format("YYYY-MM-DD");
+                                            return current && current < moment(customDate, "YYYY-MM-DD");
+                                        }}
                                         min={endValue}
                                         format="YYYY-MM-DD"
                                         value={startValue}
