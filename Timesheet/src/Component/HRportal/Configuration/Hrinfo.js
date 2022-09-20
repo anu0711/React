@@ -43,11 +43,13 @@ const Hrinfo = () => {
   const [actCli, setActCli] = useState([]);
   const toke = sessionStorage.getItem("token");
   const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
   const navigate = useNavigate();
+
   const navig = () => {
     navigate("/#");
   }
-  const [pageSize, setPageSize] = useState(5);
+  
   const setMessage = (statusCode, responseMessage) => {
     if (statusCode == 200) {
       message.success(responseMessage, 4);

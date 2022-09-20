@@ -139,7 +139,7 @@ function Deactivateemp() {
     },
     {
       title: 'Alternate E-mail ID',
-      dataIndex: 'alternate_mail',
+      dataIndex: 'alternate_Email',
     },
     {
       title: 'Contact No',

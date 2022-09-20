@@ -98,7 +98,7 @@ function Deactivatehrinfo() {
     setIsConfirmModalVisible(false);
   };
   const handleConfirmOk = () => {
-    var activateDesignation = '';
+    var activateHrContactInfo = '';
     setIsConfirmModalVisible(false);
     selectedRows.forEach(element => {
       axios({
@@ -113,16 +113,15 @@ function Deactivatehrinfo() {
         data: {
           id: element.hr_Contact_Id,
           is_Active: true
-        },      
+        },
       }).then((r) => {
-        setMessage(r.request.status, element.hr_Name + "Activated Successfully");
+        //setMessage(r.request.status, element.hr_Name + "Activated Successfully");
         $("#hractbtn").hide();
-        if(page == 1)
-        {
+        if (page == 1) {
           setPage(page);
         }
-        else{          
-        setPage(page - 1);
+        else {
+          setPage(page - 1);
         }
 
         axios("https://timesheetjy.azurewebsites.net/api/Admin/GetHrContactInfoeIs_Active", {
@@ -131,17 +130,17 @@ function Deactivatehrinfo() {
           }
         })
           .then(data => setFilteredClient(data.data))
-        
+
 
       })
       console.log(element.hr_Name)
       debugger
-      activateDesignation = activateDesignation+element.designation_Name+', '; 
+      activateHrContactInfo = activateHrContactInfo + element.hr_Name + ', ';
       debugger
     });
-    activateDesignation = activateDesignation.substring(0, activateDesignation.length - 2) + " ";
+    activateHrContactInfo = activateHrContactInfo.substring(0, activateHrContactInfo.length - 2) + " ";
     debugger
-    //setMessage(200, activateDesignation  + " Activated Successfully");
+    setMessage(200, activateHrContactInfo + " Activated Successfully");
     debugger
     setIsConfirmModalVisible(false);
   }

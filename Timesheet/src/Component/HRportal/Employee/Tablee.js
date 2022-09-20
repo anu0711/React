@@ -70,7 +70,7 @@ const Tablee = () => {
 
   const [desigDropdown, setDesigdropdown] = useState([]);
   const desig = async () => {
-    const details0 = await axios("https://timesheetjy.azurewebsites.net/api/Admin/GetDesignations", {
+    const details0 = await axios("https://timesheetjy.azurewebsites.net/api/Admin/GetAllDesignation", {
       headers: {
         'Authorization': `Bearer ${toke}`
       }
@@ -92,7 +92,7 @@ const Tablee = () => {
 
   const [typeDropdown, setTypeDropdown] = useState([]);
   const drptypes = async () => {
-    const details1 = await axios("https://timesheetjy.azurewebsites.net/api/Admin/Get_Employeetypes", {
+    const details1 = await axios("https://timesheetjy.azurewebsites.net/api/Admin/GetAllEmployeetype", {
       headers: {
         'Authorization': `Bearer ${toke}`
       }
