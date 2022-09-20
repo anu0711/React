@@ -51,10 +51,7 @@ class UploadApTimesheet extends Component {
                 console.log(res);
                 setMessage(res.status, res.data);
             })
-            const timout1 = setTimeout(() => {
-                window.location.reload(false);
-            }, 1150);
-            return () => clearTimeout(timout1);    
+
     }
 
     render() {

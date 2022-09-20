@@ -14,6 +14,7 @@ import Status from './Status';
 import Duration from './Duration';
 import UploadImage from './UploadImage';
 import UploadApTimesheet from './UploadApTimesheet';
+import { elementAcceptingRef } from '@mui/utils';
 
 const setMessage = (statusCode, responseMessage) => {
     if (statusCode == 200) {
@@ -32,6 +33,26 @@ const setMessage = (statusCode, responseMessage) => {
         message.error(responseMessage);
     }
 }
+var dummyProject = [];
+const projectOption = async () => {
+    var toke = sessionStorage.token;
+    const response = await axios.get("https://timesheetjy.azurewebsites.net/api/Employee/GetAllProjects", {
+        headers: {
+            'Authorization': `Bearer ${toke}`
+        }
+    })
+    // .then(r => setProject(r.data));
+    // dummyProject = [];
+    response.data.forEach(element => {
+        dummyProject.push({
+            value: element.project_Id,
+            label: element.project_Name
+        })
+    });
+
+    // setProject(dummyProject);
+    // console.log(dummyProject);
+}
 
 function AddTimesheet() {
     const navigate = useNavigate();
@@ -45,6 +66,8 @@ function AddTimesheet() {
     const [project, setProject] = useState([]);
     const currentDate = new Date();
     const { Sider } = Layout;
+    const [selectedOption, setSelectedOption] = useState([]);
+    const [excelNumber, setExcelNumber] = useState();
     const [state1, setState1] = useState([])
     const [state2, setState2] = useState([])
     const [state3, setState3] = useState([])
@@ -59,6 +82,10 @@ function AddTimesheet() {
         "Friday",
         "Saturday",
     ];
+    useEffect(() => {
+        projectOption();
+    }, [])
+
 
     const noOfDays = new Date(year, month + 1, 0).getDate();
     var [data, SetData] = useState([]);
@@ -79,6 +106,7 @@ function AddTimesheet() {
     const [leavesTaken, setLeavesTaken] = useState(0);
     const [totalDuration, setTotalDuration] = useState(0);
     const [isDisabled, setIsDisabled] = useState(true);
+    const [isDownload, setIsDownload] = useState(true);
 
     useEffect(() => {
         var count = 0;
@@ -141,12 +169,15 @@ function AddTimesheet() {
             title: (<center><h4><b>Project</b></h4></center>),
             dataIndex: 'project',
             render: (_, record) => (
-                <Project
-                    allRecord={currentState}
-                    row={record}
-                    onSaveData={saveCurrentState}
-                    setProject={setProject}
-                />
+                <div style={{ width: 200 }}>
+                    <Project
+                        ProjectOption={dummyProject}
+                        allRecord={currentState}
+                        row={record}
+                        onSaveData={saveCurrentState}
+                        setProject={setProject}
+                    />
+                </div>
             )
         },
         {
@@ -233,7 +264,6 @@ function AddTimesheet() {
 
     const saveCurrentState = (newRecord) => {
         var presentState = [...newRecord];
-        console.log(presentState);
         setCurrentState(presentState);
     }
 
@@ -344,7 +374,7 @@ function AddTimesheet() {
     const downloadXL1 = async () => {
         await axios({
             // https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=1&monthid=8&year=2022&project_id=28
-            url: `https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=${92}&monthid=${month + 2}&year=${year}&project_id=${state1[0].project_Id}`,
+            url: `https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=${employee_Id}&monthid=${month + 2}&year=${year}&project_id=${excelNumber}`,
             method: 'GET',
             responseType: 'blob', // important
         }).then((response) => {
@@ -484,10 +514,27 @@ function AddTimesheet() {
                 total_Working_Hours: summary_data[0].total_duration,
                 addTimesheetDay: dummystate
             }
+        }).then(async () => {
+            var toke = sessionStorage.token;
+            var data = await axios.get(`https://timesheetjy.azurewebsites.net/api/Employee/GetProjects?month=${month + 1}&year=${year}&emp_id=${employee_Id}`, {
+                headers: {
+                    'Authorization': `Bearer ${toke}`
+                }
+            })
+            // setSelectedOption(data.data);
+            var projectIds = data.data
+            var index = projectIds.indexOf(project);
+            projectIds.splice(index, 1);
+            setSelectedOption(projectIds);
+            debugger;
         })
 
     }
-
+    const excelDownload = (value) => {
+        setIsDownload(false);
+        setExcelNumber(value);
+        debugger;
+    }
 
 
     return (
@@ -527,7 +574,7 @@ function AddTimesheet() {
                     </div>
 
                     <div style={{ paddingLeft: '200px' }}>
-                        <Space>
+                        {/* <Space>
                             {
                                 state1.length > 1 ?
                                     <Button type="primary" onClick={downloadXL1}><DownloadOutlined /> Download XL1</Button>
@@ -541,7 +588,8 @@ function AddTimesheet() {
                                 state3.length > 1 ?
                                     <Button type="primary" onClick={downloadXL3}><DownloadOutlined /> Download XL3</Button> : ""
                             }
-                        </Space>
+                        </Space> */}
+
 
 
                     </div>
@@ -553,6 +601,21 @@ function AddTimesheet() {
                 </Popover>
 
                     </div> */}
+
+                    <div style={{ paddingLeft: "60%" }}>
+                        <Select
+                            disabled={isDisabled}
+                            style={{ width: 200 }}
+                            onChange={value => excelDownload(value)}
+                        >
+                            {
+                                selectedOption.map(element => (
+                                    <Select.Option value={element.project_Id}>{element.project_Name}</Select.Option>
+                                ))
+                            }
+                        </Select>
+                        <Button disabled={isDownload} onClick={downloadXL1}>Download Excel</Button>
+                    </div>
 
 
 
