@@ -50,8 +50,8 @@ const projectOption = async () => {
         })
     });
 
+    console.log(dummyProject);
     // setProject(dummyProject);
-    // console.log(dummyProject);
 }
 
 function AddTimesheet() {
@@ -71,6 +71,7 @@ function AddTimesheet() {
     const [state1, setState1] = useState([])
     const [state2, setState2] = useState([])
     const [state3, setState3] = useState([])
+    // const [singleRun, setSingleRun] = useState(false);
     const month = currentDate.getMonth() - 1;
     const year = currentDate.getFullYear();
     const Day_list = [
@@ -82,8 +83,13 @@ function AddTimesheet() {
         "Friday",
         "Saturday",
     ];
+    var singleRun = 1;
     useEffect(() => {
-        projectOption();
+        if (singleRun === 1) {
+            projectOption();
+            // setSingleRun(!singleRun);
+            singleRun = 2;
+        }
     }, [])
 
 
