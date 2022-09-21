@@ -310,17 +310,15 @@ function Tb3() {
           <Link to="/userprofile"><b>User Profile</b></Link>
         </Button><br/><br/>
       </Sider>
-      <Popover position="top" content='Logout'>
-      <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>
-      <LogoutOutlined  onClick={navig}   />
-      </button>
-      </Popover>
+      
       <div className="App" style={{ marginLeft: 250, width: 1000 }}>
         <h1 style={{ color: 'Blue', margin: "5% 0% 0% 2%", fontSize: '200%' }}> {month[month_id].toUpperCase()} - {year} TIMESHEET  STATUS</h1>
+        
         <header className="App-header"><br></br><br></br>
           <div style={{ marginBottom: '-6.2%', marginLeft: '90%' }}>
             <Button style={{ backgroundColor: "lightblue", }} onClick={exportExcel}>ExportExcel</Button>
           </div><br></br><br></br>
+          
           <div >
             <div style={{ marginTop: '-1.4%' }} >
               <Popover position="top" content={"Search"} >
@@ -426,6 +424,14 @@ function Tb3() {
           </Space>
         </header >
       </div >
+      <div style={{marginTop:'-36%',marginRight:'-2%'}}>
+      <Popover  content='Logout' >
+      <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>
+      <LogoutOutlined  onClick={navig}   />
+      </button>
+      </Popover>
+      </div>
+      
     </div>
   );
 }
