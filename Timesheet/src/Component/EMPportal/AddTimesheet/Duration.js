@@ -3,15 +3,21 @@ import { Input } from 'antd'
 
 function Duration(props) {
 
-    const [value, setValue] = useState();
+    const [value, setValue] = useState(0);
 
     useEffect(() => {
         setValue(props.defaultValue);
+        const row = props.row;
+        var dataSource = props.allRecord;
+        var filteredColumn = dataSource.filter((a) => a.key === row.key)[0];
+        filteredColumn.duration = value;
+        props.onSaveData(dataSource);
     }, [])
 
 
     const onDuration = (value) => {
         const row = props.row;
+        setValue(value);
         var dataSource = props.allRecord;
         var filteredColumn = dataSource.filter((a) => a.key === row.key)[0];
         filteredColumn.duration = value;
@@ -21,12 +27,13 @@ function Duration(props) {
     const maxLengthCheck = (e) => {
         console.log(e);
         if (Number(e.targer.value) > Number(e.targer.max)) {
-            e.target.value = e.targer.value.splice(0, e.target.value-1);
+            e.target.value = e.targer.value.splice(0, e.target.value - 1);
         }
     }
 
     return (
         <Input
+            value={value}
             type='number'
             defaultValue={props.row.defaultValue}
             onChange={(e) => onDuration(e.target.value)}
