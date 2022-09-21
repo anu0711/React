@@ -394,8 +394,8 @@ const Tablee = () => {
         employee_Type_Id: change,
         reportinng_Manager2: "---",
         email,
-        //password: 'Joyitemp@123',
-        password,
+        password: 'Joyitemp@123',
+       // password,
         designation_Id: change1,
         contact_No,
         joining_Date,
@@ -756,9 +756,9 @@ const Tablee = () => {
                           <p style={{ fontWeight: "bold" }}>Employee Code<span style={{ color: "red" }}>*</span></p>
                         </Col>
                         <Col span={1}></Col>
-                        <Col span={5}>
+                        {/* <Col span={5}>
                           <p style={{ fontWeight: "bold" }}> password<span style={{ color: "red" }}>*</span></p>
-                        </Col>
+                        </Col> */}
                       </Row>
                       <Row>
                         <Col span={5}>
@@ -770,14 +770,14 @@ const Tablee = () => {
                           </Form.Item>
                         </Col>
                         <Col span={1}></Col>
-                        <Col span={5}>
+                        {/* <Col span={5}>
                           <Form.Item name="password"
                             rules={[{ required: true, message: 'Please enter the password' }]}
                           >
                             <Input id='password' value={password}
                               onChange={(e) => setpassword(e.target.value)} />
                           </Form.Item>
-                        </Col>
+                        </Col> */}
                       </Row>
                       {/* <Row>
                       <Col span={5}>
