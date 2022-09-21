@@ -544,7 +544,15 @@ function AddTimesheet() {
 
 
     return (
+
         <Space direction='horizantal'>
+            <div style={{ marginLeft: '1800%',marginTop:'30%'}}>
+             <Popover position="top" content='Logout'>
+                <Button style={{ width: '5em', backgroundColor: '#f77c7c', marginTop: '5%' }}>
+                    <LogoutOutlined onClick={navig} />
+                </Button>
+            </Popover>
+            </div>
             <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginTop: -100 }}>
                 <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
                     <Link to="/EDashboard">Dashboard</Link>
@@ -558,7 +566,8 @@ function AddTimesheet() {
                     <Link to="/Euserprofile">User Profile</Link>
                 </Button><br /><br />
             </Sider>
-            <Card style={{ marginLeft: 300 }}>
+           
+            <Card style={{ marginLeft: 250 ,marginTop:20}}>
                 <React.Fragment>
 
                     <h1 style={{ color: 'Blue', paddingLeft: 30 }}><b>{`${month_name[month]}`}-2022 TIMESHEET</b></h1>
@@ -569,14 +578,6 @@ function AddTimesheet() {
                             <Button type="primary" onClick={showModal}><UploadOutlined /> Approved Timesheet</Button>
                             <Button type="primary" onClick={showModal1}><UploadOutlined /> Approval Image</Button>
                         </Space>
-
-                        <Popover position="top" content='Logout'>
-                            <Button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '3%', marginTop: '5%' }}>
-                                <LogoutOutlined onClick={navig} />
-                            </Button>
-                        </Popover>
-
-
                     </div>
 
                     <div style={{ paddingLeft: '200px' }}>
