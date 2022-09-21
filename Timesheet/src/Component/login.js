@@ -57,7 +57,8 @@ const Login = () => {
         }).then((r) => {
             sessionStorage.setItem("token", r.data.token);
             sessionStorage.setItem("mailId", e.username);
-            sessionStorage.setItem("id", r.data.employee_Id)
+            sessionStorage.setItem("id", r.data.employee_Id);
+            sessionStorage.setItem("joining_date", r.data.joining_date);
             settoken(r.data.token);
             setMessage(r.request.status, e.username + " Login Successfull");
             AddProjectForm.resetFields();
@@ -71,7 +72,6 @@ const Login = () => {
                 message.error("You are not allowed to Login");
             }
         }).catch((error) => {
-            debugger;
             setMessage(error.response.status);
             AddProjectForm.resetFields();
         })
@@ -81,51 +81,51 @@ const Login = () => {
 
         <>
             {/* <Card className='login' > */}
-                <div style={{ marginLeft: 430, padding: 10, backgroundColor: "white", borderRadius: 15, boxShadow: "0 0 40px rgba(0,0,0,16)", marginTop: 50 }}>
-                    <h1 style={{ color: "blue", fontSize: 35 }}>TIMESHEET AUTOMATION</h1>
-                    {/* <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="dashboard"><b>HR Portal</b></Link></Button><br /><br />
+            <div style={{ marginLeft: 430, padding: 10, backgroundColor: "white", borderRadius: 15, boxShadow: "0 0 40px rgba(0,0,0,16)", marginTop: 50 }}>
+                <h1 style={{ color: "blue", fontSize: 35 }}>TIMESHEET AUTOMATION</h1>
+                {/* <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="dashboard"><b>HR Portal</b></Link></Button><br /><br />
                     <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="/Siders"><b>Employee Portal</b></Link></Button> */}
-                    <h1 style={{ marginLeft: 150, fontSize: 25 }}><b>LOGIN PAGE</b></h1>
-                    <Form
-                        {...formItemLayout}
-                        onFinish={onFinish}
-                        form={AddProjectForm}
-                    >
-                        <h1><b>USERNAME</b></h1>
-                        <Form.Item name="username" rules={[
-                            {
-                                required: true,
-                                message: 'Please input your User Name!'
-                            },
-                            // {
-                            //     pattern: new RegExp(/^[a-zA-Z0-9 ]+$/i),
-                            //     message: 'field accept only letters'
-                            // }
-                        ]}>
-                            <Input style={{ width: 450 }} />
-                        </Form.Item>
-                        <h1><b>PASSWORD</b></h1>
-                        <Form.Item name="password" rules={[
-                            {
-                                required: true,
-                                message: 'Please input your Password!'
-                            },
-                        ]}>
-                            <Input.Password type="password" style={{ width: 450 }} />
-                        </Form.Item><br />
-                        <p>Change password?<span style={{ marginLeft: 5 }}><Link to="/resetPassword"><b><u>click here..</u></b></Link></span></p><br />
-                        {/* <Link>click here..</Link> */}
-                        <Form.Item>
-                            <Space>
-                                <Button type="danger" style={{ marginLeft: 150 }}>Cancel</Button>
-                                <Button type="success" htmlType="submit" style={{ marginLeft: 10 }}>Submit</Button>
-                            </Space>
-                        </Form.Item>
-                    </Form>
-                </div>
+                <h1 style={{ marginLeft: 150, fontSize: 25 }}><b>LOGIN PAGE</b></h1>
+                <Form
+                    {...formItemLayout}
+                    onFinish={onFinish}
+                    form={AddProjectForm}
+                >
+                    <h1><b>USERNAME</b></h1>
+                    <Form.Item name="username" rules={[
+                        {
+                            required: true,
+                            message: 'Please input your User Name!'
+                        },
+                        // {
+                        //     pattern: new RegExp(/^[a-zA-Z0-9 ]+$/i),
+                        //     message: 'field accept only letters'
+                        // }
+                    ]}>
+                        <Input style={{ width: 450 }} />
+                    </Form.Item>
+                    <h1><b>PASSWORD</b></h1>
+                    <Form.Item name="password" rules={[
+                        {
+                            required: true,
+                            message: 'Please input your Password!'
+                        },
+                    ]}>
+                        <Input.Password type="password" style={{ width: 450 }} />
+                    </Form.Item><br />
+                    <p>Change password?<span style={{ marginLeft: 5 }}><Link to="/resetPassword"><b><u>click here..</u></b></Link></span></p><br />
+                    {/* <Link>click here..</Link> */}
+                    <Form.Item>
+                        <Space>
+                            <Button type="danger" style={{ marginLeft: 150 }}>Cancel</Button>
+                            <Button type="success" htmlType="submit" style={{ marginLeft: 10 }}>Submit</Button>
+                        </Space>
+                    </Form.Item>
+                </Form>
+            </div>
             {/* </Card> */}
 
-            
+
 
         </>
     )
