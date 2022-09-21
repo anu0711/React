@@ -90,6 +90,7 @@ function ReadProject() {
     };
 
     const onFinish = async (e) => {
+        debugger;
         await axios({
             method: 'post',
             headers: {
@@ -102,7 +103,7 @@ function ReadProject() {
             data: e
         }).then(async (r) => {
             setMessage(r.request.status, e.project_Name + " Added Successfully");
-            debugger
+            debugger;
             const response = await axios.get("https://timesheetjy.azurewebsites.net/api/Admin/GetAllProjects", {
                 headers: {
                     'Authorization': `Bearer ${toke}`
@@ -442,7 +443,8 @@ function ReadProject() {
                 project_Code: e.project_Code,
                 client_Id: e.client_Id,
                 is_Active: true,
-                //start_Date: Date(startValue),
+                // start_Date: Date(startValue),
+                start_Date: moment(startValue).format('YYYY-MM-DD'),
                 end_Date: endValue
             }
         }).then(r => {
@@ -678,6 +680,7 @@ function ReadProject() {
                                 ) :
                                 ''
                         }
+
 
 
 
