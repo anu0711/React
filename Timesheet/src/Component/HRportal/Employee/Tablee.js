@@ -85,6 +85,15 @@ const Tablee = () => {
     });
     setDesigdropdown(multiverse)
     debugger;
+    var optionS = new Array();
+    details0.data.map((element) => {
+      let Option = {
+        text: element.designation_Name,
+        value: element.designation_Name
+      }
+      optionS.push(Option);
+    })
+    setfilteredoption(optionS);
   }
   useEffect(() => {
     desig();
@@ -219,7 +228,7 @@ const Tablee = () => {
   // Edit Off
   //FILTER ON 
   const [filteroption, setfilteroption] = useState();
-  const [filteredoption, setFilteredoption] = useState();
+  const [filteredoption, setfilteredoption] = useState();
   // filter values and dropdown values set from common link
   //FILTER OFF
 
