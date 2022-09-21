@@ -364,8 +364,10 @@ const Tablee = () => {
 
   const addEmp = async () => {
 
-    const change = parseInt(employee_Type_Id);
-    const change1 = parseInt(designation_Id);
+    debugger
+    const change = parseInt(employee_Type_Id.value);
+    const change1 = parseInt(designation_Id.value);
+    debugger
 
     await axios({
       method: 'post',
@@ -722,7 +724,7 @@ const Tablee = () => {
                             <Select style={{ width: 10 }}
                               isSearchable={false}
 
-                              onChange={(value) => { setemployee_Type_Id(value) }} placeholder="Select One"
+                              onChange={(value) => { setdesignation_Id(value) }} placeholder="Select One"
                               options={desigDropdown}
                             />
 
@@ -1070,7 +1072,7 @@ const Tablee = () => {
                       <Select style={{ width: 10 }}
                         isSearchable={false}
 
-                        onChange={(value) => { setemployee_Type_Id(value) }} placeholder="Select One"
+                        onChange={(value) => { setdesignation_Id(value) }} placeholder="Select One"
                         options={desigDropdown}
                       />
                     </Form.Item>
