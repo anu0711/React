@@ -42,8 +42,8 @@ class UploadApTimesheet extends Component {
         const fd = new FormData();
         fd.append('Images', this.state.selectedFile, this.state.selectedFile.name);
         // fd.append('Images', this.state.selectedFile);
-        fd.append('Employee_Id', 92);
-        fd.append('Fiscal_Year_Id', 9);
+        fd.append('Employee_Id', sessionStorage.id);
+        fd.append('Fiscal_Year_Id', new Date().getMonth());
         fd.append('year', 2022);
         debugger;
         const img = axios.post("https://timesheetjy.azurewebsites.net/api/UploadfileAzure/UploadApprovedImage", fd)
@@ -51,7 +51,6 @@ class UploadApTimesheet extends Component {
                 console.log(res);
                 setMessage(res.status, res.data);
             })
-
     }
 
     render() {

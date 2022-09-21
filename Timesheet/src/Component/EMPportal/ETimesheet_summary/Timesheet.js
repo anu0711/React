@@ -33,7 +33,7 @@ function Viewtimesheet() {
             try {
                 var t0 = performance.now();
                 this.setState({ loading: true });
-                const response = await axios.get('https://timesheetjy.azurewebsites.net/api/UploadfileAzure/DownloadTimesheetimage?Employee_Id=1&Fiscal_year_Id=1&Year=2021',
+                const response = await axios.get(`https://timesheetjy.azurewebsites.net/api/UploadfileAzure/DownloadTimesheetimage?Employee_Id=${employee_Id}&Fiscal_year_Id=${Fiscol_Year_id}&Year=${year}`,
                     {
                         headers: { Authorization: `Bearer ${token}` },
                         responseType: "blob"

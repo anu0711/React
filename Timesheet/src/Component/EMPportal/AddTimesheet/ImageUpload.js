@@ -62,8 +62,8 @@ const ImageUpload = () => {
         files.forEach(element => {
             const fd = new FormData();
             fd.append('Images', element, element.name);
-            fd.append('Employee_Id', 92);
-            fd.append('Fiscal_Year_Id', 9);
+            fd.append('Employee_Id', sessionStorage.id);
+            fd.append('Fiscal_Year_Id', new Date().getMonth());
             fd.append('year', 2022);
             debugger
 

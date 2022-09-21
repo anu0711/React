@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
 import React, { Component } from 'react';
 import { useState } from "react";
-import { Table, Tag, Layout, Space,Button,Popover } from "antd";
+import { Table, Tag, Layout, Space, Button, Popover } from "antd";
 import axios from 'axios';
 import { useEffect } from "react";
 import { Link } from 'react-router-dom';
@@ -13,13 +13,13 @@ import { useNavigate } from 'react-router-dom';
 function TimesheetSummary() {
   const navigate = useNavigate();
   const navig = () => {
-      navigate("/#");
+    navigate("/#");
   }
 
   const { Sider } = Layout;
   const [selected, setSelected] = useState('');
   const [dataSource, setdataSource] = useState([]);
-   useEffect(() => {axios("https://timesheetjy.azurewebsites.net/api/Employee/GetAllTimeSheet_Summary?Employee_Id=78&year=2022").then((data) => setdataSource(data.data))}, []);
+  useEffect(() => { axios(`https://timesheetjy.azurewebsites.net/api/Employee/GetAllTimeSheet_Summary?Employee_Id=${sessionStorage.id}&year=${new Date().getFullYear()}`).then((data) => setdataSource(data.data)) }, []);
 
   const columns = [
     {
@@ -75,34 +75,34 @@ function TimesheetSummary() {
 
   return (
     <Space direction="horizantal">
-       <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -100 }}>
-                <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
-                    <Link to="/EDashboard">Dashboard</Link>
-                </Button><br /><br /><Button  type="primary"  style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
-                    <Link to="/Etimesheetsummary">Timesheet summary</Link>
-                </Button><br /><br /><Button   style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
-                    <Link to="/Eaddtimesheet">Timesheet</Link>
-                </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
-                    <Link to="/Ehrinfo">HR contact info</Link>
-                </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
-                    <Link to="/Euserprofile">User Profile</Link>
-                </Button><br /><br />
-            </Sider>
-            <div style={{marginLeft:"90%",marginTop: "1%",position:"fixed"}}>
-            <Popover position="top" content='Logout'>
-                <button style={{ width: '5em', backgroundColor: '#f77c7c' }}>
-                    <LogoutOutlined onClick={navig} />
-                </button>
-            </Popover>
-            </div>
-      
-      <div style={{  marginTop:"100px",marginLeft:200}} className="App">
-      
+      <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginTop: -100 }}>
+        <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
+          <Link to="/EDashboard">Dashboard</Link>
+        </Button><br /><br /><Button type="primary" style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+          <Link to="/Etimesheetsummary">Timesheet summary</Link>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+          <Link to="/Eaddtimesheet">Timesheet</Link>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+          <Link to="/Ehrinfo">HR contact info</Link>
+        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+          <Link to="/Euserprofile">User Profile</Link>
+        </Button><br /><br />
+      </Sider>
+      <div style={{ marginLeft: "90%", marginTop: "1%", position: "fixed" }}>
+        <Popover position="top" content='Logout'>
+          <button style={{ width: '5em', backgroundColor: '#f77c7c' }}>
+            <LogoutOutlined onClick={navig} />
+          </button>
+        </Popover>
+      </div>
+
+      <div style={{ marginTop: "100px", marginLeft: 200 }} className="App">
+
         <h1 style={{ color: 'Blue' }}> TIMESHEET  SUMMARY</h1>
-       
+
         <header className="App-header">
-          
-       
+
+
           {/* <button onClick={onAdd}>add</button> */}
 
           <Table style={{ marginLeft: "50px" }}
@@ -110,13 +110,13 @@ function TimesheetSummary() {
             columns={columns}
             dataSource={dataSource}
             rowSelection={false}
-            
+
           />
-          
+
         </header>
-       
+
       </div>
-      
+
     </Space>
   );
 
