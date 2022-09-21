@@ -8,34 +8,23 @@ function Project(props) {
     const [project, setProject] = useState([]);
     const [projectOption, setProjectOption] = useState([]);
     useEffect(() => {
-        axios.get("https://timesheetjy.azurewebsites.net/api/Employee/GetAllProjects", {
-            headers: {
-                'Authorization': `Bearer ${toke}`
-            }
-        }).then(r => setProject(r.data));
-        assignOptions();
+        // axios.get("https://timesheetjy.azurewebsites.net/api/Employee/GetAllProjects", {
+        //     headers: {
+        //         'Authorization': `Bearer ${toke}`
+        //     }
+        // }).then(r => setProject(r.data));
+        setProject(props.ProjectOption);
+        console.log(project);
     }, []);
-
-    const assignOptions = () => {
-        project.forEach(element => {
-            projectOption.push({
-                value: element.project_Id,
-                label: element.project_Name
-            });
-        });
-        setProject([...projectOption]);
-        debugger;
-    }
 
 
     const onProjectSelect = (value) => {
         const row = props.row;
         console.log(row);
+
         var dataSource = props.allRecord;
         var filteredColumn = dataSource.filter((a) => a.key === row.key)[0];
-        filteredColumn.project = value;
-        console.log(filteredColumn);
-        console.log(dataSource);
+        filteredColumn.project = value.value;
         props.onSaveData(dataSource);
         props.setProject(project[0].project_Id);
     }
@@ -57,9 +46,12 @@ function Project(props) {
         //     }
         // </Select>
         <Select
+            styles={{ width: "100%" }}
             isDisabled={props.row.status.toLowerCase() === 'holiday' || props.row.status.toLowerCase() === 'leave' ? true : false}
             isSearchable={false}
-            option={project.map(element => ({ value: element.project_Id, label: element.project_Name }))}
+            options={project}
+            onChange={(value) => onProjectSelect(value)}
+            defaultValue={project.filter((a) => a.value === props.row.project)[0]}
         />
     )
 }

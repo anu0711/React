@@ -80,7 +80,7 @@ const Login = () => {
     return (
 
         <>
-            <Card className='login' >
+            {/* <Card className='login' > */}
                 <div style={{ marginLeft: 430, padding: 10, backgroundColor: "white", borderRadius: 15, boxShadow: "0 0 40px rgba(0,0,0,16)", marginTop: 50 }}>
                     <h1 style={{ color: "blue", fontSize: 35 }}>TIMESHEET AUTOMATION</h1>
                     {/* <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="dashboard"><b>HR Portal</b></Link></Button><br /><br />
@@ -123,7 +123,9 @@ const Login = () => {
                         </Form.Item>
                     </Form>
                 </div>
-            </Card>
+            {/* </Card> */}
+
+            
 
         </>
     )
