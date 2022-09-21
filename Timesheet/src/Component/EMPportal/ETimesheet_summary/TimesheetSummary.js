@@ -24,7 +24,7 @@ function TimesheetSummary() {
   const columns = [
     {
       title: 'COL_Id',
-      render: (COL_ID, title, index) => `${index + 1}`,
+      dataIndex: 'timesheetSummary_Id',
     },
     {
       title: 'Timesheet Month',
