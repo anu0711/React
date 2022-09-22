@@ -46,6 +46,7 @@ class UploadedImage extends Component {
 
         const img = axios.post("https://timesheetjy.azurewebsites.net/api/UploadfileAzure/UploadApprovedImage", fd)
             .then(res => {
+                setMessage(res.status, " Uploaded Successfully");
                 console.log(res);
                 setMessage(res.status, res.data);
                 

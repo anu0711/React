@@ -306,13 +306,25 @@ const Hrinfo = () => {
           >
             <Input style={{ marginLeft: "27px", width: "60px" }} disabled />
           </Form.Item>
-          <Form.Item
-            label='hr_Contact_No'
-            name='hr_Contact_No'
+          {/* <Form.Item
+           
+            name='hr_Contact_No' 
 
           >
             <Input style={{ width: "200px" }} />
-          </Form.Item>
+          </Form.Item> */}
+              <Form.Item
+               label='hr_Contact_No'
+              name="hr_Contact_No" type={"text"} rules={[{ required: true, message: 'Please enter the Phone Number' }, {
+                            pattern: new RegExp(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/),
+                            message: "Field must contain 10 numbers"
+                          }, {
+                            pattern: new RegExp(/^[0-9\b]+$/),
+                            message: "Field must only contain numbers"
+                          }]}>
+                            <Input style={{ width: "200px"}} type={"text"} id='contact_No' value={hr_Contact_No} maxLength={10}></Input>
+                               
+                          </Form.Item>
           <Form.Item>
             <Button type="danger" style={{ marginLeft: 490, marginBotton: -20 }} onClick={resetEditing}>Cancel</Button>
             <Button htmlType="submit" style={{ backgroundColor: "lightgreen", marginLeft: "10px" }}>Save Changes</Button>

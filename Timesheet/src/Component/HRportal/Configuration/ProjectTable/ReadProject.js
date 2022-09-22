@@ -849,7 +849,11 @@ function ReadProject() {
                                         },
                                         {
                                             min: 5,
-                                            message: 'Username must be minimum 5 characters.'
+                                            message: 'Project Code must be minimum 5 characters.'
+                                        },
+                                        {
+                                            pattern: new RegExp(/^[a-zA-Z0-9\s\- ]+$/i),
+                                            message: 'field does not accept numbers'
                                         }
                                     ]}
                                 >

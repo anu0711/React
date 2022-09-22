@@ -48,9 +48,14 @@ class UploadApTimesheet extends Component {
         debugger;
         const img = axios.post("https://timesheetjy.azurewebsites.net/api/UploadfileAzure/UploadApprovedImage", fd)
             .then(res => {
-                console.log(res);
-                setMessage(res.status, res.data);
+                setMessage(res.status, " Uploaded Successfully");
+                // console.log(res);
+                // setMessage(res.status, res.data);
             })
+            const timout1 = setTimeout(() => {
+                window.location.reload(false);
+            }, 1150);
+            return () => clearTimeout(timout1);
     }
 
     render() {
