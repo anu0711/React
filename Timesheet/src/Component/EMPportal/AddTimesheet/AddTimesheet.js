@@ -513,14 +513,17 @@ function AddTimesheet() {
             url: 'https://timesheetjy.azurewebsites.net/api/Employee/AddTimeSheet',
             data: {
                 employee_Id: parseInt(employee_Id),
-                fiscalYear_Id: month + 1,
+                Fiscal_Year_Id: month + 1,
                 year: year,
                 noOfdays_Worked: summary_data[0].no_of_days_worked,
                 noOfLeave_Taken: summary_data[0].no_of_leaves_taken,
                 total_Working_Hours: summary_data[0].total_duration,
                 addTimesheetDay: dummystate
             }
-        }).then(async () => {
+            
+        }).then(async (r) => {
+            setMessage(r.request.status, " Timesheet Added Successfully");
+            
             var toke = sessionStorage.token;
             var data = await axios.get(`https://timesheetjy.azurewebsites.net/api/Employee/GetProjects?month=${month + 1}&year=${year}&emp_id=${employee_Id}`, {
                 headers: {
@@ -533,9 +536,14 @@ function AddTimesheet() {
             projectIds.splice(index, 1);
             setSelectedOption(projectIds);
             debugger;
+        }).catch((error) => {
+            
+            setMessage(error.response.status, "Employee Id Alredy Exists");
         })
+        
 
     }
+    
     const excelDownload = (value) => {
         setIsDownload(false);
         setExcelNumber(value);
