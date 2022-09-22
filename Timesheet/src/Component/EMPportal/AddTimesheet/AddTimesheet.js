@@ -1,4 +1,4 @@
-import { Modal, Space, Table, Card, Popover } from 'antd';
+import { Modal, Space, Table, Card, Popover, Tag } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import axios from 'axios';
@@ -102,8 +102,7 @@ function AddTimesheet() {
             day: Day_list[new Date(year, month, i).getDay()],
             status: Day_list[new Date(year, month, i).getDay()].toLowerCase() === 'saturday' || Day_list[new Date(year, month, i).getDay()].toLowerCase() === 'sunday' ? "Holiday" : "",
             project: "",
-            duration: null,
-            count: 2
+            duration: null
         });
     }
 
@@ -150,11 +149,41 @@ function AddTimesheet() {
             key: "date",
             title: (<center><h4><b>Date</b></h4></center>),
             dataIndex: "date",
+            render: (_, record) => (
+                <div>
+                    {
+                        // style = {{backgroundColor: record.day.toLowerCase() === 'saturday' || record.day.toLowerCase() === 'sunday' ? "#FFBF0D" : "white" }}
+                        record.day.toLowerCase() === 'saturday' || record.day.toLowerCase() === 'sunday' ?
+                            <Tag color='gold' style={{ width: "5rem", height: "3%" }} size="large">{record.date}</Tag>
+                            :
+                            <center>
+                                <p style={{ paddingTop: '12%' }}>{record.date}</p>
+                            </center>
+
+                    }
+                </div>
+            )
         },
         {
             key: "day",
             title: (<center><h4><b>Day</b></h4></center>),
             dataIndex: "day",
+            render: (_, record) => (
+                <div>
+                    <center>
+                        {
+                            // style = {{backgroundColor: record.day.toLowerCase() === 'saturday' || record.day.toLowerCase() === 'sunday' ? "#FFBF0D" : "white" }}
+                            record.day.toLowerCase() === 'saturday' || record.day.toLowerCase() === 'sunday' ?
+                                <Tag color='gold' style={{ width: "5rem", height: "3%" }} size="large">{record.day}</Tag>
+                                :
+                                <center>
+                                    <p style={{ paddingTop: '12%' }}>{record.day}</p>
+                                </center>
+
+                        }
+                    </center>
+                </div>
+            )
         },
         {
             key: "status",
@@ -213,7 +242,7 @@ function AddTimesheet() {
                                 <Button
                                     type='info'
                                     onClick={() => onAddProject(row)}
-                                    disabled={row.status.toLowerCase() === 'leave' || row.status.toLowerCase() === 'holiday' || row.count === 0 ? true : false}
+                                    disabled={row.status.toLowerCase() === 'leave' || row.status.toLowerCase() === 'holiday' ? true : false}
                                 >
                                     Add Project</Button>
                                 :
@@ -285,7 +314,6 @@ function AddTimesheet() {
     const onAddProject = (row) => {
 
         var filteredColumn = currentState.filter(a => a.key == row.key)[0];
-        filteredColumn.count -= 1;
 
         const newRecord = {
             key: Math.random() + 100,
@@ -520,10 +548,10 @@ function AddTimesheet() {
                 total_Working_Hours: summary_data[0].total_duration,
                 addTimesheetDay: dummystate
             }
-            
+
         }).then(async (r) => {
             setMessage(r.request.status, " Timesheet Added Successfully");
-            
+
             var toke = sessionStorage.token;
             var data = await axios.get(`https://timesheetjy.azurewebsites.net/api/Employee/GetProjects?month=${month + 1}&year=${year}&emp_id=${employee_Id}`, {
                 headers: {
@@ -537,13 +565,13 @@ function AddTimesheet() {
             setSelectedOption(projectIds);
             debugger;
         }).catch((error) => {
-            
+
             setMessage(error.response.status, "Employee Id Alredy Exists");
         })
-        
+
 
     }
-    
+
     const excelDownload = (value) => {
         setIsDownload(false);
         setExcelNumber(value);

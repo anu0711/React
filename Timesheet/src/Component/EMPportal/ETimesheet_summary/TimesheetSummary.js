@@ -19,12 +19,12 @@ function TimesheetSummary() {
   const { Sider } = Layout;
   const [selected, setSelected] = useState('');
   const [dataSource, setdataSource] = useState([]);
-  useEffect(() => { axios(`https://timesheetjy.azurewebsites.net/api/Employee/GetAllTimeSheet_Summary?Employee_Id=${sessionStorage.id}&year=${new Date().getFullYear()}`).then((data) => setdataSource(data.data)) }, []);
+  useEffect(() => { axios(`https://timesheetjy.azurewebsites.net/api/Employee/GetAllTimeSheet_Summary?Employee_Id=${Number(sessionStorage.getItem("id"))}&year=${new Date().getFullYear()}`).then((data) => setdataSource(data.data)) }, []);
 
   const columns = [
     {
       title: 'COL_Id',
-      render: (value, item, index) =>  index + 1,
+      render: (value, item, index) => index + 1,
     },
     {
       title: 'Timesheet Month',

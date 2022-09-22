@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from "axios";
 function Uploadedimage() {
-    const [employee_Id, setemployee_Id] = useState(useLocation())
+    // const [employee_Id, setemployee_Id] = useState(useLocation())
     const loc = useLocation();
     const navigate = useNavigate();
     const navig = () => {
@@ -15,7 +15,7 @@ function Uploadedimage() {
         return () => clearTimeout(timeout);
     }
     const location = useLocation();
-    console.log(employee_Id);
+    // console.log(employee_Id);
     class Preview extends React.Component {
         state = {
             image: null,
@@ -32,7 +32,7 @@ function Uploadedimage() {
             try {
                 var t0 = performance.now();
                 this.setState({ loading: true });
-                const response = await axios.get(`https://timesheetjy.azurewebsites.net/api/UploadfileAzure/DownloadApprovedImage?Employee_Id=${employee_Id}&Fiscal_year_Id=${Fiscol_Year_id}&Year=${year}`,
+                const response = await axios.get(`https://timesheetjy.azurewebsites.net/api/UploadfileAzure/DownloadApprovedImage?Employee_Id=${Number(sessionStorage.getItem("id"))}&Fiscal_year_Id=${Fiscol_Year_id}&Year=${year}`,
                     {
                         headers: { Authorization: `Bearer ${token}` },
                         responseType: "blob"

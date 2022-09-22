@@ -38,11 +38,12 @@ class UploadApTimesheet extends Component {
     }
 
     fileUploadHandler = () => {
+        console.log();
         debugger;
         const fd = new FormData();
         fd.append('Images', this.state.selectedFile, this.state.selectedFile.name);
         // fd.append('Images', this.state.selectedFile);
-        fd.append('Employee_Id', sessionStorage.id);
+        fd.append('Employee_Id', Number(sessionStorage.getItem("id")));
         fd.append('Fiscal_Year_Id', new Date().getMonth());
         fd.append('year', 2022);
         debugger;
@@ -52,10 +53,10 @@ class UploadApTimesheet extends Component {
                 // console.log(res);
                 // setMessage(res.status, res.data);
             })
-            const timout1 = setTimeout(() => {
-                window.location.reload(false);
-            }, 1150);
-            return () => clearTimeout(timout1);
+        const timout1 = setTimeout(() => {
+            window.location.reload(false);
+        }, 1150);
+        return () => clearTimeout(timout1);
     }
 
     render() {
