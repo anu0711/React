@@ -1,10 +1,12 @@
-import { Card, Input, Form, message, Space, Menu } from 'antd';
+import { Card, Input, Form, message, Space, Menu,} from 'antd';
 import Button from "antd-button-color";
 import { createSearchParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './login.css';
-import { useState, React } from 'react';
+import { useState, React, } from 'react';
 import Dashboard from './HRportal/Dashboard/Dashboard';
+import Icon, { UserOutlined ,LockOutlined } from '@ant-design/icons';
+import { Image } from 'antd';
 
 
 const Login = () => {
@@ -57,8 +59,7 @@ const Login = () => {
         }).then((r) => {
             sessionStorage.setItem("token", r.data.token);
             sessionStorage.setItem("mailId", e.username);
-            sessionStorage.setItem("id", r.data.employee_Id);
-            sessionStorage.setItem("joining_date", r.data.joining_date);
+            sessionStorage.setItem("id", r.data.employee_Id)
             settoken(r.data.token);
             setMessage(r.request.status, e.username + " Login Successfull");
             AddProjectForm.resetFields();
@@ -72,6 +73,7 @@ const Login = () => {
                 message.error("You are not allowed to Login");
             }
         }).catch((error) => {
+            debugger;
             setMessage(error.response.status);
             AddProjectForm.resetFields();
         })
@@ -80,52 +82,50 @@ const Login = () => {
     return (
 
         <>
-            {/* <Card className='login' > */}
-            <div style={{ marginLeft: 430, padding: 10, backgroundColor: "white", borderRadius: 15, boxShadow: "0 0 40px rgba(0,0,0,16)", marginTop: 50 }}>
-                <h1 style={{ color: "blue", fontSize: 35 }}>TIMESHEET AUTOMATION</h1>
-                {/* <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="dashboard"><b>HR Portal</b></Link></Button><br /><br />
+            <Card className='login' >
+                <div style={{ width:450,marginLeft: 490, padding: 10, backgroundColor: "0,0,0,0.1",boxSizing:'border-box', borderRadius: 15, boxShadow: "0 0 40px rgba(0,0,0,16)", marginTop: 100 }}>
+                    <h2 style={{ color:"white", fontSize: 35 ,marginLeft:5}}>  TIMESHEET AUTOMATION</h2>
+                    {/* <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="dashboard"><b>HR Portal</b></Link></Button><br /><br />
                     <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="/Siders"><b>Employee Portal</b></Link></Button> */}
-                <h1 style={{ marginLeft: 150, fontSize: 25 }}><b>LOGIN PAGE</b></h1>
-                <Form
-                    {...formItemLayout}
-                    onFinish={onFinish}
-                    form={AddProjectForm}
-                >
-                    <h1><b>USERNAME</b></h1>
-                    <Form.Item name="username" rules={[
-                        {
-                            required: true,
-                            message: 'Please input your User Name!'
-                        },
-                        // {
-                        //     pattern: new RegExp(/^[a-zA-Z0-9 ]+$/i),
-                        //     message: 'field accept only letters'
-                        // }
-                    ]}>
-                        <Input style={{ width: 450 }} />
-                    </Form.Item>
-                    <h1><b>PASSWORD</b></h1>
-                    <Form.Item name="password" rules={[
-                        {
-                            required: true,
-                            message: 'Please input your Password!'
-                        },
-                    ]}>
-                        <Input.Password type="password" style={{ width: 450 }} />
-                    </Form.Item><br />
-                    <p>Change password?<span style={{ marginLeft: 5 }}><Link to="/resetPassword"><b><u>click here..</u></b></Link></span></p><br />
-                    {/* <Link>click here..</Link> */}
-                    <Form.Item>
-                        <Space>
-                            <Button type="danger" style={{ marginLeft: 150 }}>Cancel</Button>
-                            <Button type="success" htmlType="submit" style={{ marginLeft: 10 }}>Submit</Button>
-                        </Space>
-                    </Form.Item>
-                </Form>
-            </div>
-            {/* </Card> */}
-
-
+                    <h1 style={{ marginLeft: 150, fontSize: 25,color:"white"}}><b>LOGIN PAGE</b></h1>
+                    <Form
+                        {...formItemLayout}
+                        onFinish={onFinish}
+                        form={AddProjectForm}
+                    >
+                        <h1 style={{ marginLeft:150,color:"white"}} ><b><UserOutlined className='i'/>-USERNAME</b></h1>
+                        <Form.Item name="username" rules={ [
+                            {
+                                required: true,
+                                message: 'Please input your User Name!'
+                            },
+                            // {
+                            //     pattern: new RegExp(/^[a-zA-Z0-9 ]+$/i),
+                            //     message: 'field accept only letters'
+                            // }
+                        ]}>
+                            <Input style={{ width: 300,marginLeft:60 }} />
+                        </Form.Item>
+                        <h1 style={{ marginLeft:150, placeholder:"input placeholder",color:"white"}} ><b><LockOutlined className='i1'/>-PASSWORD</b></h1>
+                        <Form.Item className='span' name="password" rules={[
+                            {   
+                                required: true,
+                                message: 'Please input your Password!'
+                            },
+                        ]}>
+                            <Input.Password type="password" style={{ width: 300,marginLeft:60, }} />
+                        </Form.Item><br />
+                        <p style={{color:"white"}}>Change password?<span style={{ marginLeft: 5, }}><Link to="/resetPassword"><b><u>click here..</u></b></Link></span></p><br />
+                        {/* <Link>click here..</Link> */}
+                        <Form.Item>
+                            <Space>
+                                <Button type="danger" style={{ marginLeft: 150 }}>Cancel</Button>
+                                <Button type="success" htmlType="submit" style={{ marginLeft: 10 }}>Submit</Button>
+                            </Space>
+                        </Form.Item>
+                    </Form>
+                </div>
+            </Card>
 
         </>
     )
