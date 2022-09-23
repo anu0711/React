@@ -418,7 +418,7 @@ function Tb3() {
               size="small"
             />
           </div>
-          <Space direction="horizantal" style={{ marginTop: 380, marginLeft: 800 }}>
+          <Space direction="horizantal" style={{ marginTop: 380, marginLeft: 800 ,position:'fixed'}}>
             <Button style={{ backgroundColor: "orangered", border: '1px solid red' }} onClick={refreshPage}>Cancel</Button>
             <Button style={{ backgroundColor: "lightblue", border: 'solid blue' }} onClick={edit}>Save Changes</Button>
           </Space>
