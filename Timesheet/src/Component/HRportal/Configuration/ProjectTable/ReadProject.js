@@ -450,7 +450,10 @@ function ReadProject() {
         }).then(r => {
             debugger;
             setMessage(r.request.status, r.data.name + " Updated Successfuly");
-        })
+        }).catch((error) => {
+        debugger;
+        setMessage(error.response.status, "Project code already exsist ");
+    })
         getClients();
         const timout1 = setTimeout(() => {
 
