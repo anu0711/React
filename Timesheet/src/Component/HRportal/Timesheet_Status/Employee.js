@@ -418,13 +418,13 @@ function Tb3() {
               size="small"
             />
           </div>
-          <Space direction="horizantal" style={{ marginTop: 380, marginLeft: 800 ,position:'fixed'}}>
+          <Space direction="horizantal" style={{ marginTop: 350, marginLeft: 800 ,position:'fixed'}}>
             <Button style={{ backgroundColor: "orangered", border: '1px solid red' }} onClick={refreshPage}>Cancel</Button>
             <Button style={{ backgroundColor: "lightblue", border: 'solid blue' }} onClick={edit}>Save Changes</Button>
           </Space>
         </header >
       </div >
-      <div style={{marginTop:'-36%',marginRight:'-2%'}}>
+      <div style={{marginTop:"-12%"}}>
       <Popover  content='Logout' >
       <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>
       <LogoutOutlined  onClick={navig}   />
