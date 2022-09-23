@@ -281,6 +281,13 @@ function Tb3() {
         setMessage(r.request.status, " Updated Successfully");
       })
     })
+    const timout1 = setTimeout(() => {
+
+      window.location.reload(false);
+
+  }, 1150);
+
+  return () => clearTimeout(timout1);
   }
   useEffect(() => {
     const result = dataSource.filter(dataSource => {
@@ -426,7 +433,7 @@ function Tb3() {
       </div >
       <div style={{marginTop:'-36%',marginRight:'-2%'}}>
       <Popover  content='Logout' >
-      <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%'}}>
+      <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%',position:"fixed"}}>
       <LogoutOutlined  onClick={navig}   />
       </button>
       </Popover>
