@@ -432,11 +432,11 @@ function Tb3() {
         </header >
       </div >
       <div style={{marginTop:'-36%',marginRight:'-2%'}}>
-      <Popover  content='Logout' >
+      {/* <Popover  content='Logout' >
       <button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'91%',marginTop:'2%',position:"fixed"}}>
       <LogoutOutlined  onClick={navig}   />
       </button>
-      </Popover>
+      </Popover> */}
       </div>
       
     </div>
