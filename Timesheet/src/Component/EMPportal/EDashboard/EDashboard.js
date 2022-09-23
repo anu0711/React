@@ -109,7 +109,7 @@ const EDashboard = () => {
     //         </div>
     //     )
     // }
-     if (data.status == "Approved") {
+     if (data == "Approved") {
         return (
             <div>
                 <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -250 }}>
@@ -142,7 +142,7 @@ const EDashboard = () => {
             </div>
         )
     }
-    else if (data.status == "Rejected") {
+    else if (data == "Rejected") {
         return (
             <div>
                 <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -250 }}>
@@ -175,7 +175,7 @@ const EDashboard = () => {
             </div>
         )
     }
-    else if (data.status == "Pending") {
+    else if (data == "Pending") {
         return (
             <div>
                 <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -250 }}>
@@ -213,52 +213,52 @@ const EDashboard = () => {
             </div>
         )
     }
-   else if (data.status == undefined) {
-        return (
-            <div>
-                <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -250 }}>
-                    <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
-                        <Link to="/EDashboard">Dashboard</Link>
-                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
-                        <Link to="/Etimesheetsummary">Timesheet summary</Link>
-                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
-                        <Link to="/Eaddtimesheet">Timesheet</Link>
-                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
-                        <Link to="/Ehrinfo">HR contact info</Link>
-                    </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
-                        <Link to="/Euserprofile">User Profile</Link>
-                    </Button><br /><br />
-                </Sider>
-                <div style={{ marginLeft: "90%", marginTop:"-3%",position:'fixed' }}>
-                    <Popover position="top" content='Logout'>
-                        <button style={{ width: '5em', backgroundColor: '#f77c7c' }}>
-                            <LogoutOutlined onClick={navig} />
-                        </button>
-                    </Popover>
-                </div>
-
-                <div style={{ marginTop: 160 }}>
-                    {/* <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {data.month} {data.year} status</center></h1> */}
-                    <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {`${month_name[month]}`} - {year} status</center></h1>
-                </div>
-                <br /><br /><br />
+   else if (data == undefined) {
+    return (
                 <div>
-                    <CheckOutlined style={{ marginTop: -90, marginLeft: 588, fontSize: 90, color: "skyblue", position: "fixed" }} />
+                    <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue",  marginTop: -250 }}>
+                        <Button type="primary" style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
+                            <Link to="/EDashboard">Dashboard</Link>
+                        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                            <Link to="/Etimesheetsummary">Timesheet summary</Link>
+                        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                            <Link to="/Eaddtimesheet">Timesheet</Link>
+                        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                            <Link to="/Ehrinfo">HR contact info</Link>
+                        </Button><br /><br /><Button style={{ margin: "5 10%", width: 160, height: 50, marginLeft: 20 }}>
+                            <Link to="/Euserprofile">User Profile</Link>
+                        </Button><br /><br />
+                    </Sider>
+                    <div style={{ marginLeft: "90%", marginTop:"-3%",position:'fixed' }}>
+                        <Popover position="top" content='Logout'>
+                            <button style={{ width: '5em', backgroundColor: '#f77c7c' }}>
+                                <LogoutOutlined onClick={navig} />
+                            </button>
+                        </Popover>
+                    </div>
+    
+                    <div style={{ marginTop: 160 }}>
+                        {/* <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {data.month} {data.year} status</center></h1> */}
+                        <h1 id="xy" style={{ color: 'lightskyblue', marginLeft: -65 }}><center>Timesheet {} - {} status</center></h1>
+                    </div>
+                    <br /><br /><br />
+                    <div>
+                        <CheckOutlined style={{ marginTop: -90, marginLeft: 588, fontSize: 90, color: "skyblue", position: "fixed" }} />
+                    </div>
+                    <div style={{ marginLeft: 350 }}>
+                        <Space direction="horizontal">
+                            <Input value="Approved" readOnly />
+                            <Input style={{
+                                backgroundColor: 'skyblue',
+                                border: "2px solid black",
+                                height: "50px",
+                                textAlign: 'center'
+                            }} value="Pending" readOnly />
+                            <Input value="Rejected" readOnly />
+                        </Space>
+                    </div>
                 </div>
-                <div style={{ marginLeft: 350 }}>
-                    <Space direction="horizontal">
-                        <Input value="Approved" readOnly />
-                        <Input style={{
-                            backgroundColor: 'skyblue',
-                            border: "2px solid black",
-                            height: "50px",
-                            textAlign: 'center'
-                        }} value="Pending" readOnly />
-                        <Input value="Rejected" readOnly />
-                    </Space>
-                </div>
-            </div>
-        )
+            )
     }
 
     else {
