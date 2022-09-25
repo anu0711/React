@@ -17,11 +17,8 @@ function Status(props) {
         var filteredColumn = dataSource.filter((a) => a.key === row.key)[0];
         filteredColumn.status = value.value;
         props.onSaveData(dataSource);
-        if (value.value.toLowerCase() == "leave" || value.value.toLowerCase() == "holiday") {
-            filteredColumn.duration = 0;
-            if (row.key > 99)
-                props.onDeleteRow(row);
-        }
+        if (row.key > 99)
+            props.onDeleteRow(row);
     }
 
     return (

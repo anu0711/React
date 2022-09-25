@@ -359,6 +359,9 @@ function AddTimesheet() {
     const calculateTotalDuration = () => {
         var totalHrs = 0;
         currentState.forEach(element => {
+            if (element.status.toLowerCase() === 'leave' || element.status.toLowerCase() === 'holiday') {
+                return;
+            }
             if (element.duration > 0) {
                 totalHrs += Number(element.duration);
             }
