@@ -135,11 +135,14 @@ function ReadProject() {
         }
     };
 
+    const [rowSelected, setRowSelected] = useState([]);
+    const [rowSelectedKeys, setRowSelectedKeys] = useState([]);
+
     const SelectionRow = {
         onChange: (selectedRowKeys, selectedRow) => {
-            setSelectedRows(selectedRow);
-            setSelectedRowKeys(selectedRowKeys);
-            setDeactivate(true);
+            setRowSelected(selectedRow);
+            setRowSelectedKeys(selectedRowKeys);
+            // setDeactivate(true);
             setToggleActivate(true)
             if (selectedRow.length === 0) {
                 setDeactivate(false);
@@ -259,7 +262,7 @@ function ReadProject() {
 
     const Activate = () => {
         var activateProjectName = '';
-        selectedRows.forEach(element => {
+        rowSelected.forEach(element => {
             axios({
                 method: 'put',
                 headers: {
@@ -291,8 +294,8 @@ function ReadProject() {
         getClients();
         setDeactivate(false);
         setToggleActivate(false);
-        setSelectedRows([]);
-        setSelectedRowKeys([]);
+        setRowSelected([]);
+        setRowSelectedKeys([]);
         rowSelection = ''
     }
 
@@ -451,9 +454,9 @@ function ReadProject() {
             debugger;
             setMessage(r.request.status, r.data.name + " Updated Successfuly");
         }).catch((error) => {
-        debugger;
-        setMessage(error.response.status, "Project code already exsist ");
-    })
+            debugger;
+            setMessage(error.response.status, "Project code already exsist ");
+        })
         getClients();
         const timout1 = setTimeout(() => {
 
