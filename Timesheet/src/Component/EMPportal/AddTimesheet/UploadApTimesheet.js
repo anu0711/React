@@ -1,9 +1,6 @@
 import React, { useState, Component } from "react";
 import { message } from "antd";
-// import ReactDOM from "react-dom";
-// import { useLocation, useNavigate } from 'react-router-dom'
 import axios from "axios";
-// import { render } from "@testing-library/react";
 
 const setMessage = (statusCode, responseMessage) => {
     if (statusCode == 200) {
@@ -30,11 +27,9 @@ class UploadApTimesheet extends Component {
     }
 
     fileSelectedHandler = event => {
-        // console.log(event.target.files[0]);
         this.setState({
             selectedFile: event.target.files[0]
         })
-        debugger;
     }
 
     fileUploadHandler = () => {
@@ -42,7 +37,6 @@ class UploadApTimesheet extends Component {
         debugger;
         const fd = new FormData();
         fd.append('Images', this.state.selectedFile, this.state.selectedFile.name);
-        // fd.append('Images', this.state.selectedFile);
         fd.append('Employee_Id', Number(sessionStorage.getItem("id")));
         fd.append('Fiscal_Year_Id', new Date().getMonth());
         fd.append('year', 2022);
@@ -50,8 +44,6 @@ class UploadApTimesheet extends Component {
         const img = axios.post("https://timesheetjy.azurewebsites.net/api/UploadfileAzure/UploadApprovedImage", fd)
             .then(res => {
                 setMessage(res.status, " Uploaded Successfully");
-                // console.log(res);
-                // setMessage(res.status, res.data);
             })
         const timout1 = setTimeout(() => {
             window.location.reload(false);

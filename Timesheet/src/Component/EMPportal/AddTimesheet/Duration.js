@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Input } from 'antd'
+import { Input } from 'antd';
 
 function Duration(props) {
 
@@ -14,7 +14,6 @@ function Duration(props) {
         props.onSaveData(dataSource);
     }, [])
 
-
     const onDuration = (value) => {
         const row = props.row;
         setValue(value);
@@ -23,9 +22,8 @@ function Duration(props) {
         filteredColumn.duration = value;
         props.onSaveData(dataSource);
     }
-
+    
     const maxLengthCheck = (e) => {
-        console.log(e);
         if (Number(e.targer.value) > Number(e.targer.max)) {
             e.target.value = e.targer.value.splice(0, e.target.value - 1);
         }

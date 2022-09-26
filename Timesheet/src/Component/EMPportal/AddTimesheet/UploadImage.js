@@ -1,9 +1,6 @@
 import React, { useState, Component } from "react";
 import { message } from "antd";
-// import ReactDOM from "react-dom";
-// import { useLocation, useNavigate } from 'react-router-dom'
 import axios from "axios";
-// import { render } from "@testing-library/react";
 
 const setMessage = (statusCode, responseMessage) => {
     if (statusCode == 200) {
@@ -30,7 +27,6 @@ class UploadedImage extends Component {
     }
 
     fileSelectedHandler = event => {
-        // console.log(event.target.files[0]);
         this.setState({
             selectedFile: event.target.files[0]
         })
@@ -49,7 +45,7 @@ class UploadedImage extends Component {
                 setMessage(res.status, " Uploaded Successfully");
                 console.log(res);
                 setMessage(res.status, res.data);
-                
+
             })
         const timout1 = setTimeout(() => {
             window.location.reload(false);

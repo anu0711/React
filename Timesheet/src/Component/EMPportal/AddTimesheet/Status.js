@@ -22,20 +22,9 @@ function Status(props) {
     }
 
     return (
-        // <Select
-        //     style={{ width: '100%', menuPortal: base => ({ ...base, zIndex: 9999 }) }}
-        //     onChange={(value) => onStatusSelect(value)}
-        //     defaultValue={props.defaultValue}
-        // >
-        //     {
-        //         status_options.map((status) => (
-        //             <Select.Option value={status.value}>{status.label}</Select.Option>
-        //         ))
-        //     }
-        // </Select>
         <Select
             isSearchable={false}
-            styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
+            styles={{ width: "100%" }}
             onChange={(value) => onStatusSelect(value)}
             options={status_options}
             defaultValue={status_options.filter((a) => a.value == props.defaultValue)[0]}

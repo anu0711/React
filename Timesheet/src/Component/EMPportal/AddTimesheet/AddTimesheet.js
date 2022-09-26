@@ -41,17 +41,12 @@ const projectOption = async () => {
             'Authorization': `Bearer ${toke}`
         }
     })
-    // .then(r => setProject(r.data));
-    // dummyProject = [];
     response.data.forEach(element => {
         dummyProject.push({
             value: element.project_Id,
             label: element.project_Name
         })
     });
-
-    console.log(dummyProject);
-    // setProject(dummyProject);
 }
 
 function AddTimesheet() {
@@ -71,7 +66,6 @@ function AddTimesheet() {
     const [state1, setState1] = useState([])
     const [state2, setState2] = useState([])
     const [state3, setState3] = useState([])
-    // const [singleRun, setSingleRun] = useState(false);
     const month = currentDate.getMonth() - 1;
     const year = currentDate.getFullYear();
     const Day_list = [
@@ -87,7 +81,6 @@ function AddTimesheet() {
     useEffect(() => {
         if (singleRun === 1) {
             projectOption();
-            // setSingleRun(!singleRun);
             singleRun = 2;
         }
     }, [])
@@ -152,7 +145,6 @@ function AddTimesheet() {
             render: (_, record) => (
                 <div>
                     {
-                        // style = {{backgroundColor: record.day.toLowerCase() === 'saturday' || record.day.toLowerCase() === 'sunday' ? "#FFBF0D" : "white" }}
                         record.day.toLowerCase() === 'saturday' || record.day.toLowerCase() === 'sunday' ?
                             <Tag color='gold' style={{ width: "5rem", height: "3%" }} size="large">{record.date}</Tag>
                             :
@@ -172,7 +164,6 @@ function AddTimesheet() {
                 <div>
                     <center>
                         {
-                            // style = {{backgroundColor: record.day.toLowerCase() === 'saturday' || record.day.toLowerCase() === 'sunday' ? "#FFBF0D" : "white" }}
                             record.day.toLowerCase() === 'saturday' || record.day.toLowerCase() === 'sunday' ?
                                 <Tag color='gold' style={{ width: "5rem", height: "3%" }} size="large">{record.day}</Tag>
                                 :
@@ -190,13 +181,15 @@ function AddTimesheet() {
             title: (<center><h4><b>Status</b></h4></center>),
             dataIndex: 'status',
             render: (_, record) => (
-                <Status
-                    allRecord={currentState}
-                    defaultValue={record.status}
-                    row={record}
-                    onSaveData={saveCurrentState}
-                    onDeleteRow={onDeleteRow}
-                />
+                <div style={{ width: '8rem' }}>
+                    <Status
+                        allRecord={currentState}
+                        defaultValue={record.status}
+                        row={record}
+                        onSaveData={saveCurrentState}
+                        onDeleteRow={onDeleteRow}
+                    />
+                </div>
             )
         },
         {
@@ -204,7 +197,7 @@ function AddTimesheet() {
             title: (<center><h4><b>Project</b></h4></center>),
             dataIndex: 'project',
             render: (_, record) => (
-                <div style={{ width: 200 }}>
+                <div style={{ width: '14rem' }}>
                     <Project
                         ProjectOption={dummyProject}
                         allRecord={currentState}
@@ -370,43 +363,6 @@ function AddTimesheet() {
     }
 
     const [files, setFiles] = useState([]);
-    const { getRootProps, getInputProps } = useDropzone({
-        accept: "image/*",
-        onDrop: (acceptedFiles) => {
-            setFiles(
-                acceptedFiles.map((file) =>
-                    Object.assign(file, {
-                        preview: URL.createObjectURL(file),
-                    }))
-            )
-        },
-    });
-
-    const images = files.map((file) => (
-        <div>
-            <div><img src={file.preview} style={{ width: "200px" }} alt="preview" /></div>
-        </div>
-    ));
-
-    const uploadApprovedTimesheet = async () => {
-        await axios({
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-            },
-            url: 'https://timesheetjy.azurewebsites.net/api/UploadfileAzure/EmployeeUploadImage',
-            data: {
-                Employee_Id: 23,
-                Fiscol_Year_Id: 7,
-                year: 2022,
-                Images: files
-            }
-        }).then(async (r) => {
-            setMessage(r.status, r.data);
-        });
-    }
 
     const downloadXL1 = async () => {
         await axios({
@@ -423,34 +379,6 @@ function AddTimesheet() {
             link.click();
         });
     }
-    // const downloadXL2 = async () => {
-    //     await axios({
-    //         url: `https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=${1}&monthid=${month + 1}&year=${year}&project_id=${state2[0].project_Id}`,
-    //         method: 'GET',
-    //         responseType: 'blob', // important
-    //     }).then((response) => {
-    //         const url = window.URL.createObjectURL(new Blob([response.data]));
-    //         const link = document.createElement('a');
-    //         link.href = url;
-    //         link.setAttribute('download', 'Timeheet.xlsx'); //or any other extension
-    //         document.body.appendChild(link);
-    //         link.click();
-    //     });
-    // }
-    // const downloadXL3 = async () => {
-    //     await axios({
-    //         url: `https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=${1}&monthid=${month + 1}&year=${year}&project_id=${state3[0].project_Id}`,
-    //         method: 'GET',
-    //         responseType: 'blob', // important
-    //     }).then((response) => {
-    //         const url = window.URL.createObjectURL(new Blob([response.data]));
-    //         const link = document.createElement('a');
-    //         link.href = url;
-    //         link.setAttribute('download', 'Timeheet.xlsx'); //or any other extension
-    //         document.body.appendChild(link);
-    //         link.click();
-    //     });
-    // }
 
     const showModal1 = () => {
         setModal(true);
@@ -472,24 +400,20 @@ function AddTimesheet() {
 
         currentState.forEach(element => {
             dummystate.push({
-                // project_Id: element.project,
                 project_Id: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? element.project : project,
                 date: element.date,
                 day: element.day,
                 leave: element.status.toLowerCase() === 'leave' || element.status.toLowerCase() === 'holiday' ? true : false,
-                // duration_in_Hrs: element.duration === null ? parseInt(0) : parseInt(element.duration),
                 duration_in_Hrs: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? parseInt(element.duration) : parseInt(0),
                 timesheet_summary_Id: 0
 
             })
             if (date != element.date) {
                 newState.push({
-                    // project_Id: element.project,
                     project_Id: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? element.project : 0,
                     date: element.date,
                     day: element.day,
                     leave: element.status.toLowerCase() === 'leave' || element.status.toLowerCase() === 'holiday' ? true : false,
-                    // duration_in_Hrs: element.duration === null ? parseInt(0) : parseInt(element.duration),
                     duration_in_Hrs: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? parseInt(element.duration) : parseInt(0),
                     timesheet_summary_Id: 0
 
@@ -500,12 +424,10 @@ function AddTimesheet() {
             }
             if (date == element.date && count === 1) {
                 newState1.push({
-                    // project_Id: element.project,
                     project_Id: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? element.project : 0,
                     date: element.date,
                     day: element.day,
                     leave: element.status.toLowerCase() === 'leave' || element.status.toLowerCase() === 'holiday' ? true : false,
-                    // duration_in_Hrs: element.duration === null ? parseInt(0) : parseInt(element.duration),
                     duration_in_Hrs: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? parseInt(element.duration) : parseInt(0),
                     timesheet_summary_Id: 0
 
@@ -516,12 +438,10 @@ function AddTimesheet() {
             }
             if (date == element.date && count == 2) {
                 newState2.push({
-                    // project_Id: element.project,
                     project_Id: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? element.project : 0,
                     date: element.date,
                     day: element.day,
                     leave: element.status.toLowerCase() === 'leave' || element.status.toLowerCase() === 'holiday' ? true : false,
-                    // duration_in_Hrs: element.duration === null ? parseInt(0) : parseInt(element.duration),
                     duration_in_Hrs: element.status.toLowerCase() === 'present' || element.status.toLowerCase() === 'wfh' ? parseInt(element.duration) : parseInt(0),
                     timesheet_summary_Id: 0
                 })
@@ -561,12 +481,9 @@ function AddTimesheet() {
                     'Authorization': `Bearer ${toke}`
                 }
             })
-             setSelectedOption(data.data);
+            setSelectedOption(data.data);
             var projectIds = data.data
-           // var index = projectIds.indexOf(project);
-           // projectIds.splice(index, 2);
             setSelectedOption(projectIds);
-            debugger;
         }).catch((error) => {
 
             setMessage(error.response.status, "Employee Id Alredy Exists");
@@ -578,7 +495,6 @@ function AddTimesheet() {
     const excelDownload = (value) => {
         setIsDownload(false);
         setExcelNumber(value);
-        debugger;
     }
 
 
@@ -608,65 +524,31 @@ function AddTimesheet() {
                     <div style={{ position: "relative", left: 350, top: -40 }}>
 
                         <Space>
-                            {/* <Button type="primary" onClick={downloadXL}><DownloadOutlined /> Download XL</Button> */}
                             <Button type="primary" onClick={showModal}><UploadOutlined /> Approved Timesheet</Button>
                             <Button type="primary" onClick={showModal1}><UploadOutlined /> Approval Image</Button>
                         </Space>
 
-                        {/* <Popover position="top" content='Logout'>
-                            <Button style={{ width: '5em', backgroundColor: '#f77c7c', marginLeft: '3%', marginTop: '5%' }}>
-                                <LogoutOutlined onClick={navig} />
-                            </Button>
-                        </Popover> */}
-
-
                     </div>
 
                     <div style={{ paddingLeft: '200px' }}>
-                        {/* <Space>
-                            {
-                                state1.length > 1 ?
-                                    <Button type="primary" onClick={downloadXL1}><DownloadOutlined /> Download XL1</Button>
-                                    : ""
-                            }
-                            {
-                                state2.length > 1 ?
-                                    <Button type="primary" onClick={downloadXL2}><DownloadOutlined /> Download XL2</Button> : ""
-                            }
-                            {
-                                state3.length > 1 ?
-                                    <Button type="primary" onClick={downloadXL3}><DownloadOutlined /> Download XL3</Button> : ""
-                            }
-                        </Space> */}
-
-
-
                     </div>
-                    {/* <div style={{marginTop:'-2%',marginLeft:'-15%',marginBottom:'20%'}}>
-                    <Popover position="top" content='Logout'>
-                <Button style={{width:'5em',backgroundColor:'#f77c7c',marginLeft:'70em',  marginTop:'5%'}}>
-                <LogoutOutlined  onClick={navig}   />
-                </Button>
-                </Popover>
-
-                    </div> */}
 
                     <div style={{ paddingLeft: "60%" }}>
-                        <Select
-                            disabled={isDisabled}
-                            style={{ width: 200 }}
-                            onChange={value => excelDownload(value)}
-                        >
-                            {
-                                selectedOption.map(element => (
-                                    <Select.Option value={element.project_Id}>{element.project_Name}</Select.Option>
-                                ))
-                            }
-                        </Select>
-                        <Button disabled={isDownload} onClick={downloadXL1}>Download Excel</Button>
+                        <Space>
+                            <Select
+                                disabled={isDisabled}
+                                style={{ width: 200 }}
+                                onChange={value => excelDownload(value)}
+                            >
+                                {
+                                    selectedOption.map(element => (
+                                        <Select.Option value={element.project_Id}>{element.project_Name}</Select.Option>
+                                    ))
+                                }
+                            </Select>
+                            <Button disabled={isDownload} onClick={downloadXL1}>Download Excel</Button>
+                        </Space>
                     </div>
-
-
 
                     <Table
                         columns={columns_summary}
@@ -696,18 +578,9 @@ function AddTimesheet() {
                                 type='danger'
                             >
                                 cancel</Button>,
-                            // <Button
-                            //     type='success'
-                            //     onClick={uploadApprovedTimesheet}
-                            // >Send</Button>
                         ]}
                     >
-                        {/* <div>
-                            <h3>Upload Approval Timesheet</h3>
-                            <h4>Timesheet File</h4>
-                        </div> */}
                         <UploadImage />
-                        {/* <ImageUpload /> */}
                     </Modal>
 
                     <Modal
