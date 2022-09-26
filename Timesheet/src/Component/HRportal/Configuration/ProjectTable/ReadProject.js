@@ -282,6 +282,10 @@ function ReadProject() {
                     getClients();
 
                 });
+                const timout1 = setTimeout(() => {
+                    window.location.reload(false);
+                }, 1100);
+                return () => clearTimeout(timout1);
             activateProjectName = activateProjectName + element.project_Name + ", ";
             console.log(activateProjectName);
         });
@@ -290,6 +294,7 @@ function ReadProject() {
         // setMessage(200, activateProjectName + selectedRows.length > 1 ? 'are' : 'is' + " Activated Successfully");
         // const alertMessage = activateProjectName + length > 1 ? " is" : " are" + " Activated Successfully";
         setMessage(200, activateProjectName + " Activated Successfully");
+        
         setIsActivateModal(false);
         getClients();
         setDeactivate(false);
@@ -297,7 +302,10 @@ function ReadProject() {
         setRowSelected([]);
         setRowSelectedKeys([]);
         rowSelection = ''
+
+     
     }
+    
 
     const columns_Deactivate = [
         {
