@@ -423,34 +423,34 @@ function AddTimesheet() {
             link.click();
         });
     }
-    const downloadXL2 = async () => {
-        await axios({
-            url: `https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=${1}&monthid=${month + 1}&year=${year}&project_id=${state2[0].project_Id}`,
-            method: 'GET',
-            responseType: 'blob', // important
-        }).then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'Timeheet.xlsx'); //or any other extension
-            document.body.appendChild(link);
-            link.click();
-        });
-    }
-    const downloadXL3 = async () => {
-        await axios({
-            url: `https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=${1}&monthid=${month + 1}&year=${year}&project_id=${state3[0].project_Id}`,
-            method: 'GET',
-            responseType: 'blob', // important
-        }).then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'Timeheet.xlsx'); //or any other extension
-            document.body.appendChild(link);
-            link.click();
-        });
-    }
+    // const downloadXL2 = async () => {
+    //     await axios({
+    //         url: `https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=${1}&monthid=${month + 1}&year=${year}&project_id=${state2[0].project_Id}`,
+    //         method: 'GET',
+    //         responseType: 'blob', // important
+    //     }).then((response) => {
+    //         const url = window.URL.createObjectURL(new Blob([response.data]));
+    //         const link = document.createElement('a');
+    //         link.href = url;
+    //         link.setAttribute('download', 'Timeheet.xlsx'); //or any other extension
+    //         document.body.appendChild(link);
+    //         link.click();
+    //     });
+    // }
+    // const downloadXL3 = async () => {
+    //     await axios({
+    //         url: `https://timesheetjy.azurewebsites.net/api/Employee/ExportExcel?id=${1}&monthid=${month + 1}&year=${year}&project_id=${state3[0].project_Id}`,
+    //         method: 'GET',
+    //         responseType: 'blob', // important
+    //     }).then((response) => {
+    //         const url = window.URL.createObjectURL(new Blob([response.data]));
+    //         const link = document.createElement('a');
+    //         link.href = url;
+    //         link.setAttribute('download', 'Timeheet.xlsx'); //or any other extension
+    //         document.body.appendChild(link);
+    //         link.click();
+    //     });
+    // }
 
     const showModal1 = () => {
         setModal(true);
@@ -561,10 +561,10 @@ function AddTimesheet() {
                     'Authorization': `Bearer ${toke}`
                 }
             })
-            // setSelectedOption(data.data);
+             setSelectedOption(data.data);
             var projectIds = data.data
-            var index = projectIds.indexOf(project);
-            projectIds.splice(index, 1);
+           // var index = projectIds.indexOf(project);
+           // projectIds.splice(index, 2);
             setSelectedOption(projectIds);
             debugger;
         }).catch((error) => {

@@ -84,7 +84,7 @@ const Login = () => {
         <>
             <Card className='login' >
             <div> <h2 style={{ color:"white", fontSize: 35 ,marginLeft:520,marginTop:50,fontFamily:"LucidaConsole"}}>  TIMESHEET AUTOMATION</h2></div>
-                <div style={{  width:480,marginLeft: 490, padding: 10,backgroundColor: "0,0,0,0.1",boxSizing:'border-box', borderRadius: 15, boxShadow: "0 0 40px rgba(0,0,0,16)",marginTop:50}}>
+                <div style={{  width:480,marginLeft: 490, padding: 10,backgroundColor: "0,0,0,0.1",boxSizing:'border-box', borderRadius: 15, boxShadow: "0 0 40px rgba(0,0,0,16)",marginTop:50,position:""}}>
                    
                     {/* <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="dashboard"><b>HR Portal</b></Link></Button><br /><br />
                     <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="/Siders"><b>Employee Portal</b></Link></Button> */}

@@ -2,10 +2,12 @@ import { Card, Input, Form, message, Space } from 'antd';
 import Button from "antd-button-color";
 import { createSearchParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {MDBInput}from 'mdb-react-ui-kit';
 import './login.css';
 import { useState, React } from 'react';
 import Dashboard from './HRportal/Dashboard/Dashboard';
-
+import Icon, { UserOutlined ,LockOutlined,EditOutlined } from '@ant-design/icons';
+import FormItem from 'antd/es/form/FormItem';
 const ResetPassword = () => {
     const navigate = useNavigate();
     const navig = () => {
@@ -85,17 +87,17 @@ const ResetPassword = () => {
     return (
         <>
             <Card className='login'>
-                <div style={{ marginLeft: 430, padding: 20,width:500, backgroundColor: "white", borderRadius: 15, boxShadow: "0 0 40px rgba(0,0,0,16)", marginTop: 15 }}>
+                <div style={{ marginLeft: 460, padding: 20,width:500,backgroundColor: "0,0,0,0.1", borderRadius: 15, boxShadow: "0 0 40px rgba(0,0,0,16)", marginTop: 15 }}>
                     {/* <h1 style={{ color: "blue", fontSize: 35 }}>TIME SHEET AUTOMATION</h1> */}
                     {/* <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="dashboard"><b>HR Portal</b></Link></Button><br /><br />
                     <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="/Siders"><b>Employee Portal</b></Link></Button> */}
-                    <h1 style={{ marginLeft: 100, fontSize: 25, color: 'blue' }}><b>PASSWORD RESET PAGE</b></h1><br />
+                    <h1 style={{ marginLeft: 90, fontSize: 25, color: 'white',fontFamily:"LucidaConsole" }}><b>PASSWORD RESET PAGE</b></h1><br />
                     <Form
                         {...formItemLayout}
                         onFinish={onFinish}
                         form={AddProjectForm}
                     >
-                        <h2>USERNAME</h2>
+                        <h2 style={{color:"white",fontFamily:"LucidaConsole",marginLeft:150 }}><UserOutlined />-USERNAME</h2>
                         <Form.Item name="username" rules={[
                             {
                                 required: true,
@@ -108,7 +110,7 @@ const ResetPassword = () => {
                         ]}>
                             <Input style={{ width: 450 }} />
                         </Form.Item>
-                        <h2>PASSWORD</h2>
+                        <h2 style={{color:"white",fontFamily:"LucidaConsole",marginLeft:150  }}><LockOutlined>-</LockOutlined><label style={{fontSize:'123%'}}>-PASSWORD</label></h2>
                         <Form.Item name="password" rules={[
                             {
                                 required: true,
@@ -117,7 +119,8 @@ const ResetPassword = () => {
                         ]}>
                             <Input type="password" style={{ width: 450 }} />
                         </Form.Item>
-                        <h2>NEW PASSWORD</h2>
+                        
+                        <h2 style={{color:"white",fontFamily:"LucidaConsole",marginLeft:130  }}><EditOutlined />-NEW PASSWORD</h2>
                         <Form.Item name="newPassword" rules={[
                             {
                                 required: true,
@@ -125,9 +128,10 @@ const ResetPassword = () => {
                             },
                         ]}>
                             <Input type="password" style={{ width: 450 }} />
+                            
                         </Form.Item>
 
-                        <h2>CONFIRM NEW PASSWORD</h2>
+                        <h2 style={{color:"white",fontFamily:"LucidaConsole",marginLeft:120  }}><EditOutlined />-CONFIRM PASSWORD</h2>
                         <Form.Item name="confrimNewPassword" rules={[
                             {
                                 required: true,
