@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import axios from 'axios';
 import { LogoutOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import { Select, Input, Button, message, Layout } from 'antd';
+import { Input, Button, message, Layout } from 'antd';
 import { UploadOutlined, DownloadOutlined } from '@ant-design/icons';
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { useDropzone } from 'react-dropzone';
@@ -15,7 +15,7 @@ import Duration from './Duration';
 import UploadImage from './UploadImage';
 import UploadApTimesheet from './UploadApTimesheet';
 import { elementAcceptingRef } from '@mui/utils';
-
+import Select from 'react-select';
 const setMessage = (statusCode, responseMessage) => {
     if (statusCode == 200) {
         message.success(responseMessage);
@@ -492,9 +492,26 @@ function AddTimesheet() {
 
     }
 
+    // const excelDownload = (value) => {
+    //     setIsDownload(false);
+    //     setExcelNumber(value);
+    // }
+    const [excelDownloa, SetexcelDownload] = useState([]);
     const excelDownload = (value) => {
+        
         setIsDownload(false);
-        setExcelNumber(value);
+        SetexcelDownload(value);
+        console.log(excelDownload);
+    
+        var optionS = new Array()
+        SetexcelDownload.data.map((element) => {
+          let Option = {
+            
+            value: element.excelDownload
+            
+          }
+          optionS.push(Option);
+        }) 
     }
 
 
@@ -535,7 +552,7 @@ function AddTimesheet() {
 
                     <div style={{ paddingLeft: "60%" }}>
                         <Space>
-                            <Select
+                            {/* <Select
                                 disabled={isDisabled}
                                 style={{ width: 200 }}
                                 onChange={value => excelDownload(value)}
@@ -545,7 +562,12 @@ function AddTimesheet() {
                                         <Select.Option value={element.project_Id}>{element.project_Name}</Select.Option>
                                     ))
                                 }
-                            </Select>
+                            </Select> */}
+                            <Select 
+                            
+                            isSearchable={false}
+                            onChange={(value) => { excelDownload(value) }} placeholder="Select..."
+                          />
                             <Button disabled={isDownload} onClick={downloadXL1}>Download Excel</Button>
                         </Space>
                     </div>

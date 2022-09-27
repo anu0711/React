@@ -118,6 +118,8 @@ const Login = () => {
                         </Form.Item><br />
                         <p style={{ color: "white", marginLeft: 110 }}>Change password?<span style={{ marginLeft: 5, }}><Link to="/resetPassword"><b><u>click here..</u></b></Link></span></p><br />
                         {/* <Link>click here..</Link> */}
+                        <p style={{ color: "white", marginLeft: 110 }}>Forgot password?<span style={{ marginLeft: 5, }}><Link to="/forgotPassword"><b><u>click here..</u></b></Link></span></p>
+
                         <Form.Item>
                             <Space>
                                 <Button type="danger" style={{ marginLeft: 150, fontFamily: "LucidaConsole" }}>Cancel</Button>
