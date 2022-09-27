@@ -910,14 +910,14 @@ function ReadProject() {
                                     <Input
                                         type='date'
 
-                                        // time='disabled'
-                                        // disabledDate={disabledEndDate}
-                                        // min={startValue}
-                                        // format="YYYY-MM-DD"
+                                        time='disabled'
+                                     disabledDate={disabledEndDate}
+                                         min={startValue}
+                                         format="YYYY-MM-DD"
                                         value={endValue}
-                                    // placeholder="End"
-                                    // onChange={handleEndDate}
-                                    // onOpenChange={handleEndOpenChange}
+                                    placeholder="End"
+                                     onChange={handleEndDate}
+                                     onOpenChange={handleEndOpenChange}
                                     />
                                 </Form.Item>
                                 <Form.Item style={{ paddingLeft: '50%' }}>
