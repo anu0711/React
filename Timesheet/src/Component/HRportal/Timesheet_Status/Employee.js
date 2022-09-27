@@ -280,6 +280,10 @@ function Tb3() {
       }).then((r) => {
         setMessage(r.request.status, " Updated Successfully");
       })
+      const timout1 = setTimeout(() => {
+        window.location.reload(false);
+    }, 1150);
+    return () => clearTimeout(timout1);
     })
   }
   useEffect(() => {
