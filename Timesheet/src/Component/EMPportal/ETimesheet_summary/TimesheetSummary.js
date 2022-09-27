@@ -54,7 +54,7 @@ function TimesheetSummary() {
       title: 'Uploaded image',
       render: () => (<Link state={{
 
-      }} to="/Uploadedimage">View</Link>)
+      }} to="/EmpImg">View</Link>)
     },
     {
       title: 'Year',

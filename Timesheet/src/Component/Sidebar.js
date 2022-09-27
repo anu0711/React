@@ -24,6 +24,7 @@ import AddTimesheet from './EMPportal/AddTimesheet/AddTimesheet';
 import TimesheetSummary from './EMPportal/ETimesheet_summary/TimesheetSummary';
 import ResetPassword from './resetpassword';
 import Errpage from './image/Err';
+import EmpImg from './EMPportal/ETimesheet_summary/Viewimg';
 
 const { Content } = Layout;
 
@@ -52,7 +53,7 @@ const Home = () => {
                     <Route path="/Viewimage" element={<Uploadedimage />} />
                     <Route path="/Viewtimesheet" element={<Viewtimesheet />} />
                     <Route path="/resetPassword" element={<ResetPassword />} />
-                    <Route path="*" element={< Errpage/>} />
+                    <Route path="*" element={< Errpage />} />
 
                     {/* EMPLOYEE PORTAL */}
                     <Route path="/Euserprofile" element={<EUserprofile />} />
@@ -60,7 +61,8 @@ const Home = () => {
                     <Route path="/Ehrinfo" element={<EHrInfo />} />
                     <Route path="/Eaddtimesheet" element={<AddTimesheet />} />
                     <Route path="/Etimesheetsummary" element={<TimesheetSummary />} />
-                    <Route path="*" element={< Errpage/>} />
+                    <Route path="/EmpImg" element={<EmpImg />} />
+                    <Route path="*" element={< Errpage />} />
                 </Routes>
             </Content>
         </Layout>

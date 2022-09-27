@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from "axios";
-function Uploadedimage() {
+function EmpImg() {
     // const [employee_Id, setemployee_Id] = useState(useLocation())
     const loc = useLocation();
     const navigate = useNavigate();
@@ -23,10 +23,10 @@ function Uploadedimage() {
             location: loc,
         };
         async componentDidMount() {
-            const { year } = loc.state;
-            const { Fiscol_Year_id } = loc.state;
-            const { employee_Id } = loc.state;
-            console.log(year, Fiscol_Year_id, employee_Id)
+            const year = new Date().getFullYear();
+            const Fiscol_Year_id = new Date().getMonth();
+            // console.log(year, Fiscol_Year_id)
+
             const token =
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2FjMjRhMWJmN2YzMjRhNTA4ZjhhMjYiLCJvcmdhbml6YXRpb25JZCI6IjVjYWMyNDY3ODAxZDAwNGEyZDNmMTk4OSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTU1NjgwMzg1NywiZXhwIjoxNTU5Mzk1ODU3fQ.4xfmVVWv5Cnr4FVleKLrzbstVq-63zCVUyeB-pQ0d1s";
             try {
@@ -75,4 +75,4 @@ function Uploadedimage() {
     const rootElement = document.getElementById("root");
     ReactDOM.render(<App />, rootElement);
 }
-export default Uploadedimage
+export default EmpImg;
