@@ -1060,8 +1060,8 @@ const Tablee = () => {
                   <Col span={5}>
                     <Form.Item
                       name='end_Date'
-                    >
-                      <Input type='datetime-local'
+                    >   <DatePicker 
+                    type='datetime-local'
                         time='disabled'
                         disabledDate={disabledEndDate}
 
@@ -1070,8 +1070,9 @@ const Tablee = () => {
 
                         onChange={handleEndDate}
                         onOpenChange={handleEndOpenChange}
-                      />
-
+                      
+></DatePicker>
+                       
                     </Form.Item>
                   </Col><Col span={1}></Col>
                   <Col span={5}>
