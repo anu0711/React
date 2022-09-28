@@ -144,7 +144,11 @@ function Readdeactivated() {
           else{          
           setPage(page - 1);
           }
-        
+          const timout1 = setTimeout(() => {
+            window.location.reload();
+          }, 1100);
+  
+          return () => clearTimeout(timout1);    
       })
       console.log(element.hr_Name)
       debugger

@@ -130,7 +130,11 @@ function Deactivatehrinfo() {
           }
         })
           .then(data => setFilteredClient(data.data))
-
+          const timout1 = setTimeout(() => {
+            window.location.reload();
+          }, 1100);
+  
+          return () => clearTimeout(timout1);
 
       })
       console.log(element.hr_Name)

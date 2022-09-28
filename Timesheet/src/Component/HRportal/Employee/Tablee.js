@@ -1,5 +1,5 @@
 import "antd/dist/antd.css";
-import { Modal, Input, Space, Col, Row, Form, message, Table, Select, DatePicker, Card, Layout, Popover } from "antd";
+import { Modal, Input, Space, Col, Row, Form, message, Table, Select, DatePicker, Card, Layout, Popover, } from "antd";
 import Button from "antd-button-color";
 import 'antd-button-color/dist/css/style.css';
 import { useEffect, useState } from "react";
@@ -28,6 +28,7 @@ const Tablee = () => {
     navigate("/#");
 
   }
+  const { RangePicker } = DatePicker;
   const [empDataSource, setEmpDataSoure] = useState([]);
   const [addedEmploy, setAddedEmploy] = useState({ "employee_Name": "", "reporting_Manager1": "", "employee_Type_Id": "", "email": "", "designation_Id": "", "contact_No": "", "joining_Date": "" });
   const [isEditing, setIsEditing] = useState(false);
@@ -1036,7 +1037,7 @@ const Tablee = () => {
                   </Col>
                   <Col span={1}></Col>
                   <Col span={5}>
-                    <p style={{ marginLeft: 10, fontWeight: "bold" }}>End Date</p>
+                    <p style={{ marginLeft: 10, fontWeight: "bold" }} >End Date</p>
                   </Col>
                   <Col span={1}></Col>
                   <Col span={5}>
@@ -1060,20 +1061,16 @@ const Tablee = () => {
                   <Col span={5}>
                     <Form.Item
                       name='end_Date'
-                    >   <DatePicker 
-                    type='datetime-local'
-                        time='disabled'
-                        disabledDate={disabledEndDate}
-
+                    >
+                      <Input type='datetime-local'
+                        
                         format="YYYY-MM-DD"
+                      
                         value={endValue}
-
                         onChange={handleEndDate}
                         onOpenChange={handleEndOpenChange}
-                      
-></DatePicker>
-                       
-                    </Form.Item>
+                      />
+                  </Form.Item>
                   </Col><Col span={1}></Col>
                   <Col span={5}>
                     <Form.Item

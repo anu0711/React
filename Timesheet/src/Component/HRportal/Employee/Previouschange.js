@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 import { data } from 'jquery';
+import ChangeHighlight from 'react-change-highlight';
 
 const Previouschange = () => {
   const { Sider, Content } = Layout;
@@ -153,7 +154,7 @@ const Previouschange = () => {
     }
   ];
 
-  return (
+  return ( 
     <div style={{ color: "white" }}>
       <Sider style={{ padding: " 16% 0%", position: "fixed", maxHeight: "150%", backgroundColor: "deepblue", marginTop: -100, }}>
         <Button style={{ width: 160, margin: "5 10%", height: 50, marginTop: 20, marginLeft: 20 }}>
@@ -169,8 +170,8 @@ const Previouschange = () => {
         </Button><br /><br />
       </Sider>
       <Card style={{ marginLeft: 250 }}>
-        <div>
-          <h1 style={{ color: "blue", fontSize: 25 }}><span>{editEmployee_Name}</span>'s Previous Changes</h1>
+        <div ><ChangeHighlight>
+          <h1  ref={React.createRef()} style={{ color: "blue", fontSize: 25 }}><span>{editEmployee_Name}</span>'s Previous Changes</h1></ChangeHighlight>
         </div>
 
         <Table columns={columns}
