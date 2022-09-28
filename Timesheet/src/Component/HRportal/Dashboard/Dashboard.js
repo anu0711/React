@@ -186,7 +186,7 @@ const Dashboard = (props) => {
           <Space direction="horizontal">
             <Space direction="horizantal">
               <div style={{ marginTop: "30px", marginLeft: "60px", padding: 70, position: "fixed" }}>
-                <Link to="/timesheet/month/view" state={{ year: year, month: month }}>
+                {/* <Link to="/timesheet/month/view" state={{ year: year, month: month }}> */}
                   <Button style={{
                     marginLeft: 10,
                     marginTop: 85,
@@ -203,7 +203,8 @@ const Dashboard = (props) => {
                   }}
                     variant="contained" color="secondary">
                     {count} Employees
-                  </Button> </Link>
+                  </Button> 
+                  {/* </Link> */}
 
               </div>
             </Space>
