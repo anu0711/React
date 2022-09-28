@@ -5,13 +5,19 @@ import axios from 'axios';
 import './login.css';
 import { useState, React, } from 'react';
 import Dashboard from './HRportal/Dashboard/Dashboard';
-import Icon, { UserOutlined, LockOutlined } from '@ant-design/icons';
+import Icon, { UserOutlined, LockOutlined ,MailOutlined} from '@ant-design/icons';
 import { Image } from 'antd';
 
 
-const Login = () => {
-   
+
+const Log = () => {
     const navigate = useNavigate();
+    
+    const navig = () => {
+        navigate(-1);
+    
+       
+    }
 
     const setMessage = (statusCode, responseMessage) => {
         debugger;
@@ -84,18 +90,18 @@ const Login = () => {
 
         <>
             <Card className='login' >
-                <div> <h2 style={{ color: "white", fontSize: 35, marginLeft: 520, marginTop: 50, fontFamily: "LucidaConsole" }}>  TIMESHEET AUTOMATION</h2></div>
-                <div style={{ width: 480, marginLeft: 490, padding: 10, backgroundColor: "0,0,0,0.1", boxSizing: 'border-box', borderRadius: 15, boxShadow: "0 0 40px rgba(0,0,0,16)", marginTop: 50, position: "" }}>
+                <div> <h2 style={{ color: "white", fontSize: 35, marginLeft: 515,  fontFamily: "LucidaConsole",marginTop:50 }}>  TIMESHEET AUTOMATION</h2></div>
+                <div style={{ width: 480, marginLeft: 500, padding: 10, backgroundColor: "0,0,0,0.1", boxSizing: 'border-box', borderRadius: 15, boxShadow: "0 0 40px rgba(0,0,0,16)", marginTop:110, position: "" }}>
 
                     {/* <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="dashboard"><b>HR Portal</b></Link></Button><br /><br />
                     <Button type="lightdark" style={{ width: 200, height: 50, marginLeft: 100 }}><Link to="/Siders"><b>Employee Portal</b></Link></Button> */}
-                    <h1 style={{ marginLeft: 10, fontSize: 25, color: "white", fontFamily: "LucidaConsole" }}><b>LOGIN PAGE</b></h1>
+                    <h1 style={{ marginLeft: 10, fontSize: 25, color: "white", fontFamily: "LucidaConsole" }}><b>FORGOT PASSWORD</b></h1>
                     <Form
                         {...formItemLayout}
                         onFinish={onFinish}
                         form={AddProjectForm}
                     >
-                        <h1 style={{ marginLeft: 150, color: "white", fontFamily: "LucidaConsole" }} ><b><UserOutlined className='i' />-USERNAME</b></h1>
+                        <h1 style={{ marginLeft: 170, color: "white", fontFamily: "LucidaConsole" }} ><b><MailOutlined  className='i' />-Email</b></h1>
                         <Form.Item name="username" rules={[
                             {
                                 required: true,
@@ -108,25 +114,17 @@ const Login = () => {
                         ]}>
                             <Input style={{ width: 450, marginLeft: 5 }} />
                         </Form.Item>
-                        <h1 style={{ marginLeft: 150, placeholder: "input placeholder", color: "white", fontFamily: "LucidaConsole" }} ><b><LockOutlined className='i1' />-PASSWORD</b></h1>
-                        <Form.Item className='span' name="password" rules={[
-                            {
-                                required: true,
-                                message: 'Please input your Password!'
-                            },
-                        ]}>
-                            <Input.Password type="password" style={{ width: 450, marginLeft: 5 }} />
-                        </Form.Item><br />
-                        <p style={{ color: "white", marginLeft: 110 }}>Change password?<span style={{ marginLeft: 5, }}><Link to="/resetPassword"><b><u>click here..</u></b></Link></span></p><br />
-                        {/* <Link>click here..</Link> */}
-                        <p style={{ color: "white", marginLeft: 110 }}>Forgot password?<span style={{ marginLeft: 5, }}><Link to="/forgetpassword"><b><u>click here..</u></b></Link></span></p>
+                        
 
+                        {/* <Link>click here..</Link> */}
                         <Form.Item>
                             <Space>
-                                <Button type="danger" htmlType='reset' style={{ marginLeft: 150, fontFamily: "LucidaConsole" }}>Cancel</Button>
+                            <Button type="danger" htmlType="button" onClick={() => navig()} style={{ marginLeft: 150 }}>Cancel</Button>
+
                                 <Button type="success" htmlType="submit" style={{ marginLeft: 10, fontFamily: "LucidaConsole" }}>Submit</Button>
                             </Space>
                         </Form.Item>
+
                     </Form>
                 </div>
             </Card>
@@ -135,4 +133,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default Log;

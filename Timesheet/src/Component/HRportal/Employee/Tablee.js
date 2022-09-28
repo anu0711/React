@@ -1,5 +1,5 @@
 import "antd/dist/antd.css";
-import { Modal, Input, Space, Col, Row, Form, message, Table, DatePicker, Card, Layout, Popover } from "antd";
+import { Modal, Input, Space, Col, Row, Form, message, Table, Select, DatePicker, Card, Layout, Popover } from "antd";
 import Button from "antd-button-color";
 import 'antd-button-color/dist/css/style.css';
 import { useEffect, useState } from "react";
@@ -12,9 +12,13 @@ import { Link } from 'react-router-dom';
 import { Checkbox } from 'semantic-ui-react';
 import { LogoutOutlined } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Select from 'react-select';
+import Login from "../../login";
+//import Select from 'react-select';
 
 const Tablee = () => {
+  // if (toke != undefined){
+  //   return <Login/>
+  // }
 
   const { Sider, Content } = Layout;
   const navigate = useNavigate();
@@ -395,7 +399,7 @@ const Tablee = () => {
         reportinng_Manager2: "---",
         email,
         password: 'Joyitemp@123',
-       // password,
+        // password,
         designation_Id: change1,
         contact_No,
         joining_Date,
@@ -935,6 +939,7 @@ const Tablee = () => {
             </div>
 
             <Modal
+              style={{ position: 'fixed', marginTop: '-6.5%', marginLeft: '24%' }}
               header={false}
               title={[<Space><h2 style={{ color: "blue" }}><b>Edit</b></h2><Button style={{ marginLeft: 620, marginTop: -20, fontSize: 20 }} type="link" onClick={resetEditing}>X</Button></Space>]}
               visible={isEditing}
@@ -1078,7 +1083,7 @@ const Tablee = () => {
                           <Select.Option value={opt.designation_Id}>{opt.designation_Name}</Select.Option>
                         ))}
                       </Select> */}
-                      <Select style={{ width: 10 }}
+                      <Select style={{ width: 155, }}
                         isSearchable={false}
 
                         onChange={(value) => { setdesignation_Id(value) }} placeholder="Select One"
@@ -1174,14 +1179,23 @@ const Tablee = () => {
                     </Form.Item>
                   </Col>
                 </Row>
-                <div style={{ marginTop: 20 }}>
-                  <Link state={{ id: editEmployee_Id, editEmployee_Name: fullName }} to="/employee/Previouschange" ><h2 style={{ color: "blue" }}><u>View Previous Changes</u></h2></Link>
+                <div style={{ marginTop: 10 }}>
+                  {/* <Link state={{ id: editEmployee_Id, editEmployee_Name: fullName }} to="/employee/Previouschange" ><p style={{ color: "blue" }}><u>View Previous Changes</u></p></Link> */}
+                  <p style={{ color: "blue" }}><Link state={{ id: editEmployee_Id, editEmployee_Name: fullName }} to="/employee/Previouschange" ><u style={{fontSize:20}}>View Previous Changes</u></Link>
+                    <span >
+                      <Space>
+                        <Button type="danger" style={{ marginLeft: 400, marginBotton: -20,marginTop:'-1%',position:'fixed' }} onClick={resetEditing}>Cancel</Button>
+                        <Button style={{ marginLeft: 250,position:'fixed',marginTop:'-1%'}} type="success" htmlType="submit">Save Changes</Button>
+                      </Space>
+                    </span>
+                  </p>
+
                 </div>
-                <Form.Item>
+                {/* <Form.Item>
                   <Space>
                     <Button type="danger" style={{ marginLeft: 470, marginBotton: -20 }} onClick={resetEditing}>Cancel</Button>
                     <Button type="success" htmlType="submit">Save Changes</Button></Space>
-                </Form.Item>
+                </Form.Item> */}
               </Form>
 
             </Modal>

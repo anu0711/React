@@ -26,6 +26,7 @@ import ResetPassword from './resetpassword';
 import Errpage from './image/Err';
 import EmpImg from './EMPportal/ETimesheet_summary/Viewimg';
 import Emptms from './EMPportal/ETimesheet_summary/Timesheet';
+import Log from './forgetpassword';
 
 
 
@@ -56,7 +57,7 @@ const Home = () => {
                     <Route path="/Viewimage" element={<Uploadedimage />} />
                     <Route path="/Viewtimesheet" element={<Viewtimesheet />} />
                     <Route path="/resetPassword" element={<ResetPassword />} />
-           
+                    <Route path="/forgetpassword" element={<Log/>}/>
                     <Route path="*" element={< Errpage/>} />
 
                     {/* EMPLOYEE PORTAL */}
