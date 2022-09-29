@@ -14,6 +14,11 @@ const Userprofile = () => {
   const navig = () => {
     navigate("/#");
   }
+  if(!sessionStorage.token){
+    debugger
+    navigate("/#");
+    debugger
+}
   const [users, setUsers] = useState([]);
 
   useEffect(() => {

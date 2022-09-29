@@ -59,19 +59,17 @@ const projectOption = async () => {
     
 
 function AddTimesheet() {
-
-    //const navigate = useNavigate();
-
-    if(!sessionStorage.token){
-        debugger
-        navigate("/#");
-        console.log("hiii")
-        debugger
-    }
-
+    const navigate = useNavigate();
     const navig = () => {
-        navigate("/#");
+      navigate("/#");
     }
+    if(!sessionStorage.token){
+      debugger
+      navigate("/#");
+      debugger
+  }
+    
+
     const employee_Id = sessionStorage.id;
     const month_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -86,6 +84,7 @@ function AddTimesheet() {
     const [state3, setState3] = useState([])
     const month = currentDate.getMonth() - 1;
     const year = currentDate.getFullYear();
+   
     const Day_list = [
         "Sunday",
         "Monday",
@@ -533,17 +532,7 @@ function AddTimesheet() {
     }
 
     debugger
-    const navigate = useNavigate();
-
-    if(!sessionStorage.token){
-        debugger
-        navigate("/#");
-        console.log("hiii")
-        debugger
-    }
-
-
-
+    
 
     return (
 
