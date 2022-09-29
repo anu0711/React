@@ -16,6 +16,7 @@ import UploadImage from './UploadImage';
 import UploadApTimesheet from './UploadApTimesheet';
 import { elementAcceptingRef } from '@mui/utils';
 import Select from 'react-select';
+
 const setMessage = (statusCode, responseMessage) => {
     if (statusCode == 200) {
         message.success(responseMessage);
@@ -33,8 +34,12 @@ const setMessage = (statusCode, responseMessage) => {
         message.error(responseMessage);
     }
 }
+
+
+
 var dummyProject = [];
 const projectOption = async () => {
+    
     var toke = sessionStorage.token;
     const response = await axios.get("https://timesheetjy.azurewebsites.net/api/Employee/GetAllProjects", {
         headers: {
@@ -49,8 +54,21 @@ const projectOption = async () => {
     });
 }
 
+
+
+    
+
 function AddTimesheet() {
-    const navigate = useNavigate();
+
+    //const navigate = useNavigate();
+
+    if(!sessionStorage.token){
+        debugger
+        navigate("/#");
+        console.log("hiii")
+        debugger
+    }
+
     const navig = () => {
         navigate("/#");
     }
@@ -135,7 +153,7 @@ function AddTimesheet() {
         calculateTotalDuration();
     }, [currentState]);
 
-
+    
 
     const columns = [
         {
@@ -513,6 +531,18 @@ function AddTimesheet() {
           optionS.push(Option);
         }) 
     }
+
+    debugger
+    const navigate = useNavigate();
+
+    if(!sessionStorage.token){
+        debugger
+        navigate("/#");
+        console.log("hiii")
+        debugger
+    }
+
+
 
 
     return (

@@ -30,6 +30,11 @@ function ClientRead() {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
   const navigate = useNavigate();
+  if(!sessionStorage.token){
+    debugger
+    navigate("/#");
+    debugger
+}
   const navig = () => {
     navigate("/#");
   }

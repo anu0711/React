@@ -20,6 +20,11 @@ const Dashboard = (props) => {
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
+  if(!sessionStorage.token){
+    debugger
+    navigate("/#");
+    debugger
+}
 
   const monthOption = [];
   const month_name = [

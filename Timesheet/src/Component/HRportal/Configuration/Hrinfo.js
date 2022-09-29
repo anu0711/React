@@ -49,7 +49,11 @@ const Hrinfo = () => {
   const navig = () => {
     navigate("/#");
   }
-  
+  if(!sessionStorage.token){
+    debugger
+    navigate("/#");
+    debugger
+}
   const setMessage = (statusCode, responseMessage) => {
     if (statusCode == 200) {
       message.success(responseMessage, 4);

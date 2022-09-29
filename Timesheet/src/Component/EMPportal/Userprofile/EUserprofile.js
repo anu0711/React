@@ -13,6 +13,14 @@ const EUserprofile = () => {
     const [users, setUsers] = useState([]);
     const mail = sessionStorage.getItem("mailId");
     const navigate = useNavigate();
+
+    if(!sessionStorage.token){
+        debugger
+        navigate("/#");
+        console.log("hiii")
+        debugger
+    }
+    
     const navig = () => {
         navigate("/#");
     }

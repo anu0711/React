@@ -43,6 +43,11 @@ function ReadJob() {
   const [isactive, setIsActive] = useState(false);
   const [actCli, setActCli] = useState([]);
   const navigate = useNavigate();
+  if(!sessionStorage.token){
+    debugger
+    navigate("/#");
+    debugger
+}
   const navig = () => {
     navigate("/#");
   }

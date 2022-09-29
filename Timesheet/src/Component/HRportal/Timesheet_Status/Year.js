@@ -27,6 +27,11 @@ function Tb1() {
       navigate("/#");
 
      }
+     if(!sessionStorage.token){
+      debugger
+      navigate("/#");
+      debugger
+  }
   const columns = [
     {
       title: 'COL_ID',

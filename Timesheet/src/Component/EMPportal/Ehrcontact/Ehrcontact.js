@@ -13,6 +13,14 @@ const EHrInfo = () => {
     const [pageSize, setPageSize] = useState(8);
     const [filteredClient, setFilteredClient] = useState([]);
     const navigate = useNavigate();
+
+    if(!sessionStorage.token){
+        debugger
+        navigate("/#");
+        console.log("hiii")
+        debugger
+    }
+
     const navig = () => {
         navigate("/#");
     }

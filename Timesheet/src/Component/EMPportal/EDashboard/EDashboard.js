@@ -13,6 +13,21 @@ import { useNavigate } from 'react-router-dom';
 
 const EDashboard = () => {
 
+    const navigate = useNavigate();
+
+    if(sessionStorage.id === null){
+        debugger
+        navigate("/#");
+        debugger
+    }
+
+    const navig = () => {
+        navigate("/#");
+    }
+
+    // console.log(sessionStorage);
+    // debugger
+
     const month_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [modal, setModal] = useState(false);
@@ -42,10 +57,8 @@ const EDashboard = () => {
     const [sts, setsts] = useState([]);
     const toke = sessionStorage.getItem("token");
     const id = sessionStorage.getItem("id");
-    const navigate = useNavigate();
-    const navig = () => {
-        navigate("/#");
-    }
+    
+    
     const { Sider } = Layout;
 
     const clientdtl = async () => {

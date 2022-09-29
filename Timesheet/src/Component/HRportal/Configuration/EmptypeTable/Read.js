@@ -46,11 +46,20 @@ function ReadEmpType() {
   const [option, setOption] = useState('yes');
   const [hideOrShow, setHideOrShow] = useState(false);
   const navigate = useNavigate();
+  if(!sessionStorage.token){
+    debugger
+    navigate("/#");
+    debugger
+}
   const navig = () => {
     navigate("/#");
   }
   const toke = sessionStorage.getItem("token");
-
+  if(!sessionStorage.token){
+    debugger
+    navigate("/#");
+    debugger
+}
   const setMessage = (statusCode, responseMessage) => {
     debugger
     if (statusCode == 200) {

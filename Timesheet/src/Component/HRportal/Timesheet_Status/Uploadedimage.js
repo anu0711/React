@@ -6,12 +6,18 @@ function Uploadedimage() {
     const [employee_Id, setemployee_Id] = useState(useLocation())
     const loc = useLocation();
     const navigate = useNavigate();
+    const navigae = useNavigate();
     const navig = () => {
         navigate(-1);
         const timeout = setTimeout(() => {
             window.location.reload();
         }, 500);
         return () => clearTimeout(timeout);
+    }
+    if(!sessionStorage.token){
+        debugger
+        navigae("/#");
+        debugger
     }
     const location = useLocation();
     console.log(employee_Id);
