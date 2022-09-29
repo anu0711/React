@@ -22,12 +22,17 @@ const Tablee = () => {
 
   const { Sider, Content } = Layout;
   const navigate = useNavigate();
-
+  
   const navig = () => {
 
     navigate("/#");
 
   }
+  if(!sessionStorage.token){
+    debugger
+    navigate("/#");
+    debugger
+}
   const { RangePicker } = DatePicker;
   const [empDataSource, setEmpDataSoure] = useState([]);
   const [addedEmploy, setAddedEmploy] = useState({ "employee_Name": "", "reporting_Manager1": "", "employee_Type_Id": "", "email": "", "designation_Id": "", "contact_No": "", "joining_Date": "" });

@@ -5,9 +5,16 @@ import axios from "axios";
 import { Checkbox } from 'semantic-ui-react';
 import $ from 'jquery';
 import moment from 'moment';
+import {useNavigate} from 'react-router-dom';
 
 
 function Deactivateemp() {
+  const navigate = useNavigate();
+  if(!sessionStorage.token){
+    debugger
+    navigate("/#");
+    debugger
+}
 
   const [dctemployDetails, setdctemployDetails] = useState([]);
   const [search, setSearch] = useState('');
