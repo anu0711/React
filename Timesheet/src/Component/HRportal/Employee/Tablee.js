@@ -600,6 +600,7 @@ const Tablee = () => {
               <div id="efg" style={{ marginLeft: 350 }}>
                 <Button id="activate" type="primary" rowKey="id" title="Add Employee" onClick={showAddData}>Add Employee</Button>
                 <Modal
+                 style={{ position: 'fixed', marginTop: '-6.5%', marginLeft: '24%' }}
                   title={<Space><h2 className="add" style={{ color: "blue" }}>ADD EMPLOYEE</h2><Button type="link" icon={<CloseCircleOutlined />} style={{ marginLeft: 470, fontWeight: "bold", color: "red" }} onClick={buttonCancel}></Button></Space>}
                   okText="Confirm"
                   okType="success"
