@@ -401,12 +401,12 @@ const Tablee = () => {
         first_Name,
         last_Name,
         reporting_Manager1,
-        employee_Type_Id: change,
+        employee_Type_Id: employee_Type_Id,
         reportinng_Manager2: "---",
         email,
         password: 'Joyitemp@123',
         // password,
-        designation_Id: change1,
+        designation_Id: designation_Id,
         contact_No,
         joining_Date,
         alternate_Email,
@@ -741,7 +741,7 @@ const Tablee = () => {
                                 return <Option value={dpDown.designation_Id}>{dpDown.designation_Name}</Option>
                               })}
                             </Select> */}
-                            <Select style={{ width: 10 }}
+                            <Select style={{ width: 150 }}
                               isSearchable={false}
 
                               onChange={(value) => { setdesignation_Id(value) }} placeholder="Select One"
