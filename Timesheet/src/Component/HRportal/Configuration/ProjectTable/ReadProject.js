@@ -283,8 +283,9 @@ function ReadProject() {
                 },
             })
                 .then((r) => {
-                    // setMessage(r.request.status, element.project_Name + " Activated Successfully");
+                     setMessage(r.request.status, element.project_Name + " Activated Successfully");
                     getClients();
+                    activateProjectName = activateProjectName + element.activateproject_Name + ", ";
 
                 });
                 const timout1 = setTimeout(() => {
@@ -295,11 +296,13 @@ function ReadProject() {
             console.log(activateProjectName);
         });
         // str = str.substring(0, str.length - 2)
-        activateProjectName = activateProjectName.substring(0, activateProjectName.length - 2) + " ";
-        // setMessage(200, activateProjectName + selectedRows.length > 1 ? 'are' : 'is' + " Activated Successfully");
+        // activateProjectName = activateProjectName.substring(0, activateProjectName.length - 2) + " ";
+        // setMessage(200, activateProjectName + ' Activated Successfully');
+        //  setMessage(200, activateProjectName + selectedRows.length > 1 ? 'are' : 'is' + " Activated Successfully");
         // const alertMessage = activateProjectName + length > 1 ? " is" : " are" + " Activated Successfully";
-        setMessage(200, activateProjectName + " Activated Successfully");
-        
+        //setMessage(200, activateProjectName + " Activated Successfully");
+       // activateProjectName = activateProjectName.substring(0, activateProjectName.length - 2);
+        //setMessage(200, activateProjectName + ' Activated Successfully')
         setIsActivateModal(false);
         getClients();
         setDeactivate(false);
