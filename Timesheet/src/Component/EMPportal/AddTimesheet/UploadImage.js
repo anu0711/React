@@ -20,7 +20,7 @@ const setMessage = (statusCode, responseMessage) => {
     }
 }
 
-class UploadedImage extends Component {
+class UploadApTimesheet extends Component {
 
     state = {
         selectedFile: null
@@ -33,19 +33,18 @@ class UploadedImage extends Component {
     }
 
     fileUploadHandler = () => {
-
+        console.log();
+        debugger;
         const fd = new FormData();
         fd.append('Images', this.state.selectedFile, this.state.selectedFile.name);
-        fd.append('Employee_Id', 92);
-        fd.append('Fiscal_Year_Id', 9);
+        fd.append('Employee_Id', Number(sessionStorage.getItem("id")));
+        fd.append('Fiscal_Year_Id', new Date().getMonth());
         fd.append('year', 2022);
-
+        debugger;
         const img = axios.post("https://timesheetjy.azurewebsites.net/api/UploadfileAzure/UploadApprovedImage", fd)
+        
             .then(res => {
                 setMessage(res.status, " Uploaded Successfully");
-                console.log(res);
-                setMessage(res.status, res.data);
-
             })
         const timout1 = setTimeout(() => {
             window.location.reload(false);
@@ -56,10 +55,10 @@ class UploadedImage extends Component {
     render() {
         return (
             <div>
-                <input type="file" onChange={this.fileSelectedHandler}></input> <br />
+                <input type="file" onChange={this.fileSelectedHandler}></input><br />
                 <button onClick={this.fileUploadHandler}>Upload</button>
             </div>
         )
     }
 }
-export default UploadedImage;
+export default UploadApTimesheet;

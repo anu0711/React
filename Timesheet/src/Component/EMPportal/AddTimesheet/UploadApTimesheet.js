@@ -42,6 +42,7 @@ class UploadApTimesheet extends Component {
         fd.append('year', 2022);
         debugger;
         const img = axios.post("https://timesheetjy.azurewebsites.net/api/UploadfileAzure/UploadApprovedImage", fd)
+        
             .then(res => {
                 setMessage(res.status, " Uploaded Successfully");
             })
