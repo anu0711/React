@@ -22,17 +22,17 @@ const Tablee = () => {
 
   const { Sider, Content } = Layout;
   const navigate = useNavigate();
-  
+
   const navig = () => {
 
     navigate("/#");
 
   }
-  if(!sessionStorage.token){
+  if (!sessionStorage.token) {
     debugger
     navigate("/#");
     debugger
-}
+  }
   const { RangePicker } = DatePicker;
   const [empDataSource, setEmpDataSoure] = useState([]);
   const [addedEmploy, setAddedEmploy] = useState({ "employee_Name": "", "reporting_Manager1": "", "employee_Type_Id": "", "email": "", "designation_Id": "", "contact_No": "", "joining_Date": "" });
@@ -600,7 +600,7 @@ const Tablee = () => {
               <div id="efg" style={{ marginLeft: 350 }}>
                 <Button id="activate" type="primary" rowKey="id" title="Add Employee" onClick={showAddData}>Add Employee</Button>
                 <Modal
-                 style={{ position: 'fixed', marginTop: '-6.5%', marginLeft: '24%' }}
+                  style={{ position: 'fixed', marginTop: '-6.5%', marginLeft: '24%' }}
                   title={<Space><h2 className="add" style={{ color: "blue" }}>ADD EMPLOYEE</h2><Button type="link" icon={<CloseCircleOutlined />} style={{ marginLeft: 470, fontWeight: "bold", color: "red" }} onClick={buttonCancel}></Button></Space>}
                   okText="Confirm"
                   okType="success"
@@ -1068,15 +1068,12 @@ const Tablee = () => {
                     <Form.Item
                       name='end_Date'
                     >
-                      <Input type='datetime-local'
-                        
-                        format="YYYY-MM-DD"
-                      
+                      <Input type='date'
                         value={endValue}
                         onChange={handleEndDate}
                         onOpenChange={handleEndOpenChange}
                       />
-                  </Form.Item>
+                    </Form.Item>
                   </Col><Col span={1}></Col>
                   <Col span={5}>
                     <Form.Item
@@ -1185,11 +1182,11 @@ const Tablee = () => {
                 </Row>
                 <div style={{ marginTop: 10 }}>
                   {/* <Link state={{ id: editEmployee_Id, editEmployee_Name: fullName }} to="/employee/Previouschange" ><p style={{ color: "blue" }}><u>View Previous Changes</u></p></Link> */}
-                  <p style={{ color: "blue" }}><Link state={{ id: editEmployee_Id, editEmployee_Name: fullName }} to="/employee/Previouschange" ><u style={{fontSize:20}}>View Previous Changes</u></Link>
+                  <p style={{ color: "blue" }}><Link state={{ id: editEmployee_Id, editEmployee_Name: fullName }} to="/employee/Previouschange" ><u style={{ fontSize: 20 }}>View Previous Changes</u></Link>
                     <span >
                       <Space>
-                        <Button type="danger" style={{ marginLeft: 400, marginBotton: -20,marginTop:'-1%',position:'fixed' }} onClick={resetEditing}>Cancel</Button>
-                        <Button style={{ marginLeft: 250,position:'fixed',marginTop:'-1%'}} type="success" htmlType="submit">Save Changes</Button>
+                        <Button type="danger" style={{ marginLeft: 400, marginBotton: -20, marginTop: '-1%', position: 'fixed' }} onClick={resetEditing}>Cancel</Button>
+                        <Button style={{ marginLeft: 250, position: 'fixed', marginTop: '-1%' }} type="success" htmlType="submit">Save Changes</Button>
                       </Space>
                     </span>
                   </p>
